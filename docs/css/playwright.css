@@ -1,0 +1,242 @@
+/* ===== Playwright project cards — modular grid with actions ===== */
+
+.project-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: var(--space-5);
+  align-items: start;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.project-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+  transition:
+    border-color var(--duration-normal) var(--ease-out),
+    box-shadow var(--duration-normal) var(--ease-out),
+    transform var(--duration-normal) var(--ease-out);
+}
+
+.project-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-dim));
+  opacity: 0;
+  transition: opacity var(--duration-normal) var(--ease-out);
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  pointer-events: none;
+}
+
+.project-card:hover {
+  border-color: rgba(63, 185, 80, 0.4);
+  box-shadow: var(--shadow-card);
+  transform: translateY(-2px);
+}
+
+.project-card:hover::before { opacity: 1; }
+
+.project-card:focus-within {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px var(--accent-soft);
+}
+
+.project-card:focus-within::before { opacity: 1; }
+
+.project-card-header {
+  margin-bottom: var(--space-3);
+}
+
+.project-card-number {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--accent);
+  font-weight: 600;
+  margin-bottom: var(--space-1);
+}
+
+.project-card-title {
+  margin: 0 0 var(--space-1);
+  font-size: var(--text-lg);
+  font-weight: 600;
+  color: var(--text);
+  line-height: var(--leading-tight);
+}
+
+.project-card-subtitle {
+  margin: 0;
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+  line-height: var(--leading-relaxed);
+}
+
+.project-card-description {
+  margin: 0 0 var(--space-4);
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+  line-height: var(--leading-relaxed);
+  flex: 1;
+}
+
+.project-card-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.project-card-actions .btn {
+  font-size: var(--text-xs);
+  padding: var(--space-2) var(--space-3);
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: var(--radius-sm);
+  transition: background var(--duration-fast) var(--ease-out), color var(--duration-fast) var(--ease-out);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+.project-card-actions .btn-primary {
+  background: var(--accent);
+  color: var(--bg);
+  border: none;
+}
+
+.project-card-actions .btn-primary:hover {
+  background: var(--accent-dim);
+  color: var(--bg);
+}
+
+.project-card-actions .btn-secondary {
+  background: var(--accent-soft);
+  color: var(--accent);
+  border: 1px solid rgba(63, 185, 80, 0.35);
+}
+
+.project-card-actions .btn-secondary:hover {
+  background: rgba(63, 185, 80, 0.25);
+  color: var(--text);
+}
+
+/* Details button */
+.btn-details {
+  cursor: pointer;
+  border: 1px solid rgba(63, 185, 80, 0.35);
+}
+
+.btn-details .icon {
+  font-size: 0.7em;
+  margin-left: var(--space-1);
+}
+
+/* ===== Details popup modal ===== */
+.details-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-4);
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility var(--duration-normal) var(--ease-out), opacity var(--duration-normal) var(--ease-out);
+}
+
+.details-modal.is-open {
+  visibility: visible;
+  opacity: 1;
+}
+
+.details-modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  cursor: pointer;
+}
+
+.details-modal-panel {
+  position: relative;
+  width: 100%;
+  max-width: 28rem;
+  max-height: 85vh;
+  overflow-y: auto;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  border-top: 4px solid var(--accent);
+}
+
+.details-modal-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-4);
+  padding: var(--space-5) var(--space-5) var(--space-2);
+}
+
+.details-modal-title {
+  margin: 0;
+  font-size: var(--text-lg);
+  font-weight: 600;
+  color: var(--text);
+  line-height: var(--leading-tight);
+}
+
+.details-modal-close {
+  flex-shrink: 0;
+  width: 2rem;
+  height: 2rem;
+  padding: 0;
+  border: none;
+  background: var(--bg);
+  color: var(--text-muted);
+  font-size: 1.5rem;
+  line-height: 1;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: background var(--duration-fast) var(--ease-out), color var(--duration-fast) var(--ease-out);
+}
+
+.details-modal-close:hover {
+  background: var(--border);
+  color: var(--text);
+}
+
+.details-modal-close:focus-visible {
+  outline: 2px solid var(--border-focus);
+  outline-offset: 2px;
+}
+
+.details-modal-body {
+  margin: 0;
+  padding: var(--space-2) var(--space-5) var(--space-5);
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+  line-height: var(--leading-relaxed);
+}
+
+/* Section title above cards */
+.project-cards-section .section-title {
+  margin-bottom: var(--space-2);
+}
+
+.project-cards-section .section-intro {
+  margin-bottom: var(--space-6);
+}
+
+.project-cards-container {
+  min-height: 12rem;
+}

@@ -5,11 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Playwright E2E — QA Portfolio</title>
   <meta name="description" content="End-to-end UI automation with Playwright: login, forms, search, file upload, API+UI, BDD, Docker, accessibility, performance.">
+  <meta property="og:title" content="Playwright E2E — QA Portfolio">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%230d1117'/><path fill='%233fb950' d='M8 16l4 4 8-8' stroke='%233fb950' stroke-width='2' fill='none' stroke-linecap='round' stroke-linejoin='round'/></svg>" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,600;0,9..40,700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../css/common.css">
   <link rel="stylesheet" href="../css/project.css">
+  <link rel="stylesheet" href="../css/playwright.css">
 </head>
 <body>
   <a href="#main" class="skip-link">Skip to main content</a>
@@ -19,6 +22,7 @@
       <nav class="nav" aria-label="Main">
         <a href="../index.html">Home</a>
         <a href="../index.html#projects" class="active">Projects</a>
+        <a href="../index.html#test-types">Test types</a>
       </nav>
     </div>
   </header>
@@ -48,40 +52,13 @@
       </section>
 
       <section class="project-content">
-        <div class="block">
+        <div class="block project-cards-section">
           <h2 class="section-title">Projects overview</h2>
-          <p class="section-intro">Each project lives under <code>PROJECTS/</code> with its own <code>package.json</code>, <code>playwright.config.ts</code>, <code>pages/</code>, and <code>tests/</code>. Run independently.</p>
-          <ul class="project-list">
-            <li><strong>01 — Login &amp; Logout</strong><span>Success, failure, logout flows</span></li>
-            <li><strong>02 — Form validation</strong><span>Email, password, phone, required fields</span></li>
-            <li><strong>03 — Google Search</strong><span>Search automation</span></li>
-            <li><strong>04 — Multiple browsers</strong><span>Cross-browser testing</span></li>
-            <li><strong>05 — Screenshot on failure</strong><span>Auto capture on test fail</span></li>
-            <li><strong>06 — E‑commerce shopping cart</strong><span>Cart flows</span></li>
-            <li><strong>07 — Dynamic content</strong><span>Waiting for dynamic content</span></li>
-            <li><strong>08 — File upload &amp; download</strong><span>File handling</span></li>
-            <li><strong>09 — Data-driven testing</strong><span>JSON/CSV data, parameterized tests</span></li>
-            <li><strong>10 — Dropdowns, checkboxes, radio</strong><span>Form controls</span></li>
-            <li><strong>11 — Iframe handling</strong><span>Frames and iframes</span></li>
-            <li><strong>12 — Alerts &amp; popups</strong><span>Dialog handling</span></li>
-            <li><strong>13 — Social media automation</strong><span>Social flows</span></li>
-            <li><strong>14 — Banking application</strong><span>Banking UI flows</span></li>
-            <li><strong>15 — Admin panel</strong><span>Admin UI testing</span></li>
-            <li><strong>16 — API + UI integration</strong><span>API and UI in same flow</span></li>
-            <li><strong>17 — BDD framework</strong><span>Cucumber / Gherkin style</span></li>
-            <li><strong>18 — Parallel execution</strong><span>Parallel test runs</span></li>
-            <li><strong>19 — Custom test framework</strong><span>Reusable framework layer</span></li>
-            <li><strong>20 — Mobile web testing</strong><span>Viewports and mobile</span></li>
-            <li><strong>21 — Visual regression</strong><span>Screenshot comparison</span></li>
-            <li><strong>22 — CI/CD integration</strong><span>GitHub Actions / pipelines</span></li>
-            <li><strong>23 — Headless &amp; Docker</strong><span>Dockerized Playwright</span></li>
-            <li><strong>24 — Performance testing</strong><span>Metrics and baselines</span></li>
-            <li><strong>25 — Security testing</strong><span>Security-focused checks</span></li>
-            <li><strong>27 — Accessibility</strong><span>a11y checks and reporting</span></li>
-            <li><strong>28 — Web scraping (hybrid)</strong><span>Playwright + Python</span></li>
-            <li><strong>29 — Cross-platform</strong><span>Playwright + pytest</span></li>
-            <li><strong>30 — AI-powered test generation</strong><span>AI helpers, self-healing</span></li>
-          </ul>
+          <p class="section-intro">Each project lives under <code>PROJECTS/</code> with its own <code>package.json</code>, <code>playwright.config.ts</code>, <code>pages/</code>, and <code>tests/</code>. Run independently. Use <strong>View code</strong> to open the repo and <strong>Details</strong> for a short explanation.</p>
+          <div id="playwright-project-cards" class="project-cards-container"></div>
+          <noscript>
+            <p class="section-intro">Project list is loaded with JavaScript. <a href="https://github.com/pelin-dragos/QA-Automation/tree/main/Playwright/PROJECTS">View all projects on GitHub</a>.</p>
+          </noscript>
         </div>
 
         <div class="block">
@@ -114,9 +91,15 @@ npx playwright test --headed</code></pre>
   </main>
 
   <footer class="site-footer" role="contentinfo">
-    <div class="container">
-      <p>QA-Automation — Portfolio. No credentials in code. Independent, repeatable tests.</p>
+    <div class="container footer-inner">
+      <p class="footer-text">QA-Automation — Portfolio. No credentials in code. Independent, repeatable tests.</p>
+      <div class="footer-links">
+        <a href="#main" class="footer-link">Back to top</a>
+        <a href="https://github.com/pelin-dragos/QA-Automation" class="footer-link" target="_blank" rel="noopener">GitHub</a>
+      </div>
     </div>
   </footer>
+  <script src="../data/playwright-projects.js"></script>
+  <script src="../js/playwright-cards.js"></script>
 </body>
 </html>

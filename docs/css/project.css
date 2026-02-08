@@ -72,10 +72,14 @@
 
 .project-content .block {
   margin-bottom: var(--space-12);
+  padding-bottom: var(--space-12);
+  border-bottom: 1px solid var(--border);
 }
 
 .project-content .block:last-child {
   margin-bottom: 0;
+  padding-bottom: 0;
+  border-bottom: none;
 }
 
 /* ----- Test category cards ----- */

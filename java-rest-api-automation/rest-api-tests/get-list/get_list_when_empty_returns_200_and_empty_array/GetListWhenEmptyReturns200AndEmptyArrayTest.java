@@ -14,15 +14,20 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
- * Test Case API-GET-LIST-005: GET list when empty returns 200 and empty array.
- * Objective: Verify when list is empty (e.g. filter with no matches), API returns 200 and empty collection.
- * Expected: Status 200; body is valid empty array or collection.
+ * Verifies that when the list has no matching items (e.g. filter with no matches), the API
+ * returns 200 and an empty collection rather than an error. Uses a filter value that is
+ * unlikely to match any resource (e.g. non-existent status). Assumes response root is a
+ * JSON array; adapt jsonPath if the API wraps the list.
  */
 @DisplayName("GET list when empty returns 200 and empty array")
 class GetListWhenEmptyReturns200AndEmptyArrayTest extends BaseApiTest {
 
+    /** Path to the test case specification (relative to project root). Used for traceability. */
     public static final String TEST_CASE_SPEC_PATH =
             "rest-api-tests/get-list/get_list_when_empty_returns_200_and_empty_array/TEST_CASE.md";
+
+    /** Filter value chosen so that no resource matches (to trigger empty result). */
+    private static final String NON_EXISTENT_STATUS = "NonExistentStatusForEmptyTest";
 
     @Test
     @DisplayName("GET list with filter yielding no results returns 200 and empty array")
@@ -34,10 +39,9 @@ class GetListWhenEmptyReturns200AndEmptyArrayTest extends BaseApiTest {
                 .map(p -> p.startsWith("/") ? p : "/" + p)
                 .orElseThrow();
 
-        // Use filter that likely returns no results (e.g. status value that does not exist)
         List<?> list = given()
                 .spec(baseSpec)
-                .queryParam("status", "NonExistentStatusForEmptyTest")
+                .queryParam("status", NON_EXISTENT_STATUS)
                 .when()
                 .get(path)
                 .then()

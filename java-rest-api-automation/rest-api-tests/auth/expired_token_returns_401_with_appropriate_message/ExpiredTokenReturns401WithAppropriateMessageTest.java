@@ -12,23 +12,26 @@ import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
 
 /**
- * Test Case API-AUTH-004: Expired token returns 401 with appropriate message.
- * Objective: Verify that an expired token yields HTTP 401; body may indicate expiry/invalid.
- * Expected: Status 401; optional message/code for token expired. Skipped when expired token not available.
+ * Verifies that a protected endpoint returns 401 Unauthorized when the request uses an
+ * expired Bearer token. Requires EXPIRED_TOKEN in env/.env; test is skipped when not set.
+ * Response body may contain an expiry message but is not asserted to keep the test robust
+ * across different API implementations.
  */
 @DisplayName("Expired token returns 401 with appropriate message")
 class ExpiredTokenReturns401WithAppropriateMessageTest extends BaseApiTest {
 
+    /** Path to the test case specification (relative to project root). Used for traceability. */
     public static final String TEST_CASE_SPEC_PATH =
             "rest-api-tests/auth/expired_token_returns_401_with_appropriate_message/TEST_CASE.md";
 
+    /** HTTP header name for Bearer token. */
     private static final String AUTH_HEADER_NAME = "Authorization";
+    /** Prefix for the Authorization header value (Bearer &lt;token&gt;). */
     private static final String BEARER_PREFIX = "Bearer ";
 
     @Test
     @DisplayName("GET protected endpoint with expired token returns 401")
     void expiredToken_returns401() {
-        // TEST_CASE Step 1: Obtain expired token (per environment capability)
         Assumptions.assumeTrue(ApiConfig.getBaseUrl().isPresent(), "BASE_URL must be set");
         Assumptions.assumeTrue(ApiConfig.getExpiredToken().isPresent(),
                 "EXPIRED_TOKEN must be set in env/.env to run this test (skip when not available)");
@@ -39,7 +42,7 @@ class ExpiredTokenReturns401WithAppropriateMessageTest extends BaseApiTest {
                 .orElseThrow();
         Header authHeader = new Header(AUTH_HEADER_NAME, BEARER_PREFIX + ApiConfig.getExpiredToken().orElseThrow());
 
-        // TEST_CASE Step 2–3: Send request with expired token; capture status and body
+        // Send GET with expired token; expect 401 (body message not asserted for cross-API compatibility)
         ValidatableResponse response = given()
                 .spec(baseSpec)
                 .header(authHeader)
@@ -47,7 +50,6 @@ class ExpiredTokenReturns401WithAppropriateMessageTest extends BaseApiTest {
                 .get(path)
                 .then();
 
-        // TEST_CASE Step 4 & Expected Result: 401 Unauthorized; body may indicate expiry (not asserted for robustness)
         response.statusCode(equalTo(401));
     }
 }

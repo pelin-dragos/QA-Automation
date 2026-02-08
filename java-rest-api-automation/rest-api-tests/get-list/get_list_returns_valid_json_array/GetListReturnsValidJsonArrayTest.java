@@ -12,13 +12,15 @@ import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
 
 /**
- * Test Case API-GET-LIST-002: GET list returns valid JSON array.
- * Objective: Verify list endpoint returns valid JSON that can be parsed (array or object with collection).
- * Expected: Body is valid JSON; root is array or response contains collection array.
+ * Verifies that the list endpoint returns a response body that is valid JSON and can be
+ * parsed as a list (root array or extractable collection). Asserts 200 and that the
+ * extracted root is a non-null list. Assumes API returns a root-level array; adapt
+ * jsonPath if the API wraps the list in an object (e.g. "data").
  */
 @DisplayName("GET list returns valid JSON array")
 class GetListReturnsValidJsonArrayTest extends BaseApiTest {
 
+    /** Path to the test case specification (relative to project root). Used for traceability. */
     public static final String TEST_CASE_SPEC_PATH =
             "rest-api-tests/get-list/get_list_returns_valid_json_array/TEST_CASE.md";
 

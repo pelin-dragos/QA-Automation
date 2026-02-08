@@ -12,17 +12,20 @@ import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.notNullValue;
 
 /**
- * Test Case API-GET-LIST-008: GET list with valid auth returns 200 and data.
- * Objective: Verify list endpoint with valid authentication returns 200 and list/collection.
- * Expected: Status 200; body contains list as per contract; no 401/403.
+ * Verifies that the list endpoint, when protected, returns 200 and a non-empty or valid
+ * body when the request includes valid Bearer authentication. Requires BASE_URL,
+ * PROTECTED_ENDPOINT and AUTH_TOKEN. Asserts status 200 and that the response body is present.
  */
 @DisplayName("GET list with valid auth returns 200 and data")
 class GetListWithValidAuthReturns200AndDataTest extends BaseApiTest {
 
+    /** Path to the test case specification (relative to project root). Used for traceability. */
     public static final String TEST_CASE_SPEC_PATH =
             "rest-api-tests/get-list/get_list_with_valid_auth_returns_200_and_data/TEST_CASE.md";
 
+    /** HTTP header name for Bearer token. */
     private static final String AUTH_HEADER = "Authorization";
+    /** Prefix for the Authorization header value (Bearer &lt;token&gt;). */
     private static final String BEARER_PREFIX = "Bearer ";
 
     @Test

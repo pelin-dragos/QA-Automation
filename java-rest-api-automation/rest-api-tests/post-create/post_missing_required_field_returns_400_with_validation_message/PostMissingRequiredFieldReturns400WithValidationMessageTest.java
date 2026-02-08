@@ -12,17 +12,20 @@ import static org.hamcrest.Matchers.anyOf;
 import static org.hamcrest.Matchers.equalTo;
 
 /**
- * Test Case API-POST-003: POST with missing required field returns 400 with validation message.
- * Objective: Verify POST with required field omitted returns 400/422 and validation error.
- * Expected: Status 400 or 422; body contains error/validation message.
+ * Verifies that POST with a required field omitted (e.g. email) returns 400 or 422 and
+ * does not create a resource. Uses a body missing the required field; expects client
+ * error. Requires BASE_URL, CREATE_ENDPOINT and AUTH_TOKEN.
  */
 @DisplayName("POST missing required field returns 400 with validation message")
 class PostMissingRequiredFieldReturns400WithValidationMessageTest extends BaseApiTest {
 
+    /** Path to the test case specification (relative to project root). Used for traceability. */
     public static final String TEST_CASE_SPEC_PATH =
             "rest-api-tests/post-create/post_missing_required_field_returns_400_with_validation_message/TEST_CASE.md";
 
+    /** HTTP header name for Bearer token. */
     private static final String AUTH_HEADER = "Authorization";
+    /** Prefix for the Authorization header value (Bearer &lt;token&gt;). */
     private static final String BEARER_PREFIX = "Bearer ";
 
     @Test

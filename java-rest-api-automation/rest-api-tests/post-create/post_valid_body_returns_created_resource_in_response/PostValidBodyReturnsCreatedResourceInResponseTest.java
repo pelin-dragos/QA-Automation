@@ -15,17 +15,20 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 /**
- * Test Case API-POST-002: POST with valid body returns created resource in response.
- * Objective: Verify response body contains created resource (id and key fields).
- * Expected: Status 201 or 200; body has id and key fields matching or derived from request.
+ * Verifies that POST with a valid body returns 201 or 200 and the response body contains
+ * the created resource: id plus key fields (e.g. name, email) matching or derived from
+ * the request. Requires BASE_URL, CREATE_ENDPOINT and AUTH_TOKEN.
  */
 @DisplayName("POST valid body returns created resource in response")
 class PostValidBodyReturnsCreatedResourceInResponseTest extends BaseApiTest {
 
+    /** Path to the test case specification (relative to project root). Used for traceability. */
     public static final String TEST_CASE_SPEC_PATH =
             "rest-api-tests/post-create/post_valid_body_returns_created_resource_in_response/TEST_CASE.md";
 
+    /** HTTP header name for Bearer token. */
     private static final String AUTH_HEADER = "Authorization";
+    /** Prefix for the Authorization header value (Bearer &lt;token&gt;). */
     private static final String BEARER_PREFIX = "Bearer ";
 
     @Test

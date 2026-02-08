@@ -13,17 +13,20 @@ import static org.hamcrest.Matchers.anyOf;
 import static org.hamcrest.Matchers.equalTo;
 
 /**
- * Test Case API-DELETE-004: GET after DELETE for same ID returns 404.
- * Objective: After successful DELETE, GET for the same ID returns 404, confirming resource no longer exists.
- * Expected: DELETE returns 204 or 200; GET returns 404.
+ * Verifies the delete semantics: after a successful DELETE (204 or 200), a GET request
+ * for the same resource ID returns 404 Not Found, confirming the resource no longer exists.
+ * Creates a resource via POST, deletes it, then asserts GET returns 404.
  */
 @DisplayName("GET after DELETE for same ID returns 404")
 class GetAfterDeleteReturns404ForSameIdTest extends BaseApiTest {
 
+    /** Path to the test case specification (relative to project root). Used for traceability. */
     public static final String TEST_CASE_SPEC_PATH =
             "rest-api-tests/delete/get_after_delete_returns_404_for_same_id/TEST_CASE.md";
 
+    /** HTTP header name for Bearer token. */
     private static final String AUTH_HEADER = "Authorization";
+    /** Prefix for the Authorization header value (Bearer &lt;token&gt;). */
     private static final String BEARER_PREFIX = "Bearer ";
 
     @Test
@@ -36,7 +39,7 @@ class GetAfterDeleteReturns404ForSameIdTest extends BaseApiTest {
         String basePath = ApiConfig.getCreateEndpoint().map(p -> p.startsWith("/") ? p : "/" + p).orElseThrow();
         Header authHeader = new Header(AUTH_HEADER, BEARER_PREFIX + ApiConfig.getAuthToken().orElseThrow());
 
-        // TEST_CASE Step 1: Create resource; obtain ID
+        // Create a resource and remember its ID
         String email = "get-after-del-" + System.currentTimeMillis() + "@example.com";
         Response createResponse = given()
                 .spec(baseSpec)
@@ -50,7 +53,7 @@ class GetAfterDeleteReturns404ForSameIdTest extends BaseApiTest {
 
         String path = basePath + "/" + id;
 
-        // TEST_CASE Step 2: DELETE; verify 204 or 200
+        // DELETE the resource; expect 204 or 200
         given()
                 .spec(baseSpec)
                 .header(authHeader)
@@ -59,7 +62,7 @@ class GetAfterDeleteReturns404ForSameIdTest extends BaseApiTest {
                 .then()
                 .statusCode(anyOf(equalTo(204), equalTo(200)));
 
-        // TEST_CASE Step 3–4: GET same ID; capture status → 404
+        // Same ID must now return 404 (resource no longer exists)
         given()
                 .spec(baseSpec)
                 .header(authHeader)

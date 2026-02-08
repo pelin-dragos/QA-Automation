@@ -12,17 +12,20 @@ import static io.restassured.RestAssured.given;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
- * Test Case API-PUT-006: PUT with invalid field values returns 400 with validation message.
- * Objective: Verify PUT with invalid field value (e.g. invalid enum) returns 400 or 422 and validation error; resource not updated.
- * Expected: Status 400 or 422; validation error in body.
+ * Verifies that PUT with an invalid field value (e.g. invalid enum for gender) returns
+ * 400 or 422 and does not update the resource. Creates a resource first, then PUTs
+ * with one invalid value. Requires BASE_URL, CREATE_ENDPOINT and AUTH_TOKEN.
  */
 @DisplayName("PUT invalid field values returns 400 with validation message")
 class PutInvalidFieldValuesReturns400WithValidationMessageTest extends BaseApiTest {
 
+    /** Path to the test case specification (relative to project root). Used for traceability. */
     public static final String TEST_CASE_SPEC_PATH =
             "rest-api-tests/put-update/put_invalid_field_values_returns_400_with_validation_message/TEST_CASE.md";
 
+    /** HTTP header name for Bearer token. */
     private static final String AUTH_HEADER = "Authorization";
+    /** Prefix for the Authorization header value (Bearer &lt;token&gt;). */
     private static final String BEARER_PREFIX = "Bearer ";
 
     @Test

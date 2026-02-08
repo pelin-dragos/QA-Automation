@@ -12,19 +12,25 @@ import static org.hamcrest.Matchers.anyOf;
 import static org.hamcrest.Matchers.equalTo;
 
 /**
- * Test Case API-POST-006: POST with wrong Content-Type returns 415 or 400.
- * Objective: Verify POST with unsupported Content-Type (e.g. text/plain) returns 415 or 400; no resource created.
- * Expected: Status 415 or 400.
+ * Verifies that POST with an unsupported Content-Type (e.g. text/plain instead of
+ * application/json) returns 415 Unsupported Media Type, 400 or 422 and does not
+ * create a resource. Overrides the default Content-Type from baseSpec. Requires
+ * BASE_URL, CREATE_ENDPOINT and AUTH_TOKEN.
  */
 @DisplayName("POST wrong Content-Type returns 415 or 400")
 class PostWrongContentTypeReturns415Or400Test extends BaseApiTest {
 
+    /** Path to the test case specification (relative to project root). Used for traceability. */
     public static final String TEST_CASE_SPEC_PATH =
             "rest-api-tests/post-create/post_wrong_content_type_returns_415_or_400/TEST_CASE.md";
 
+    /** HTTP header name for Bearer token. */
     private static final String AUTH_HEADER = "Authorization";
+    /** Prefix for the Authorization header value (Bearer &lt;token&gt;). */
     private static final String BEARER_PREFIX = "Bearer ";
+    /** Request header to set unsupported media type. */
     private static final String CONTENT_TYPE_HEADER = "Content-Type";
+    /** Unsupported value to trigger 415 or 400. */
     private static final String WRONG_CONTENT_TYPE = "text/plain";
 
     @Test

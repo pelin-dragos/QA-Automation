@@ -10,16 +10,18 @@ import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
 
 /**
- * Test Case API-GET-SINGLE-003: GET by non-existent ID returns 404.
- * Objective: Verify GET resource-by-ID with non-existent ID returns 404 Not Found.
- * Expected: Status 404; no successful resource body.
+ * Verifies that GET by resource ID with a non-existent ID returns 404 Not Found. Uses a
+ * constant high ID that is assumed not to exist in the target environment. Request is sent
+ * without auth; if the endpoint requires auth it may return 401 before 404.
  */
 @DisplayName("GET by non-existent ID returns 404")
 class GetByNonexistentIdReturns404Test extends BaseApiTest {
 
+    /** Path to the test case specification (relative to project root). Used for traceability. */
     public static final String TEST_CASE_SPEC_PATH =
             "rest-api-tests/get-single/get_by_nonexistent_id_returns_404/TEST_CASE.md";
 
+    /** ID assumed not to exist so that the API returns 404. */
     private static final long NON_EXISTENT_ID = 999999999L;
 
     @Test

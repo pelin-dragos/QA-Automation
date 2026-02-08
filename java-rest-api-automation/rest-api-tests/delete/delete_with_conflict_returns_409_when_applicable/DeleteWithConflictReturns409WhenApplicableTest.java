@@ -12,17 +12,20 @@ import static org.hamcrest.Matchers.anyOf;
 import static org.hamcrest.Matchers.equalTo;
 
 /**
- * Test Case API-DELETE-007: DELETE with conflict returns 409 when applicable.
- * Objective: When resource cannot be deleted (e.g. dependency), API returns 409 (or 400) and does not delete.
- * Expected: Status 409 or 400; error message in body; resource still exists. Skipped when API does not support.
+ * Verifies that DELETE for a resource that cannot be removed (e.g. has dependencies or
+ * business rules prevent deletion) returns 409 Conflict or 400 Bad Request. Requires
+ * CONFLICT_RESOURCE_ID in config pointing to such a resource; test is skipped when not set.
  */
 @DisplayName("DELETE with conflict returns 409 when applicable")
 class DeleteWithConflictReturns409WhenApplicableTest extends BaseApiTest {
 
+    /** Path to the test case specification (relative to project root). Used for traceability. */
     public static final String TEST_CASE_SPEC_PATH =
             "rest-api-tests/delete/delete_with_conflict_returns_409_when_applicable/TEST_CASE.md";
 
+    /** HTTP header name for Bearer token. */
     private static final String AUTH_HEADER = "Authorization";
+    /** Prefix for the Authorization header value (Bearer &lt;token&gt;). */
     private static final String BEARER_PREFIX = "Bearer ";
 
     @Test
@@ -39,7 +42,7 @@ class DeleteWithConflictReturns409WhenApplicableTest extends BaseApiTest {
         String path = basePath + "/" + conflictId;
         Header authHeader = new Header(AUTH_HEADER, BEARER_PREFIX + ApiConfig.getAuthToken().orElseThrow());
 
-        // TEST_CASE Step 2–3: Send DELETE with valid auth; capture status and body
+        // DELETE resource that is in a conflict state; expect 409 or 400
         given()
                 .spec(baseSpec)
                 .header(authHeader)

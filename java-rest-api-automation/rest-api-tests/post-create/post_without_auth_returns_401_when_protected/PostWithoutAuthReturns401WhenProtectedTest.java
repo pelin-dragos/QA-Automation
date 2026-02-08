@@ -9,13 +9,14 @@ import org.junit.jupiter.api.Test;
 import static io.restassured.RestAssured.given;
 
 /**
- * Test Case API-POST-007: POST without auth returns 401 when endpoint is protected.
- * Objective: Verify POST without valid authentication returns 401; no resource created.
- * Expected: Status 401. Skipped when endpoint is public.
+ * Verifies that POST without an Authorization header returns 401 Unauthorized when the
+ * create endpoint requires authentication. Sends a valid body; only auth is omitted. If
+ * the endpoint is public and returns 2xx, the test is skipped via Assumption.
  */
 @DisplayName("POST without auth returns 401 when protected")
 class PostWithoutAuthReturns401WhenProtectedTest extends BaseApiTest {
 
+    /** Path to the test case specification (relative to project root). Used for traceability. */
     public static final String TEST_CASE_SPEC_PATH =
             "rest-api-tests/post-create/post_without_auth_returns_401_when_protected/TEST_CASE.md";
 

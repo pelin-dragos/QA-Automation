@@ -13,17 +13,20 @@ import static org.hamcrest.Matchers.anyOf;
 import static org.hamcrest.Matchers.equalTo;
 
 /**
- * Test Case API-PUT-008: PUT with valid auth updates resource and returns success.
- * Objective: Verify PUT with valid authentication updates the resource and returns 200 or 204.
- * Expected: Status 200 or 204; resource updated; no 401/403.
+ * Verifies that PUT with valid Bearer authentication updates the resource and returns
+ * 200 OK or 204 No Content. Creates a resource via POST, then PUTs with a full body.
+ * Requires BASE_URL, CREATE_ENDPOINT and AUTH_TOKEN.
  */
 @DisplayName("PUT with valid auth updates resource and returns success")
 class PutWithValidAuthUpdatesResourceAndReturnsSuccessTest extends BaseApiTest {
 
+    /** Path to the test case specification (relative to project root). Used for traceability. */
     public static final String TEST_CASE_SPEC_PATH =
             "rest-api-tests/put-update/put_with_valid_auth_updates_resource_and_returns_success/TEST_CASE.md";
 
+    /** HTTP header name for Bearer token. */
     private static final String AUTH_HEADER = "Authorization";
+    /** Prefix for the Authorization header value (Bearer &lt;token&gt;). */
     private static final String BEARER_PREFIX = "Bearer ";
 
     @Test

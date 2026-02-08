@@ -15,17 +15,19 @@ import static org.hamcrest.Matchers.equalTo;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
- * Test Case API-HEADERS-003: Response does not expose sensitive headers.
- * Objective: Verify API does not expose sensitive headers (e.g. X-Powered-By, Server with version).
- * Expected: Blacklisted headers are absent. Skipped when no policy or API always exposes them (document).
+ * Verifies that the API response does not expose security-sensitive headers (e.g.
+ * X-Powered-By that leaks framework info). Asserts each header in the list is absent
+ * or empty. Only X-Powered-By is checked by default; Server is often set by CDN/proxy
+ * and may be acceptable per policy. Extend SENSITIVE_HEADER_NAMES if needed.
  */
 @DisplayName("Response does not expose sensitive headers")
 class ResponseDoesNotExposeSensitiveHeadersTest extends BaseApiTest {
 
+    /** Path to the test case specification (relative to project root). Used for traceability. */
     public static final String TEST_CASE_SPEC_PATH =
             "rest-api-tests/headers/response_does_not_expose_sensitive_headers/TEST_CASE.md";
 
-    /** Headers that should not be present per security best practice (e.g. framework leak). Server may be sent by CDN; policy can extend list. */
+    /** Headers that must be absent or empty (e.g. X-Powered-By to avoid framework leak). */
     private static final List<String> SENSITIVE_HEADER_NAMES = Arrays.asList(
             "X-Powered-By"
     );

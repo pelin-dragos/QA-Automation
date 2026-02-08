@@ -14,17 +14,21 @@ import static org.hamcrest.Matchers.equalTo;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
- * Test Case API-POST-009: POST duplicate returns 409 or 400 when applicable.
- * Objective: Verify second POST with same unique field (e.g. email) returns 409 or 400; no duplicate created.
- * Expected: First POST 201; second POST 409 or 400.
+ * Verifies that a second POST with the same unique field (e.g. email) returns 409
+ * Conflict, 400 Bad Request or 422 Unprocessable Entity and does not create a
+ * duplicate. First POST must succeed; second uses the same body. Requires BASE_URL,
+ * CREATE_ENDPOINT and AUTH_TOKEN.
  */
 @DisplayName("POST duplicate returns 409 or 400 when applicable")
 class PostDuplicateReturns409Or400WhenApplicableTest extends BaseApiTest {
 
+    /** Path to the test case specification (relative to project root). Used for traceability. */
     public static final String TEST_CASE_SPEC_PATH =
             "rest-api-tests/post-create/post_duplicate_returns_409_or_400_when_applicable/TEST_CASE.md";
 
+    /** HTTP header name for Bearer token. */
     private static final String AUTH_HEADER = "Authorization";
+    /** Prefix for the Authorization header value (Bearer &lt;token&gt;). */
     private static final String BEARER_PREFIX = "Bearer ";
 
     @Test

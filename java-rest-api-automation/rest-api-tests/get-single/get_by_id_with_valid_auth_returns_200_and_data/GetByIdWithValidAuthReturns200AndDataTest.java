@@ -15,17 +15,20 @@ import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.notNullValue;
 
 /**
- * Test Case API-GET-SINGLE-006: GET by ID with valid auth returns 200 and correct data.
- * Objective: Verify resource-by-ID with valid authentication returns 200 and resource with expected fields.
- * Expected: Status 200; body contains resource; no 401/403.
+ * Verifies that GET by resource ID with valid Bearer authentication returns 200 and a
+ * body containing the resource (at least an "id" field). Obtains a valid ID from the list
+ * endpoint using the same token. Requires BASE_URL, PROTECTED_ENDPOINT and AUTH_TOKEN.
  */
 @DisplayName("GET by ID with valid auth returns 200 and data")
 class GetByIdWithValidAuthReturns200AndDataTest extends BaseApiTest {
 
+    /** Path to the test case specification (relative to project root). Used for traceability. */
     public static final String TEST_CASE_SPEC_PATH =
             "rest-api-tests/get-single/get_by_id_with_valid_auth_returns_200_and_data/TEST_CASE.md";
 
+    /** HTTP header name for Bearer token. */
     private static final String AUTH_HEADER = "Authorization";
+    /** Prefix for the Authorization header value (Bearer &lt;token&gt;). */
     private static final String BEARER_PREFIX = "Bearer ";
 
     @Test
@@ -38,6 +41,7 @@ class GetByIdWithValidAuthReturns200AndDataTest extends BaseApiTest {
         String basePath = ApiConfig.getProtectedEndpoint().map(p -> p.startsWith("/") ? p : "/" + p).orElseThrow();
         Header authHeader = new Header(AUTH_HEADER, BEARER_PREFIX + ApiConfig.getAuthToken().orElseThrow());
 
+        // Obtain a valid resource ID from the list (with auth if list is protected)
         List<Map<String, Object>> list = given()
                 .spec(baseSpec)
                 .header(authHeader)

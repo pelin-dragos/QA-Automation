@@ -12,18 +12,23 @@ import static io.restassured.RestAssured.given;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
- * Test Case API-PATCH-004: PATCH with invalid field value returns 400 with validation message.
- * Objective: Verify PATCH with invalid value (e.g. invalid enum) returns 400/422 and validation error.
- * Expected: Status 400 or 422; body contains validation error; resource not updated.
+ * Verifies that PATCH with an invalid field value (e.g. invalid enum for status) returns
+ * 400 Bad Request or 422 Unprocessable Entity and does not update the resource. Creates
+ * a resource first, then sends a body with an invalid value. Requires BASE_URL,
+ * CREATE_ENDPOINT and AUTH_TOKEN.
  */
 @DisplayName("PATCH invalid field value returns 400 with validation message")
 class PatchInvalidFieldValueReturns400WithValidationMessageTest extends BaseApiTest {
 
+    /** Path to the test case specification (relative to project root). Used for traceability. */
     public static final String TEST_CASE_SPEC_PATH =
             "rest-api-tests/patch-update/patch_invalid_field_value_returns_400_with_validation_message/TEST_CASE.md";
 
+    /** HTTP header name for Bearer token. */
     private static final String AUTH_HEADER = "Authorization";
+    /** Prefix for the Authorization header value (Bearer &lt;token&gt;). */
     private static final String BEARER_PREFIX = "Bearer ";
+    /** Body with invalid enum value to trigger validation error. */
     private static final String INVALID_STATUS_BODY = "{\"status\":\"invalid_enum_value\"}";
 
     @Test

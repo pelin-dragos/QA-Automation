@@ -11,16 +11,18 @@ import static org.hamcrest.Matchers.anyOf;
 import static org.hamcrest.Matchers.equalTo;
 
 /**
- * Test Case API-DELETE-002: DELETE with non-existent ID returns 404.
- * Objective: Verify DELETE with non-existent resource ID returns 404 (or 204 if API is idempotent).
- * Expected: Status 404 (or 204 per contract); no 500.
+ * Verifies that DELETE with a non-existent resource ID returns 404 Not Found (or 204 No Content
+ * if the API treats delete-by-missing-id as idempotent). No auth header so the test applies
+ * to endpoints that allow unauthenticated delete or that return 404 before auth checks.
  */
 @DisplayName("DELETE with non-existent ID returns 404")
 class DeleteNonexistentIdReturns404Test extends BaseApiTest {
 
+    /** Path to the test case specification (relative to project root). Used for traceability. */
     public static final String TEST_CASE_SPEC_PATH =
             "rest-api-tests/delete/delete_nonexistent_id_returns_404/TEST_CASE.md";
 
+    /** ID that is assumed not to exist in the target environment (avoids accidental deletion). */
     private static final long NON_EXISTENT_ID = 999999999L;
 
     @Test
@@ -34,7 +36,7 @@ class DeleteNonexistentIdReturns404Test extends BaseApiTest {
                 .orElseThrow();
         String path = basePath + "/" + NON_EXISTENT_ID;
 
-        // TEST_CASE Step 2–3: Send DELETE with non-existent ID; capture status
+        // DELETE by non-existent ID; expect 404 or 204 (idempotent delete)
         given()
                 .spec(baseSpec)
                 .when()

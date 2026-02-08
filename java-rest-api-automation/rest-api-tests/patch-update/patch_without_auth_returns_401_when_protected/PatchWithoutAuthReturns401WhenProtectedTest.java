@@ -11,17 +11,21 @@ import org.junit.jupiter.api.Test;
 import static io.restassured.RestAssured.given;
 
 /**
- * Test Case API-PATCH-006: PATCH without auth returns 401 when endpoint is protected.
- * Objective: Verify PATCH without valid authentication returns 401; resource not updated.
- * Expected: Status 401. Skipped when endpoint is public.
+ * Verifies that PATCH without an Authorization header returns 401 Unauthorized when the
+ * endpoint requires authentication. Creates a resource with auth, then sends PATCH
+ * without the header; if the endpoint is public and returns 2xx, the test is skipped
+ * via Assumption.
  */
 @DisplayName("PATCH without auth returns 401 when protected")
 class PatchWithoutAuthReturns401WhenProtectedTest extends BaseApiTest {
 
+    /** Path to the test case specification (relative to project root). Used for traceability. */
     public static final String TEST_CASE_SPEC_PATH =
             "rest-api-tests/patch-update/patch_without_auth_returns_401_when_protected/TEST_CASE.md";
 
+    /** HTTP header name for Bearer token. */
     private static final String AUTH_HEADER = "Authorization";
+    /** Prefix for the Authorization header value (Bearer &lt;token&gt;). */
     private static final String BEARER_PREFIX = "Bearer ";
 
     @Test

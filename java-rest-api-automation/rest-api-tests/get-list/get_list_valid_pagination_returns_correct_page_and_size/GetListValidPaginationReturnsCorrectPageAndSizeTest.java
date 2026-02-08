@@ -15,17 +15,20 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
- * Test Case API-GET-LIST-003: GET list with valid pagination returns correct page and size.
- * Objective: Verify valid pagination params return correct page and at most requested size.
- * Expected: Status 200; collection size <= requested size; pagination metadata consistent when present.
+ * Verifies that the list endpoint accepts valid pagination parameters (page, per_page) and
+ * returns 200 with a collection whose size does not exceed the requested per_page. Assumes
+ * response root is a JSON array; adapt jsonPath if the API wraps the list (e.g. in "data").
  */
 @DisplayName("GET list valid pagination returns correct page and size")
 class GetListValidPaginationReturnsCorrectPageAndSizeTest extends BaseApiTest {
 
+    /** Path to the test case specification (relative to project root). Used for traceability. */
     public static final String TEST_CASE_SPEC_PATH =
             "rest-api-tests/get-list/get_list_valid_pagination_returns_correct_page_and_size/TEST_CASE.md";
 
+    /** Page number for the request (first page). */
     private static final int PAGE = 1;
+    /** Requested page size; response must contain at most this many items. */
     private static final int PER_PAGE = 10;
 
     @Test

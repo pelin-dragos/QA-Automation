@@ -15,16 +15,19 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
- * Test Case API-GET-LIST-006: GET list respects query filters and returns matching results.
- * Objective: Verify filtered request returns only items matching the filter (e.g. status=active).
- * Expected: Status 200; every item satisfies the filter.
+ * Verifies that the list endpoint applies query filters (e.g. status=active) and returns
+ * only items that match. Asserts 200 and that every returned item has the expected filter
+ * value for the filtered field. Assumes API supports the "status" query param and returns
+ * a root-level array of objects with a "status" field.
  */
 @DisplayName("GET list respects query filters and returns matching results")
 class GetListRespectsQueryFiltersReturnsMatchingResultsTest extends BaseApiTest {
 
+    /** Path to the test case specification (relative to project root). Used for traceability. */
     public static final String TEST_CASE_SPEC_PATH =
             "rest-api-tests/get-list/get_list_respects_query_filters_returns_matching_results/TEST_CASE.md";
 
+    /** Query filter value; each returned item must have status equal to this. */
     private static final String STATUS_FILTER = "active";
 
     @Test

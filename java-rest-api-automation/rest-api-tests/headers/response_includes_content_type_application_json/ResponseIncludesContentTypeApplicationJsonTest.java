@@ -12,16 +12,18 @@ import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.notNullValue;
 
 /**
- * Test Case API-HEADERS-002: Response includes Content-Type application/json.
- * Objective: Verify endpoints that return JSON include Content-Type header set to application/json.
- * Expected: Content-Type header present and value contains application/json.
+ * Verifies that a successful response from the list/endpoint includes a Content-Type
+ * header whose value contains "application/json", and a non-empty body. Does not set
+ * Accept explicitly (baseSpec may set it). Requires BASE_URL and PROTECTED_ENDPOINT.
  */
 @DisplayName("Response includes Content-Type application/json")
 class ResponseIncludesContentTypeApplicationJsonTest extends BaseApiTest {
 
+    /** Path to the test case specification (relative to project root). Used for traceability. */
     public static final String TEST_CASE_SPEC_PATH =
             "rest-api-tests/headers/response_includes_content_type_application_json/TEST_CASE.md";
 
+    /** Response header that must contain application/json. */
     private static final String CONTENT_TYPE_HEADER = "Content-Type";
 
     @Test

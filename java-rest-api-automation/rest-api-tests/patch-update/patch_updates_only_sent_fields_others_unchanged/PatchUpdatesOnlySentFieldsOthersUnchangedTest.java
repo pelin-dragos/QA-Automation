@@ -16,17 +16,21 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 /**
- * Test Case API-PATCH-002: PATCH updates only sent fields; others unchanged.
- * Objective: Verify only fields in PATCH body are updated; other fields retain previous values.
- * Expected: Patched field has new value; other fields unchanged.
+ * Verifies that PATCH updates only the fields sent in the body; other fields (e.g. name,
+ * email) remain unchanged. Creates a resource, PATCHes only status, then GETs and
+ * asserts status is updated and name/email are unchanged. Requires BASE_URL,
+ * CREATE_ENDPOINT and AUTH_TOKEN.
  */
 @DisplayName("PATCH updates only sent fields, others unchanged")
 class PatchUpdatesOnlySentFieldsOthersUnchangedTest extends BaseApiTest {
 
+    /** Path to the test case specification (relative to project root). Used for traceability. */
     public static final String TEST_CASE_SPEC_PATH =
             "rest-api-tests/patch-update/patch_updates_only_sent_fields_others_unchanged/TEST_CASE.md";
 
+    /** HTTP header name for Bearer token. */
     private static final String AUTH_HEADER = "Authorization";
+    /** Prefix for the Authorization header value (Bearer &lt;token&gt;). */
     private static final String BEARER_PREFIX = "Bearer ";
 
     @Test

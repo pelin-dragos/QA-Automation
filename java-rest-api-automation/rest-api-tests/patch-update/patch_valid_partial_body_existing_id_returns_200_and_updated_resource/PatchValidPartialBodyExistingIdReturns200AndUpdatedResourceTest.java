@@ -17,18 +17,23 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 /**
- * Test Case API-PATCH-001: PATCH with valid partial body and existing ID returns 200 and updated resource.
- * Objective: Verify PATCH with partial body updates only sent fields and returns 200.
- * Expected: Status 200; response reflects patched fields.
+ * Verifies that PATCH with a valid partial body and an existing resource ID returns 200
+ * and that the patched field is updated (e.g. status). Creates a resource via POST,
+ * then PATCHes one field and asserts GET returns the new value. Requires BASE_URL,
+ * CREATE_ENDPOINT and AUTH_TOKEN.
  */
 @DisplayName("PATCH valid partial body existing ID returns 200 and updated resource")
 class PatchValidPartialBodyExistingIdReturns200AndUpdatedResourceTest extends BaseApiTest {
 
+    /** Path to the test case specification (relative to project root). Used for traceability. */
     public static final String TEST_CASE_SPEC_PATH =
             "rest-api-tests/patch-update/patch_valid_partial_body_existing_id_returns_200_and_updated_resource/TEST_CASE.md";
 
+    /** HTTP header name for Bearer token. */
     private static final String AUTH_HEADER = "Authorization";
+    /** Prefix for the Authorization header value (Bearer &lt;token&gt;). */
     private static final String BEARER_PREFIX = "Bearer ";
+    /** Partial update body (single field). */
     private static final String PARTIAL_BODY = "{\"status\":\"inactive\"}";
 
     @Test

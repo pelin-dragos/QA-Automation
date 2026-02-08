@@ -12,18 +12,22 @@ import static io.restassured.RestAssured.given;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
- * Test Case API-PATCH-005: PATCH with empty body returns 400 or 200 per API contract.
- * Objective: Verify PATCH with body {} returns either 400 (nothing to update) or 200 (no-op).
- * Expected: Status 400 or 200; no 500.
+ * Verifies that PATCH with an empty body {} returns either 400 (validation: nothing to
+ * update) or 200 (no-op accepted per contract), and never 500. Creates a resource first,
+ * then PATCHes with {}. Requires BASE_URL, CREATE_ENDPOINT and AUTH_TOKEN.
  */
 @DisplayName("PATCH empty body returns 400 or 200 per contract")
 class PatchEmptyBodyReturns400Or200PerContractTest extends BaseApiTest {
 
+    /** Path to the test case specification (relative to project root). Used for traceability. */
     public static final String TEST_CASE_SPEC_PATH =
             "rest-api-tests/patch-update/patch_empty_body_returns_400_or_200_per_contract/TEST_CASE.md";
 
+    /** HTTP header name for Bearer token. */
     private static final String AUTH_HEADER = "Authorization";
+    /** Prefix for the Authorization header value (Bearer &lt;token&gt;). */
     private static final String BEARER_PREFIX = "Bearer ";
+    /** Empty JSON object; API may return 400 or 200. */
     private static final String EMPTY_BODY = "{}";
 
     @Test

@@ -16,13 +16,14 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
- * Test Case API-GET-SINGLE-001: GET by valid ID returns 200 and correct body.
- * Objective: Verify GET resource-by-ID with valid existing ID returns 200 and single resource with matching ID.
- * Expected: Status 200; body is single object; ID in path matches ID in body.
+ * Verifies that GET by resource ID with a valid existing ID returns 200 and a single
+ * resource object whose id field matches the ID in the request path. Obtains a valid ID
+ * by calling the list endpoint first; assumes list returns a root-level array with "id".
  */
 @DisplayName("GET by valid ID returns 200 and correct body")
 class GetByValidIdReturns200AndCorrectBodyTest extends BaseApiTest {
 
+    /** Path to the test case specification (relative to project root). Used for traceability. */
     public static final String TEST_CASE_SPEC_PATH =
             "rest-api-tests/get-single/get_by_valid_id_returns_200_and_correct_body/TEST_CASE.md";
 

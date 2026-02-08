@@ -11,16 +11,18 @@ import static org.hamcrest.Matchers.anyOf;
 import static org.hamcrest.Matchers.equalTo;
 
 /**
- * Test Case API-DELETE-003: DELETE with invalid ID format returns 400 or 404.
- * Objective: Verify DELETE with invalid ID format (e.g. non-numeric) returns 400 or 404; no resource deleted.
- * Expected: Status 400 or 404; no 500.
+ * Verifies that DELETE with an invalid ID format in the path (e.g. non-numeric when the API
+ * expects a number) returns 400 Bad Request or 404 Not Found, and does not delete any resource.
+ * Request is sent without auth so behaviour applies to public or pre-validation error handling.
  */
 @DisplayName("DELETE with invalid ID format returns 400 or 404")
 class DeleteInvalidIdFormatReturns400Or404Test extends BaseApiTest {
 
+    /** Path to the test case specification (relative to project root). Used for traceability. */
     public static final String TEST_CASE_SPEC_PATH =
             "rest-api-tests/delete/delete_invalid_id_format_returns_400_or_404/TEST_CASE.md";
 
+    /** Malformed ID (e.g. non-numeric) to trigger format validation or route mismatch. */
     private static final String INVALID_ID = "abc";
 
     @Test
@@ -34,7 +36,7 @@ class DeleteInvalidIdFormatReturns400Or404Test extends BaseApiTest {
                 .orElseThrow();
         String path = basePath + "/" + INVALID_ID;
 
-        // TEST_CASE Step 1–2: Send DELETE with invalid ID; capture status
+        // DELETE with invalid ID format; expect client error (400 or 404)
         given()
                 .spec(baseSpec)
                 .when()

@@ -14,18 +14,22 @@ import static org.hamcrest.Matchers.equalTo;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
- * Test Case API-POST-001: POST with valid body returns 201 and Location header.
- * Objective: Verify POST with valid body returns 201 Created and, when supported, Location header.
- * Expected: Status 201 (or 200); Location header present when supported.
+ * Verifies that POST with a valid body and auth returns 201 Created (or 200) and, when
+ * the API supports it, a Location header with a valid URI. Requires BASE_URL,
+ * CREATE_ENDPOINT and AUTH_TOKEN. Location is asserted only when present.
  */
 @DisplayName("POST valid body returns 201 and Location header")
 class PostValidBodyReturns201AndLocationHeaderTest extends BaseApiTest {
 
+    /** Path to the test case specification (relative to project root). Used for traceability. */
     public static final String TEST_CASE_SPEC_PATH =
             "rest-api-tests/post-create/post_valid_body_returns_201_and_location_header/TEST_CASE.md";
 
+    /** HTTP header name for Bearer token. */
     private static final String AUTH_HEADER = "Authorization";
+    /** Prefix for the Authorization header value (Bearer &lt;token&gt;). */
     private static final String BEARER_PREFIX = "Bearer ";
+    /** Response header that may contain the URL of the created resource. */
     private static final String LOCATION_HEADER = "Location";
 
     @Test

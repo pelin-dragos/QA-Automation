@@ -12,16 +12,19 @@ import static org.hamcrest.Matchers.equalTo;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
- * Test Case API-ERROR-003: Response time for success within configured timeout.
- * Objective: Verify successful request completes within configured max response time.
- * Expected: Status 200; response time ≤ configured threshold.
+ * Verifies that a successful request to the configured success endpoint completes within
+ * a maximum response time. Uses RESPONSE_TIMEOUT_MS from config if set; otherwise falls
+ * back to a default (10 seconds). Asserts status 200 and that elapsed time does not
+ * exceed the threshold.
  */
 @DisplayName("Response time for success within configured timeout")
 class ResponseTimeForSuccessWithinConfiguredTimeoutTest extends BaseApiTest {
 
+    /** Path to the test case specification (relative to project root). Used for traceability. */
     public static final String TEST_CASE_SPEC_PATH =
             "rest-api-tests/error-responses/response_time_for_success_within_configured_timeout/TEST_CASE.md";
 
+    /** Default max response time in ms when RESPONSE_TIMEOUT_MS is not set. */
     private static final long DEFAULT_TIMEOUT_MS = 10000L;
 
     @Test
@@ -35,7 +38,7 @@ class ResponseTimeForSuccessWithinConfiguredTimeoutTest extends BaseApiTest {
                 .map(p -> p.startsWith("/") ? p : "/" + p)
                 .orElseThrow();
 
-        // TEST_CASE Step 1–2: Send request; measure response time
+        // GET success endpoint and capture response (including elapsed time)
         Response response = given()
                 .spec(baseSpec)
                 .when()
@@ -46,7 +49,6 @@ class ResponseTimeForSuccessWithinConfiguredTimeoutTest extends BaseApiTest {
                 .response();
 
         long responseTimeMs = response.getTime();
-        // TEST_CASE Step 3–4 & Expected: response time ≤ threshold, status 200
         assertTrue(responseTimeMs <= timeoutMs,
                 "Response time " + responseTimeMs + " ms exceeded threshold " + timeoutMs + " ms");
     }

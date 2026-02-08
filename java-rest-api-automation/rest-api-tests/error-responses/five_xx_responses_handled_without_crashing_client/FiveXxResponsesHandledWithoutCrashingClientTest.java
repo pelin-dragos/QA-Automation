@@ -12,13 +12,15 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
- * Test Case API-ERROR-002: 5xx responses handled without crashing client.
- * Objective: Verify that when the API returns 5xx, the client handles it without unhandled exception; can read status and body.
- * Expected: Status in 5xx range; no client crash; optional body readable or empty.
+ * Verifies that when the API returns a 5xx server error, the client handles the response
+ * without throwing an unhandled exception: status code is in the 5xx range and the response
+ * body can be read (or is empty). Requires ERROR_5XX_ENDPOINT in config; skipped when no
+ * 5xx can be triggered (e.g. no fault-injection endpoint).
  */
 @DisplayName("5xx responses handled without crashing client")
 class FiveXxResponsesHandledWithoutCrashingClientTest extends BaseApiTest {
 
+    /** Path to the test case specification (relative to project root). Used for traceability. */
     public static final String TEST_CASE_SPEC_PATH =
             "rest-api-tests/error-responses/five_xx_responses_handled_without_crashing_client/TEST_CASE.md";
 
@@ -33,7 +35,7 @@ class FiveXxResponsesHandledWithoutCrashingClientTest extends BaseApiTest {
                 .map(p -> p.startsWith("/") ? p : "/" + p)
                 .orElseThrow();
 
-        // TEST_CASE Step 1–2: Send request that results in 5xx; capture status and body without throwing
+        // Call endpoint that returns 5xx; client must not throw (e.g. on status or body read)
         Response response = assertDoesNotThrow(() -> given()
                 .spec(baseSpec)
                 .when()
@@ -41,10 +43,9 @@ class FiveXxResponsesHandledWithoutCrashingClientTest extends BaseApiTest {
                 .andReturn());
 
         int statusCode = response.getStatusCode();
-        // TEST_CASE Step 3 & Expected: status in 5xx range
         assertTrue(statusCode >= 500 && statusCode < 600,
                 "Expected 5xx, got " + statusCode);
-        // Optional: body can be read (or empty)
+        // Ensure body can be read without throwing (may be empty or error payload)
         assertDoesNotThrow(() -> response.getBody().asString());
     }
 }

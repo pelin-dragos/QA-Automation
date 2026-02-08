@@ -12,19 +12,24 @@ import static org.hamcrest.Matchers.anyOf;
 import static org.hamcrest.Matchers.equalTo;
 
 /**
- * Test Case API-PUT-004: PUT with invalid ID format returns 400 or 404.
- * Objective: Verify PUT with invalid ID format in path returns 400 or 404; no resource updated.
- * Expected: Status 400 or 404.
+ * Verifies that PUT with an invalid ID format in the path (e.g. non-numeric when the
+ * API expects a number) returns 400 or 404 and does not update any resource. Uses
+ * valid auth and body. Requires BASE_URL, PROTECTED_ENDPOINT and AUTH_TOKEN.
  */
 @DisplayName("PUT invalid ID format returns 400 or 404")
 class PutInvalidIdFormatReturns400Or404Test extends BaseApiTest {
 
+    /** Path to the test case specification (relative to project root). Used for traceability. */
     public static final String TEST_CASE_SPEC_PATH =
             "rest-api-tests/put-update/put_invalid_id_format_returns_400_or_404/TEST_CASE.md";
 
+    /** HTTP header name for Bearer token. */
     private static final String AUTH_HEADER = "Authorization";
+    /** Prefix for the Authorization header value (Bearer &lt;token&gt;). */
     private static final String BEARER_PREFIX = "Bearer ";
+    /** Malformed ID to trigger format validation or route mismatch. */
     private static final String INVALID_ID = "invalid-id-format";
+    /** Valid full body; only the path ID is invalid. */
     private static final String FULL_BODY = "{\"name\":\"Put Invalid Id\",\"email\":\"putinvalid@example.com\",\"gender\":\"male\",\"status\":\"active\"}";
 
     @Test

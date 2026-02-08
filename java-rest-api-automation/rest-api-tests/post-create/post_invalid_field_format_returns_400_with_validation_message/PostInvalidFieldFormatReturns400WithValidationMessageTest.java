@@ -12,18 +12,21 @@ import static org.hamcrest.Matchers.anyOf;
 import static org.hamcrest.Matchers.equalTo;
 
 /**
- * Test Case API-POST-004: POST with invalid field format returns 400 with validation message.
- * Objective: Verify POST with invalid format (e.g. invalid email) returns 400/422 and validation error.
- * Expected: Status 400 or 422; body contains validation error.
+ * Verifies that POST with an invalid field format (e.g. malformed email) returns 400 or
+ * 422 and does not create a resource. Requires BASE_URL, CREATE_ENDPOINT and AUTH_TOKEN.
  */
 @DisplayName("POST invalid field format returns 400 with validation message")
 class PostInvalidFieldFormatReturns400WithValidationMessageTest extends BaseApiTest {
 
+    /** Path to the test case specification (relative to project root). Used for traceability. */
     public static final String TEST_CASE_SPEC_PATH =
             "rest-api-tests/post-create/post_invalid_field_format_returns_400_with_validation_message/TEST_CASE.md";
 
+    /** HTTP header name for Bearer token. */
     private static final String AUTH_HEADER = "Authorization";
+    /** Prefix for the Authorization header value (Bearer &lt;token&gt;). */
     private static final String BEARER_PREFIX = "Bearer ";
+    /** Invalid email value to trigger format validation. */
     private static final String INVALID_EMAIL = "not-an-email";
 
     @Test

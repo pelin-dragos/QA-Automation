@@ -12,17 +12,20 @@ import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
 
 /**
- * Test Case API-PATCH-007: PATCH with valid auth updates resource and returns success.
- * Objective: Verify PATCH with valid authentication updates the resource and returns 200.
- * Expected: Status 200; resource updated; no 401/403.
+ * Verifies that PATCH with valid Bearer authentication updates the resource and returns
+ * 200 OK. Creates a resource via POST, then PATCHes with auth. Requires BASE_URL,
+ * CREATE_ENDPOINT and AUTH_TOKEN.
  */
 @DisplayName("PATCH with valid auth updates resource and returns success")
 class PatchWithValidAuthUpdatesResourceAndReturnsSuccessTest extends BaseApiTest {
 
+    /** Path to the test case specification (relative to project root). Used for traceability. */
     public static final String TEST_CASE_SPEC_PATH =
             "rest-api-tests/patch-update/patch_with_valid_auth_updates_resource_and_returns_success/TEST_CASE.md";
 
+    /** HTTP header name for Bearer token. */
     private static final String AUTH_HEADER = "Authorization";
+    /** Prefix for the Authorization header value (Bearer &lt;token&gt;). */
     private static final String BEARER_PREFIX = "Bearer ";
 
     @Test

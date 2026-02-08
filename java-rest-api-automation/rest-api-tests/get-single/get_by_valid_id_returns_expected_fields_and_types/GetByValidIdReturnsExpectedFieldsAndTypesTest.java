@@ -16,13 +16,15 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
- * Test Case API-GET-SINGLE-002: GET by valid ID returns expected fields and types.
- * Objective: Verify response contains required fields with correct types per API contract.
- * Expected: Status 200; required fields present; types match (e.g. id number, name string).
+ * Verifies that GET by resource ID returns 200 and a body containing required fields with
+ * the expected types (e.g. id as number, name and email as string). Uses the list endpoint
+ * to obtain a valid ID. Field names and types are aligned with common REST resources
+ * (id, name, email); adapt assertions if the API contract differs.
  */
 @DisplayName("GET by valid ID returns expected fields and types")
 class GetByValidIdReturnsExpectedFieldsAndTypesTest extends BaseApiTest {
 
+    /** Path to the test case specification (relative to project root). Used for traceability. */
     public static final String TEST_CASE_SPEC_PATH =
             "rest-api-tests/get-single/get_by_valid_id_returns_expected_fields_and_types/TEST_CASE.md";
 

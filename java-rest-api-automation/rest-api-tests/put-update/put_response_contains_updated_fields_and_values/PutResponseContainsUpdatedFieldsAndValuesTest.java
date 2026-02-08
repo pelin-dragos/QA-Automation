@@ -17,17 +17,21 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 /**
- * Test Case API-PUT-002: PUT response body contains updated fields and values.
- * Objective: Verify PUT response (or subsequent GET) contains the updated field values.
- * Expected: Response or GET shows updated values; no stale data.
+ * Verifies that after a successful PUT, the response body (when present) or a subsequent
+ * GET contains the updated field values (e.g. name, status). Creates a resource,
+ * PUTs with new values, then asserts on PUT response body or GET. Requires BASE_URL,
+ * CREATE_ENDPOINT and AUTH_TOKEN.
  */
 @DisplayName("PUT response contains updated fields and values")
 class PutResponseContainsUpdatedFieldsAndValuesTest extends BaseApiTest {
 
+    /** Path to the test case specification (relative to project root). Used for traceability. */
     public static final String TEST_CASE_SPEC_PATH =
             "rest-api-tests/put-update/put_response_contains_updated_fields_and_values/TEST_CASE.md";
 
+    /** HTTP header name for Bearer token. */
     private static final String AUTH_HEADER = "Authorization";
+    /** Prefix for the Authorization header value (Bearer &lt;token&gt;). */
     private static final String BEARER_PREFIX = "Bearer ";
 
     @Test

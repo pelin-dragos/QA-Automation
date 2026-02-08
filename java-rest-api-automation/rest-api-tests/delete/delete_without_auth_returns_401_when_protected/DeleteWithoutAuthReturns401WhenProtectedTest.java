@@ -12,17 +12,21 @@ import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
 
 /**
- * Test Case API-DELETE-005: DELETE without auth returns 401 when endpoint is protected.
- * Objective: Verify DELETE without valid authentication returns 401 and resource is not deleted.
- * Expected: Status 401; resource still exists. Skipped when endpoint is not protected.
+ * Verifies that DELETE without a valid Bearer token returns 401 Unauthorized and does not
+ * remove the resource. Creates a resource with auth, then calls DELETE without the
+ * Authorization header; if the endpoint is public and returns 2xx, the test is skipped.
+ * Finally confirms with GET (with auth) that the resource still exists.
  */
 @DisplayName("DELETE without auth returns 401 when protected")
 class DeleteWithoutAuthReturns401WhenProtectedTest extends BaseApiTest {
 
+    /** Path to the test case specification (relative to project root). Used for traceability. */
     public static final String TEST_CASE_SPEC_PATH =
             "rest-api-tests/delete/delete_without_auth_returns_401_when_protected/TEST_CASE.md";
 
+    /** HTTP header name for Bearer token. */
     private static final String AUTH_HEADER = "Authorization";
+    /** Prefix for the Authorization header value (Bearer &lt;token&gt;). */
     private static final String BEARER_PREFIX = "Bearer ";
 
     @Test
@@ -35,7 +39,7 @@ class DeleteWithoutAuthReturns401WhenProtectedTest extends BaseApiTest {
         String basePath = ApiConfig.getCreateEndpoint().map(p -> p.startsWith("/") ? p : "/" + p).orElseThrow();
         Header authHeader = new Header(AUTH_HEADER, BEARER_PREFIX + ApiConfig.getAuthToken().orElseThrow());
 
-        // TEST_CASE precondition: ensure a resource exists (create with auth)
+        // Create a resource so we have a valid ID; then delete without auth
         String email = "delete-401-" + System.currentTimeMillis() + "@example.com";
         Response createResponse = given()
                 .spec(baseSpec)
@@ -49,7 +53,7 @@ class DeleteWithoutAuthReturns401WhenProtectedTest extends BaseApiTest {
 
         String path = basePath + "/" + id;
 
-        // TEST_CASE Step 1–2: DELETE with valid ID but without auth (omit header); capture status
+        // DELETE without Authorization header; expect 401 if endpoint is protected
         int statusCode = given()
                 .spec(baseSpec)
                 .when()
@@ -60,7 +64,7 @@ class DeleteWithoutAuthReturns401WhenProtectedTest extends BaseApiTest {
         Assumptions.assumeTrue(statusCode == 401,
                 "Endpoint did not return 401 without auth (got " + statusCode + "). Skip when endpoint is not protected.");
 
-        // TEST_CASE Step 3 (optional): GET with auth to confirm resource still exists
+        // Resource must still exist: GET with auth returns 200
         given().spec(baseSpec).header(authHeader).when().get(path).then().statusCode(equalTo(200));
     }
 }

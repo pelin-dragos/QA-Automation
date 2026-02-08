@@ -12,18 +12,23 @@ import static io.restassured.RestAssured.given;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
- * Test Case API-PUT-005: PUT with missing required fields returns 400 with validation errors.
- * Objective: Verify PUT with incomplete body (required fields omitted) returns 400 or 422; no partial update when full body required.
- * Expected: Status 400 or 422; validation error in body.
+ * Verifies that PUT with an incomplete body (required fields omitted) returns 400 or
+ * 422 when the API requires a full body. Creates a resource, then PUTs with only
+ * partial data. If the API allows partial PUT and returns 200, the test is skipped
+ * via Assumption. Requires BASE_URL, CREATE_ENDPOINT and AUTH_TOKEN.
  */
 @DisplayName("PUT missing required fields returns 400 with validation errors")
 class PutMissingRequiredFieldsReturns400WithValidationErrorsTest extends BaseApiTest {
 
+    /** Path to the test case specification (relative to project root). Used for traceability. */
     public static final String TEST_CASE_SPEC_PATH =
             "rest-api-tests/put-update/put_missing_required_fields_returns_400_with_validation_errors/TEST_CASE.md";
 
+    /** HTTP header name for Bearer token. */
     private static final String AUTH_HEADER = "Authorization";
+    /** Prefix for the Authorization header value (Bearer &lt;token&gt;). */
     private static final String BEARER_PREFIX = "Bearer ";
+    /** Body with only one field; required fields (e.g. email, gender, status) omitted. */
     private static final String INCOMPLETE_BODY = "{\"name\":\"Only Name\"}";
 
     @Test

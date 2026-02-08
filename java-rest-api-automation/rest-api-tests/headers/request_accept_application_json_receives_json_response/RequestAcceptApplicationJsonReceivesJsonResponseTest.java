@@ -13,18 +13,22 @@ import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.notNullValue;
 
 /**
- * Test Case API-HEADERS-001: Request with Accept application/json receives JSON response.
- * Objective: Verify that Accept: application/json yields successful response with Content-Type application/json and valid JSON body.
- * Expected: Status 200; Content-Type includes application/json; body is valid JSON.
+ * Verifies that when the client sends Accept: application/json, the API returns 200 with
+ * a Content-Type header containing "application/json" and a non-empty body (valid JSON).
+ * Requires BASE_URL and PROTECTED_ENDPOINT. No auth sent; use a public or pre-auth endpoint.
  */
 @DisplayName("Request Accept application/json receives JSON response")
 class RequestAcceptApplicationJsonReceivesJsonResponseTest extends BaseApiTest {
 
+    /** Path to the test case specification (relative to project root). Used for traceability. */
     public static final String TEST_CASE_SPEC_PATH =
             "rest-api-tests/headers/request_accept_application_json_receives_json_response/TEST_CASE.md";
 
+    /** Request header to request JSON response. */
     private static final String ACCEPT_HEADER = "Accept";
+    /** Value for Accept header when requesting JSON. */
     private static final String ACCEPT_JSON = "application/json";
+    /** Response header to assert correct content type. */
     private static final String CONTENT_TYPE_HEADER = "Content-Type";
 
     @Test

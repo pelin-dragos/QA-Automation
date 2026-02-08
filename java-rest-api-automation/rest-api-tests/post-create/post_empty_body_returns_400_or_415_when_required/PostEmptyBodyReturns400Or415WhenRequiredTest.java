@@ -12,18 +12,22 @@ import static org.hamcrest.Matchers.anyOf;
 import static org.hamcrest.Matchers.equalTo;
 
 /**
- * Test Case API-POST-005: POST with empty body returns 400 or 415 when body is required.
- * Objective: Verify POST with empty body {} returns 400 or 415; no resource created.
- * Expected: Status 400 or 415.
+ * Verifies that POST with an empty body {} returns 400, 415 or 422 when the API
+ * requires a non-empty body; no resource is created. Some APIs return 422 for
+ * validation. Requires BASE_URL, CREATE_ENDPOINT and AUTH_TOKEN.
  */
 @DisplayName("POST empty body returns 400 or 415 when required")
 class PostEmptyBodyReturns400Or415WhenRequiredTest extends BaseApiTest {
 
+    /** Path to the test case specification (relative to project root). Used for traceability. */
     public static final String TEST_CASE_SPEC_PATH =
             "rest-api-tests/post-create/post_empty_body_returns_400_or_415_when_required/TEST_CASE.md";
 
+    /** HTTP header name for Bearer token. */
     private static final String AUTH_HEADER = "Authorization";
+    /** Prefix for the Authorization header value (Bearer &lt;token&gt;). */
     private static final String BEARER_PREFIX = "Bearer ";
+    /** Empty JSON object; API should reject when body is required. */
     private static final String EMPTY_BODY = "{}";
 
     @Test

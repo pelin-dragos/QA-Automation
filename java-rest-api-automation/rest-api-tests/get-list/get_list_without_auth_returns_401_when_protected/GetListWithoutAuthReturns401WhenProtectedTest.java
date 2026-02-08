@@ -10,13 +10,14 @@ import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
 
 /**
- * Test Case API-GET-LIST-007: GET list without auth returns 401 when endpoint is protected.
- * Objective: Verify list endpoint without credentials returns 401 when it requires auth.
- * Expected: Status 401. Skipped when endpoint is public.
+ * Verifies that the list endpoint returns 401 Unauthorized when the request has no
+ * Authorization header and the endpoint requires authentication. If the endpoint is
+ * public and returns 200, the test is skipped via Assumption.
  */
 @DisplayName("GET list without auth returns 401 when protected")
 class GetListWithoutAuthReturns401WhenProtectedTest extends BaseApiTest {
 
+    /** Path to the test case specification (relative to project root). Used for traceability. */
     public static final String TEST_CASE_SPEC_PATH =
             "rest-api-tests/get-list/get_list_without_auth_returns_401_when_protected/TEST_CASE.md";
 

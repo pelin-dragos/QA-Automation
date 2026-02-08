@@ -11,17 +11,21 @@ import org.junit.jupiter.api.Test;
 import static io.restassured.RestAssured.given;
 
 /**
- * Test Case API-PUT-007: PUT without auth returns 401 when endpoint is protected.
- * Objective: Verify PUT without valid authentication returns 401; resource not updated.
- * Expected: Status 401. Skipped when endpoint is public.
+ * Verifies that PUT without an Authorization header returns 401 Unauthorized when the
+ * endpoint requires authentication. Creates a resource with auth, then sends PUT with
+ * valid ID and body but no auth; if the endpoint is public and returns 2xx, the test
+ * is skipped. Finally asserts with GET (with auth) that the resource was not updated.
  */
 @DisplayName("PUT without auth returns 401 when protected")
 class PutWithoutAuthReturns401WhenProtectedTest extends BaseApiTest {
 
+    /** Path to the test case specification (relative to project root). Used for traceability. */
     public static final String TEST_CASE_SPEC_PATH =
             "rest-api-tests/put-update/put_without_auth_returns_401_when_protected/TEST_CASE.md";
 
+    /** HTTP header name for Bearer token. */
     private static final String AUTH_HEADER = "Authorization";
+    /** Prefix for the Authorization header value (Bearer &lt;token&gt;). */
     private static final String BEARER_PREFIX = "Bearer ";
 
     @Test

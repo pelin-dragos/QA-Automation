@@ -11,19 +11,24 @@ import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
 
 /**
- * Test Case API-PUT-003: PUT with non-existent ID returns 404.
- * Objective: Verify PUT with non-existent resource ID returns 404; no resource created/updated.
- * Expected: Status 404.
+ * Verifies that PUT with a non-existent resource ID returns 404 Not Found and does not
+ * create or update any resource. Uses a constant high ID and a valid full body with
+ * auth. Requires BASE_URL, PROTECTED_ENDPOINT and AUTH_TOKEN.
  */
 @DisplayName("PUT nonexistent ID returns 404")
 class PutNonexistentIdReturns404Test extends BaseApiTest {
 
+    /** Path to the test case specification (relative to project root). Used for traceability. */
     public static final String TEST_CASE_SPEC_PATH =
             "rest-api-tests/put-update/put_nonexistent_id_returns_404/TEST_CASE.md";
 
+    /** HTTP header name for Bearer token. */
     private static final String AUTH_HEADER = "Authorization";
+    /** Prefix for the Authorization header value (Bearer &lt;token&gt;). */
     private static final String BEARER_PREFIX = "Bearer ";
+    /** ID assumed not to exist so that the API returns 404. */
     private static final long NON_EXISTENT_ID = 999999999L;
+    /** Valid full body; only the path ID is invalid. */
     private static final String FULL_BODY = "{\"name\":\"Put 404\",\"email\":\"put404@example.com\",\"gender\":\"male\",\"status\":\"active\"}";
 
     @Test

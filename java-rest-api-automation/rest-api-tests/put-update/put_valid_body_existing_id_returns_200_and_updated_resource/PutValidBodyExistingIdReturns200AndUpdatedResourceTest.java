@@ -13,17 +13,20 @@ import static org.hamcrest.Matchers.anyOf;
 import static org.hamcrest.Matchers.equalTo;
 
 /**
- * Test Case API-PUT-001: PUT with valid body and existing ID returns 200 and updated resource.
- * Objective: Verify PUT with valid full body and existing ID returns 200 (or 204) and resource is updated.
- * Expected: Status 200 or 204; resource updated.
+ * Verifies that PUT with a valid full body and an existing resource ID returns 200 OK
+ * or 204 No Content and updates the resource. Creates a resource via POST, then sends
+ * a full replacement body. Requires BASE_URL, CREATE_ENDPOINT and AUTH_TOKEN.
  */
 @DisplayName("PUT valid body existing ID returns 200 and updated resource")
 class PutValidBodyExistingIdReturns200AndUpdatedResourceTest extends BaseApiTest {
 
+    /** Path to the test case specification (relative to project root). Used for traceability. */
     public static final String TEST_CASE_SPEC_PATH =
             "rest-api-tests/put-update/put_valid_body_existing_id_returns_200_and_updated_resource/TEST_CASE.md";
 
+    /** HTTP header name for Bearer token. */
     private static final String AUTH_HEADER = "Authorization";
+    /** Prefix for the Authorization header value (Bearer &lt;token&gt;). */
     private static final String BEARER_PREFIX = "Bearer ";
 
     @Test

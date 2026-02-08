@@ -9,15 +9,20 @@ import org.junit.jupiter.api.Test;
 import static io.restassured.RestAssured.given;
 
 /**
- * Test Case API-GET-LIST-004: GET list with invalid pagination returns 400 or 422.
- * Objective: Verify invalid pagination (e.g. negative page/size) returns 400 or 422.
- * Expected: Status 400 or 422; no successful data payload.
+ * Verifies that the list endpoint returns 400 or 422 when given invalid pagination
+ * parameters (e.g. negative page). If the API ignores invalid params and returns 200,
+ * the test is skipped via Assumption so it does not fail in permissive environments.
  */
 @DisplayName("GET list invalid pagination returns 400 or 422")
 class GetListInvalidPaginationReturns400Or422Test extends BaseApiTest {
 
+    /** Path to the test case specification (relative to project root). Used for traceability. */
     public static final String TEST_CASE_SPEC_PATH =
             "rest-api-tests/get-list/get_list_invalid_pagination_returns_400_or_422/TEST_CASE.md";
+
+    /** Invalid page value (negative) used to trigger validation error. */
+    private static final int INVALID_PAGE = -1;
+    private static final int PER_PAGE = 10;
 
     @Test
     @DisplayName("GET list with invalid pagination returns 400 or 422")
@@ -31,8 +36,8 @@ class GetListInvalidPaginationReturns400Or422Test extends BaseApiTest {
 
         int statusCode = given()
                 .spec(baseSpec)
-                .queryParam("page", -1)
-                .queryParam("per_page", 10)
+                .queryParam("page", INVALID_PAGE)
+                .queryParam("per_page", PER_PAGE)
                 .when()
                 .get(path)
                 .then()

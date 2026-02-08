@@ -14,17 +14,21 @@ import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
 
 /**
- * Test Case API-GET-SINGLE-005: GET by ID without auth returns 401 when protected.
- * Objective: Verify resource-by-ID without credentials returns 401 when endpoint requires auth.
- * Expected: Status 401. Skipped when endpoint is public.
+ * Verifies that GET by resource ID without an Authorization header returns 401
+ * Unauthorized when the endpoint requires authentication. Obtains a valid ID from the
+ * list endpoint (with auth); then calls GET by ID without auth. If the endpoint is
+ * public and returns 200, the test is skipped via Assumption.
  */
 @DisplayName("GET by ID without auth returns 401 when protected")
 class GetByIdWithoutAuthReturns401WhenProtectedTest extends BaseApiTest {
 
+    /** Path to the test case specification (relative to project root). Used for traceability. */
     public static final String TEST_CASE_SPEC_PATH =
             "rest-api-tests/get-single/get_by_id_without_auth_returns_401_when_protected/TEST_CASE.md";
 
+    /** HTTP header name for Bearer token. */
     private static final String AUTH_HEADER = "Authorization";
+    /** Prefix for the Authorization header value (Bearer &lt;token&gt;). */
     private static final String BEARER_PREFIX = "Bearer ";
 
     @Test
@@ -37,6 +41,7 @@ class GetByIdWithoutAuthReturns401WhenProtectedTest extends BaseApiTest {
         String basePath = ApiConfig.getProtectedEndpoint().map(p -> p.startsWith("/") ? p : "/" + p).orElseThrow();
         Header authHeader = new Header(AUTH_HEADER, BEARER_PREFIX + ApiConfig.getAuthToken().orElseThrow());
 
+        // Get a valid ID from list (with auth), then call GET by ID without auth
         List<Map<String, Object>> list = given()
                 .spec(baseSpec)
                 .header(authHeader)

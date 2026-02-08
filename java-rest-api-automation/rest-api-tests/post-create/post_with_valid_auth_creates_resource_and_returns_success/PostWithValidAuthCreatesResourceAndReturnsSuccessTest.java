@@ -12,17 +12,20 @@ import static org.hamcrest.Matchers.anyOf;
 import static org.hamcrest.Matchers.equalTo;
 
 /**
- * Test Case API-POST-008: POST with valid auth creates resource and returns success.
- * Objective: Verify POST with valid authentication creates resource and returns 201/200; optional GET verifies resource exists.
- * Expected: Status 201 or 200; body identifies created resource; optional GET by ID returns 200.
+ * Verifies that POST with valid Bearer authentication creates the resource (201 or 200)
+ * and that the created resource can be retrieved via GET by ID. Requires BASE_URL,
+ * CREATE_ENDPOINT and AUTH_TOKEN.
  */
 @DisplayName("POST with valid auth creates resource and returns success")
 class PostWithValidAuthCreatesResourceAndReturnsSuccessTest extends BaseApiTest {
 
+    /** Path to the test case specification (relative to project root). Used for traceability. */
     public static final String TEST_CASE_SPEC_PATH =
             "rest-api-tests/post-create/post_with_valid_auth_creates_resource_and_returns_success/TEST_CASE.md";
 
+    /** HTTP header name for Bearer token. */
     private static final String AUTH_HEADER = "Authorization";
+    /** Prefix for the Authorization header value (Bearer &lt;token&gt;). */
     private static final String BEARER_PREFIX = "Bearer ";
 
     @Test

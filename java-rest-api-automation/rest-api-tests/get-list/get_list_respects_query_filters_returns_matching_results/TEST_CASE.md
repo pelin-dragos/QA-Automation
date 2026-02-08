@@ -38,3 +38,13 @@ Verify that when supported query filters (e.g. filter by status, type, or date r
 
 - Assert on status 200 and iterate (or use RestAssured matchers) to verify each element matches the filter.
 - Use filter parameter names and values from config or constants; document filter semantics if not obvious.
+
+---
+
+## Traceability (automation)
+
+| Item | Location |
+|------|----------|
+| **Test Case ID** | API-GET-LIST-006 |
+| **Automated test (source)** | `GetListRespectsQueryFiltersReturnsMatchingResultsTest.java` (same folder) |
+| **Project path** | `java-rest-api-automation/rest-api-tests/get-list/get_list_respects_query_filters_returns_matching_results/` |

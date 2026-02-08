@@ -37,3 +37,13 @@ Verify that when the list endpoint requires authentication, a GET request sent w
 
 - Assert on status 401. Optionally assert on presence of error message in body.
 - If endpoint is not protected, mark test as skipped or document precondition; use tags/annotations for optional auth tests.
+
+---
+
+## Traceability (automation)
+
+| Item | Location |
+|------|----------|
+| **Test Case ID** | API-GET-LIST-007 |
+| **Automated test (source)** | `GetListWithoutAuthReturns401WhenProtectedTest.java` (same folder) |
+| **Project path** | `java-rest-api-automation/rest-api-tests/get-list/get_list_without_auth_returns_401_when_protected/` |

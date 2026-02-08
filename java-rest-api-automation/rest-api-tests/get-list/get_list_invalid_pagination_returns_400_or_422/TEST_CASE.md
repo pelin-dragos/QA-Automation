@@ -35,3 +35,13 @@ Verify that when invalid pagination parameters are sent (e.g. negative page numb
 
 - Assert on status code only, or on status and presence of error message/code in body.
 - Use constants for invalid values to keep the test maintainable.
+
+---
+
+## Traceability (automation)
+
+| Item | Location |
+|------|----------|
+| **Test Case ID** | API-GET-LIST-004 |
+| **Automated test (source)** | `GetListInvalidPaginationReturns400Or422Test.java` (same folder) |
+| **Project path** | `java-rest-api-automation/rest-api-tests/get-list/get_list_invalid_pagination_returns_400_or_422/` |

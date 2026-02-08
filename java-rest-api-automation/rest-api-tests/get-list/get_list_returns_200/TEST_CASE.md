@@ -37,3 +37,13 @@ Verify that a GET request to the list (collection) endpoint returns HTTP status 
 
 - Assert only on `response.getStatusCode() == 200`.
 - Use base URL and path from config/environment variables.
+
+---
+
+## Traceability (automation)
+
+| Item | Location |
+|------|----------|
+| **Test Case ID** | API-GET-LIST-001 |
+| **Automated test (source)** | `GetListReturns200Test.java` (same folder) |
+| **Project path** | `java-rest-api-automation/rest-api-tests/get-list/get_list_returns_200/` |

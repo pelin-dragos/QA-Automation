@@ -36,3 +36,13 @@ Verify that when the list/collection has no items (empty state), the GET list en
 
 - Assert on status 200 and on empty array (length 0 or equivalent). Adapt to actual API response shape.
 - Document how empty state was achieved (e.g. filter, clean DB, or default env).
+
+---
+
+## Traceability (automation)
+
+| Item | Location |
+|------|----------|
+| **Test Case ID** | API-GET-LIST-005 |
+| **Automated test (source)** | `GetListWhenEmptyReturns200AndEmptyArrayTest.java` (same folder) |
+| **Project path** | `java-rest-api-automation/rest-api-tests/get-list/get_list_when_empty_returns_200_and_empty_array/` |

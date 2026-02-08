@@ -108,6 +108,30 @@
                 </plugins>
             </build>
         </profile>
+        <!-- Run only get-list tests: mvn test -Pget-list-tests -->
+        <profile>
+            <id>get-list-tests</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <configuration>
+                            <includes>
+                                <include>**/GetListReturns200Test.java</include>
+                                <include>**/GetListReturnsValidJsonArrayTest.java</include>
+                                <include>**/GetListValidPaginationReturnsCorrectPageAndSizeTest.java</include>
+                                <include>**/GetListInvalidPaginationReturns400Or422Test.java</include>
+                                <include>**/GetListRespectsQueryFiltersReturnsMatchingResultsTest.java</include>
+                                <include>**/GetListWhenEmptyReturns200AndEmptyArrayTest.java</include>
+                                <include>**/GetListWithValidAuthReturns200AndDataTest.java</include>
+                                <include>**/GetListWithoutAuthReturns401WhenProtectedTest.java</include>
+                            </includes>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
         <!-- Run only error-responses tests: mvn test -Perror-responses-tests -->
         <profile>
             <id>error-responses-tests</id>

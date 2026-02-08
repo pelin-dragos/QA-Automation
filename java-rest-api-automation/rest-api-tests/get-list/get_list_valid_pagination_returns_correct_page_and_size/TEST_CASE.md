@@ -37,3 +37,13 @@ Verify that when valid pagination parameters (e.g. `page`, `size` or `limit`, `o
 
 - Assert on status 200, and on `response body array size <= requested size` (and optionally on pagination metadata fields).
 - Use query parameters from config or constants; avoid hardcoded values where possible.
+
+---
+
+## Traceability (automation)
+
+| Item | Location |
+|------|----------|
+| **Test Case ID** | API-GET-LIST-003 |
+| **Automated test (source)** | `GetListValidPaginationReturnsCorrectPageAndSizeTest.java` (same folder) |
+| **Project path** | `java-rest-api-automation/rest-api-tests/get-list/get_list_valid_pagination_returns_correct_page_and_size/` |

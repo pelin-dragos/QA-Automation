@@ -38,3 +38,13 @@ Verify that the GET list (collection) endpoint returns a valid JSON array (or th
 
 - Use JSON path or RestAssured body extraction to assert on type (array) and optionally on presence of expected top-level keys.
 - Do not assert on exact number of items unless that is the test scope.
+
+---
+
+## Traceability (automation)
+
+| Item | Location |
+|------|----------|
+| **Test Case ID** | API-GET-LIST-002 |
+| **Automated test (source)** | `GetListReturnsValidJsonArrayTest.java` (same folder) |
+| **Project path** | `java-rest-api-automation/rest-api-tests/get-list/get_list_returns_valid_json_array/` |

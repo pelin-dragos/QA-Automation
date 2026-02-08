@@ -38,3 +38,13 @@ Verify that when the list endpoint requires authentication, a GET request sent w
 
 - Use auth from config/env; do not hardcode tokens or passwords. Assert on status 200 and optionally on response structure.
 - If endpoint is public, this test can assert 200 with no auth; document accordingly.
+
+---
+
+## Traceability (automation)
+
+| Item | Location |
+|------|----------|
+| **Test Case ID** | API-GET-LIST-008 |
+| **Automated test (source)** | `GetListWithValidAuthReturns200AndDataTest.java` (same folder) |
+| **Project path** | `java-rest-api-automation/rest-api-tests/get-list/get_list_with_valid_auth_returns_200_and_data/` |

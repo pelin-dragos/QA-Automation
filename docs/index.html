@@ -7,14 +7,16 @@
   <meta name="description" content="Portfolio of QA automation projects and tests: API (RestAssured, Postman), UI (Playwright).">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,600;0,9..40,700;1,9..40,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,600;0,9..40,700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/common.css">
+  <link rel="stylesheet" href="css/home.css">
 </head>
 <body>
   <header class="site-header">
     <div class="container">
       <a href="index.html" class="logo">QA Automation</a>
       <nav class="nav">
+        <a href="index.html">Home</a>
         <a href="#projects">Projects</a>
         <a href="#test-types">Test types</a>
       </nav>
@@ -39,36 +41,45 @@
           <article class="card">
             <div class="card-icon" aria-hidden="true">☕</div>
             <h3>Java REST API Automation</h3>
-            <p>API test suite with Java, Maven and RestAssured: auth, CRUD, listing, pagination, validation and error responses.</p>
+            <p>API test suite with Java, Maven and RestAssured: auth, CRUD, listing, pagination, validation and error responses. 55 test cases with TEST_CASE.md specs.</p>
             <ul class="card-tags">
               <li>Java</li>
               <li>RestAssured</li>
               <li>Maven</li>
               <li>JUnit 5</li>
             </ul>
-            <a href="https://github.com/pelin-dragos/QA-Automation/tree/main/java-rest-api-automation" class="card-link" target="_blank" rel="noopener">View project →</a>
+            <div class="card-actions">
+              <a href="projects/java-rest-api.html" class="card-link">View details →</a>
+              <a href="https://github.com/pelin-dragos/QA-Automation/tree/main/java-rest-api-automation" class="card-link" target="_blank" rel="noopener">Code on GitHub</a>
+            </div>
           </article>
           <article class="card">
             <div class="card-icon" aria-hidden="true">📮</div>
             <h3>Postman API Collection</h3>
-            <p>Postman collection for API testing: requests, environment variables and automated tests in the collection.</p>
+            <p>Postman (or Bruno) collection for REST API testing: requests, environments, and automated assertions. Run in UI or via Newman CLI.</p>
             <ul class="card-tags">
               <li>Postman</li>
               <li>REST API</li>
               <li>Newman</li>
             </ul>
-            <a href="https://github.com/pelin-dragos/QA-Automation/tree/main/postman-api-collection" class="card-link" target="_blank" rel="noopener">View project →</a>
+            <div class="card-actions">
+              <a href="projects/postman.html" class="card-link">View details →</a>
+              <a href="https://github.com/pelin-dragos/QA-Automation/tree/main/postman-api-collection" class="card-link" target="_blank" rel="noopener">Code on GitHub</a>
+            </div>
           </article>
           <article class="card">
             <div class="card-icon" aria-hidden="true">🎭</div>
             <h3>Playwright</h3>
-            <p>End-to-end UI tests with Playwright: interactions, explicit waits and stable locators.</p>
+            <p>End-to-end UI tests with Playwright: login, forms, search, file upload, API+UI integration, BDD, parallel execution, Docker, accessibility, and more.</p>
             <ul class="card-tags">
               <li>Playwright</li>
               <li>E2E</li>
-              <li>JavaScript/TypeScript</li>
+              <li>TypeScript</li>
             </ul>
-            <a href="https://github.com/pelin-dragos/QA-Automation/tree/main/Playwright" class="card-link" target="_blank" rel="noopener">View project →</a>
+            <div class="card-actions">
+              <a href="projects/playwright.html" class="card-link">View details →</a>
+              <a href="https://github.com/pelin-dragos/QA-Automation/tree/main/Playwright" class="card-link" target="_blank" rel="noopener">Code on GitHub</a>
+            </div>
           </article>
         </div>
       </div>

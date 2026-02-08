@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Postman API Collection — QA Portfolio</title>
+  <meta name="description" content="Postman (or Bruno) collection for REST API testing: requests, environments, automated assertions, Newman CLI.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,600;0,9..40,700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/common.css">
+  <link rel="stylesheet" href="../css/project.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <a href="../index.html" class="logo">QA Automation</a>
+      <nav class="nav">
+        <a href="../index.html">Home</a>
+        <a href="../index.html#projects" class="active">Projects</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <ul class="breadcrumb">
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../index.html#projects">Projects</a></li>
+        <li><span>Postman API Collection</span></li>
+      </ul>
+
+      <section class="project-hero">
+        <h1>Postman API Collection</h1>
+        <p class="lead">
+          Structured Postman (or Bruno) collection for REST API testing: requests, environment variables, and automated assertions. Reusable, shareable, and runnable in CI with Newman or Bruno CLI. No secrets in repo; use env files or Postman environment for credentials.
+        </p>
+        <div class="project-meta">
+          <ul class="tags">
+            <li>Postman</li>
+            <li>REST API</li>
+            <li>Newman</li>
+            <li>Bruno</li>
+          </ul>
+          <a href="https://github.com/pelin-dragos/QA-Automation/tree/main/postman-api-collection" class="btn btn-primary" target="_blank" rel="noopener">View on GitHub</a>
+        </div>
+      </section>
+
+      <section class="project-content">
+        <div class="block">
+          <h2 class="section-title">Purpose</h2>
+          <p class="section-intro">
+            Demonstrate API testing with Postman (or Bruno) as per industry practice. The collection includes tests for status codes, response body, and optional schema validation. Variables (e.g. base URL, API key placeholder) live in environment files; real secrets stay out of version control.
+          </p>
+        </div>
+
+        <div class="block">
+          <h2 class="section-title">Suggested structure</h2>
+          <pre class="structure-list"><code>postman-api-collection/
+├── collection/
+│   └── REST-API-Tests.postman_collection.json
+├── environments/
+│   ├── demo.postman_environment.json
+│   └── .env.example
+├── docs/
+│   └── API-Scope.md
+└── README.md</code></pre>
+          <p class="section-intro">
+            Collection folders can be grouped by resource or flow (e.g. Users, Posts, Auth). Each request can have pre-request scripts (e.g. token, timestamp) and a Tests tab with <code>pm.test()</code> and <code>pm.expect()</code> for assertions.
+          </p>
+        </div>
+
+        <div class="block">
+          <h2 class="section-title">Contents (suggested)</h2>
+          <ul style="color: var(--text-muted); font-size: 0.9375rem; line-height: 1.7;">
+            <li><strong>Collection:</strong> Folders by resource or flow. Pre-request scripts for auth/tokens; Tests tab for status, body, optional schema validation.</li>
+            <li><strong>Environments:</strong> <code>base_url</code>, <code>api_key</code> (placeholder); real values via Postman env or <code>.env</code> (not committed).</li>
+            <li><strong>README:</strong> How to import, set environment, run collection or Newman.</li>
+          </ul>
+        </div>
+
+        <div class="block run-block">
+          <h2 class="section-title">How to run</h2>
+          <p><strong>Postman UI:</strong> Import collection and environment → select environment → Run collection.</p>
+          <p><strong>CLI (Newman):</strong></p>
+          <pre><code>newman run collection/REST-API-Tests.postman_collection.json \
+  -e environments/demo.postman_environment.json</code></pre>
+          <p class="section-intro">Add your API endpoints, tests, and environment files as needed. See the repo README for up-to-date instructions.</p>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>QA-Automation — Portfolio. No credentials in code. Independent, repeatable tests.</p>
+    </div>
+  </footer>
+</body>
+</html>

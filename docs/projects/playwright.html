@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Playwright E2E — QA Portfolio</title>
+  <meta name="description" content="End-to-end UI automation with Playwright: login, forms, search, file upload, API+UI, BDD, Docker, accessibility, performance.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,600;0,9..40,700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/common.css">
+  <link rel="stylesheet" href="../css/project.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <a href="../index.html" class="logo">QA Automation</a>
+      <nav class="nav">
+        <a href="../index.html">Home</a>
+        <a href="../index.html#projects" class="active">Projects</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <ul class="breadcrumb">
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../index.html#projects">Projects</a></li>
+        <li><span>Playwright</span></li>
+      </ul>
+
+      <section class="project-hero">
+        <h1>Playwright E2E</h1>
+        <p class="lead">
+          End-to-end UI test projects with Playwright (TypeScript). Page Object Model, explicit waits, stable locators. Topics include login, form validation, search, file upload/download, API+UI integration, BDD, parallel execution, Docker, accessibility, performance, and more.
+        </p>
+        <div class="project-meta">
+          <ul class="tags">
+            <li>Playwright</li>
+            <li>TypeScript</li>
+            <li>E2E</li>
+            <li>Node.js</li>
+          </ul>
+          <a href="https://github.com/pelin-dragos/QA-Automation/tree/main/Playwright" class="btn btn-primary" target="_blank" rel="noopener">View on GitHub</a>
+        </div>
+      </section>
+
+      <section class="project-content">
+        <div class="block">
+          <h2 class="section-title">Projects overview</h2>
+          <p class="section-intro">Each project lives under <code>PROJECTS/</code> with its own <code>package.json</code>, <code>playwright.config.ts</code>, <code>pages/</code>, and <code>tests/</code>. Run independently.</p>
+          <ul class="project-list">
+            <li><strong>01 — Login &amp; Logout</strong><span>Success, failure, logout flows</span></li>
+            <li><strong>02 — Form validation</strong><span>Email, password, phone, required fields</span></li>
+            <li><strong>03 — Google Search</strong><span>Search automation</span></li>
+            <li><strong>04 — Multiple browsers</strong><span>Cross-browser testing</span></li>
+            <li><strong>05 — Screenshot on failure</strong><span>Auto capture on test fail</span></li>
+            <li><strong>06 — E‑commerce shopping cart</strong><span>Cart flows</span></li>
+            <li><strong>07 — Dynamic content</strong><span>Waiting for dynamic content</span></li>
+            <li><strong>08 — File upload &amp; download</strong><span>File handling</span></li>
+            <li><strong>09 — Data-driven testing</strong><span>JSON/CSV data, parameterized tests</span></li>
+            <li><strong>10 — Dropdowns, checkboxes, radio</strong><span>Form controls</span></li>
+            <li><strong>11 — Iframe handling</strong><span>Frames and iframes</span></li>
+            <li><strong>12 — Alerts &amp; popups</strong><span>Dialog handling</span></li>
+            <li><strong>13 — Social media automation</strong><span>Social flows</span></li>
+            <li><strong>14 — Banking application</strong><span>Banking UI flows</span></li>
+            <li><strong>15 — Admin panel</strong><span>Admin UI testing</span></li>
+            <li><strong>16 — API + UI integration</strong><span>API and UI in same flow</span></li>
+            <li><strong>17 — BDD framework</strong><span>Cucumber / Gherkin style</span></li>
+            <li><strong>18 — Parallel execution</strong><span>Parallel test runs</span></li>
+            <li><strong>19 — Custom test framework</strong><span>Reusable framework layer</span></li>
+            <li><strong>20 — Mobile web testing</strong><span>Viewports and mobile</span></li>
+            <li><strong>21 — Visual regression</strong><span>Screenshot comparison</span></li>
+            <li><strong>22 — CI/CD integration</strong><span>GitHub Actions / pipelines</span></li>
+            <li><strong>23 — Headless &amp; Docker</strong><span>Dockerized Playwright</span></li>
+            <li><strong>24 — Performance testing</strong><span>Metrics and baselines</span></li>
+            <li><strong>25 — Security testing</strong><span>Security-focused checks</span></li>
+            <li><strong>27 — Accessibility</strong><span>a11y checks and reporting</span></li>
+            <li><strong>28 — Web scraping (hybrid)</strong><span>Playwright + Python</span></li>
+            <li><strong>29 — Cross-platform</strong><span>Playwright + pytest</span></li>
+            <li><strong>30 — AI-powered test generation</strong><span>AI helpers, self-healing</span></li>
+          </ul>
+        </div>
+
+        <div class="block">
+          <h2 class="section-title">Structure</h2>
+          <pre class="structure-list"><code>Playwright/
+└── PROJECTS/
+    ├── PROJECT_01_Login_Logout_Testing/
+    │   ├── pages/         (LoginPage, ProductsPage)
+    │   ├── tests/         (*.spec.ts)
+    │   ├── playwright.config.ts
+    │   └── package.json
+    ├── PROJECT_02_Form_Validation/
+    ├── ...
+    └── README.md</code></pre>
+        </div>
+
+        <div class="block run-block">
+          <h2 class="section-title">How to run</h2>
+          <p>Each project has its own <code>package.json</code>. Install and run from the project folder:</p>
+          <pre><code>cd Playwright/PROJECTS/PROJECT_01_Login_Logout_Testing
+npm install
+npx playwright test</code></pre>
+          <p>With UI or headed browser:</p>
+          <pre><code>npx playwright test --ui
+npx playwright test --headed</code></pre>
+          <p class="section-intro">See each project’s README for prerequisites (e.g. base URL, test accounts) and env setup. No credentials in repo.</p>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>QA-Automation — Portfolio. No credentials in code. Independent, repeatable tests.</p>
+    </div>
+  </footer>
+</body>
+</html>

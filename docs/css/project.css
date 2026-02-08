@@ -1,0 +1,118 @@
+/* ===== Project detail pages: layout, content blocks, test tables ===== */
+
+.project-hero {
+  padding-block: 2rem 3rem;
+  border-bottom: 1px solid var(--border);
+}
+.project-hero h1 {
+  margin: 0 0 0.5rem;
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.2;
+}
+.project-hero .lead {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 1.0625rem;
+  max-width: 60ch;
+}
+.project-meta {
+  margin-top: 1.25rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+}
+.project-meta .tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.project-meta .tags li {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  padding: 0.25rem 0.5rem;
+  background: var(--accent-soft);
+  color: var(--accent);
+  border-radius: 6px;
+}
+
+.project-content { padding-block: 2rem; }
+.project-content .block {
+  margin-bottom: 2.5rem;
+}
+.project-content .block:last-child { margin-bottom: 0; }
+
+/* ===== Test category blocks ===== */
+.test-category {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  margin-bottom: 1.25rem;
+}
+.test-category h3 {
+  margin: 0 0 0.75rem;
+  font-size: 1.0625rem;
+  font-weight: 600;
+  color: var(--accent);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.test-category ul {
+  margin: 0;
+  padding-left: 1.25rem;
+  color: var(--text-muted);
+  font-size: 0.9375rem;
+  line-height: 1.7;
+}
+.test-category ul li { margin-bottom: 0.25rem; }
+
+/* ===== Project list (e.g. Playwright projects) ===== */
+.project-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.project-list li {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 1rem 1.25rem;
+  font-size: 0.9375rem;
+}
+.project-list li strong { color: var(--text); display: block; margin-bottom: 0.25rem; }
+.project-list li span { color: var(--text-muted); font-size: 0.875rem; }
+
+/* ===== Run / CLI block ===== */
+.run-block {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+}
+.run-block h3 { margin: 0 0 0.75rem; font-size: 1rem; font-weight: 600; }
+.run-block p { margin: 0 0 0.75rem; color: var(--text-muted); font-size: 0.9375rem; }
+.run-block pre { margin: 0; }
+
+/* ===== Structure list ===== */
+.structure-list {
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 1rem 1.25rem;
+  color: var(--text-muted);
+  line-height: 1.8;
+}
+.structure-list .folder { color: var(--accent); }
+.structure-list .file { color: var(--text-muted); }

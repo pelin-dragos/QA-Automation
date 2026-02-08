@@ -2,11 +2,25 @@
 
 This folder contains the portfolio site for the QA-Automation project. It is meant to be served via **GitHub Pages** from this repository.
 
-## Contents
+## Structure (modular)
 
-- **index.html** — main page: projects (Java REST API, Postman, Playwright) and test types
-- **styles.css** — styles (dark theme, responsive)
-- You can add more pages (e.g. `projects.html`, `contact.html`) and link them from here
+```
+docs/
+├── index.html              # Home: hero, project cards, test types, CTA
+├── css/
+│   ├── common.css          # Variables, reset, header, footer, buttons, tables, code
+│   ├── home.css            # Homepage: hero, cards, test list, repo CTA
+│   └── project.css         # Project detail pages: hero, blocks, test categories, run block
+├── projects/
+│   ├── java-rest-api.html  # Java REST API: test categories, structure, how to run
+│   ├── postman.html        # Postman collection: purpose, structure, how to run
+│   └── playwright.html    # Playwright: projects list, structure, how to run
+└── README.md
+```
+
+- **index.html** uses `css/common.css` + `css/home.css`.
+- Each project page uses `css/common.css` + `css/project.css`.
+- Add new project pages in `projects/` and link them from the home cards.
 
 ## Deploy on GitHub Pages
 
@@ -20,19 +34,18 @@ This folder contains the portfolio site for the QA-Automation project. It is mea
 
 ## Customization
 
-- **GitHub username**: in `index.html`, replace the username in the repo links if this repo is under a different account.
-- **Text / sections**: edit `index.html` and `styles.css` to your liking.
-- **Other pages**: add HTML files in `docs/` and link them from the nav or from buttons.
+- **GitHub username**: in `index.html` and in each `projects/*.html`, replace the username in repo links if needed.
+- **Content**: edit the relevant HTML and CSS files. Keep common styles in `css/common.css`, page-specific in `home.css` or `project.css`.
+- **New project page**: add e.g. `projects/my-project.html`, same header/footer/breadcrumb pattern, link from home card.
 
 ## Run locally
 
-You can open `index.html` directly in the browser or use a local server, for example:
+From the `docs/` folder:
 
 ```bash
-# from the docs/ folder
 npx serve .
 # or
 python -m http.server 8000
 ```
 
-Then open in the browser: `http://localhost:8000` (or the port shown).
+Then open `http://localhost:8000` (or the port shown). Use a local server so that paths like `css/common.css` and `projects/java-rest-api.html` resolve correctly.

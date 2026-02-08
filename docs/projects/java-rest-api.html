@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Java REST API Automation — QA Portfolio</title>
+  <meta name="description" content="REST API test suite with Java, Maven, RestAssured and JUnit 5. 55 test cases: auth, CRUD, headers, error responses.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,600;0,9..40,700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/common.css">
+  <link rel="stylesheet" href="../css/project.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <a href="../index.html" class="logo">QA Automation</a>
+      <nav class="nav">
+        <a href="../index.html">Home</a>
+        <a href="../index.html#projects" class="active">Projects</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <ul class="breadcrumb">
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../index.html#projects">Projects</a></li>
+        <li><span>Java REST API Automation</span></li>
+      </ul>
+
+      <section class="project-hero">
+        <h1>Java REST API Automation</h1>
+        <p class="lead">
+          REST API test suite with RestAssured and JUnit 5. Each test has a TEST_CASE.md specification; tests are grouped by HTTP method and theme (auth, CRUD, headers, error responses). No credentials in code; config via env.
+        </p>
+        <div class="project-meta">
+          <ul class="tags">
+            <li>Java 11</li>
+            <li>RestAssured 5.4</li>
+            <li>JUnit 5</li>
+            <li>Maven</li>
+          </ul>
+          <a href="https://github.com/pelin-dragos/QA-Automation/tree/main/java-rest-api-automation" class="btn btn-primary" target="_blank" rel="noopener">View on GitHub</a>
+        </div>
+      </section>
+
+      <section class="project-content">
+        <div class="block">
+          <h2 class="section-title">Test categories</h2>
+          <p class="section-intro">55 test cases in 9 categories. Each test lives in its own folder with TEST_CASE.md (objective, preconditions, steps, expected result) and the Java implementation.</p>
+
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Category</th>
+                  <th>Description</th>
+                  <th>Tests</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td><code>get-list</code></td><td>GET collection/list endpoint</td><td>8</td></tr>
+                <tr><td><code>get-single</code></td><td>GET resource by ID</td><td>6</td></tr>
+                <tr><td><code>post-create</code></td><td>POST create resource</td><td>9</td></tr>
+                <tr><td><code>put-update</code></td><td>PUT full update</td><td>8</td></tr>
+                <tr><td><code>patch-update</code></td><td>PATCH partial update</td><td>7</td></tr>
+                <tr><td><code>delete</code></td><td>DELETE resource</td><td>7</td></tr>
+                <tr><td><code>headers</code></td><td>Accept, Content-Type, sensitive headers</td><td>3</td></tr>
+                <tr><td><code>error-responses</code></td><td>4xx/5xx and response time</td><td>3</td></tr>
+                <tr><td><code>auth</code></td><td>Authentication and authorization</td><td>4</td></tr>
+                <tr><td colspan="2"><strong>Total</strong></td><td><strong>55</strong></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="block">
+          <h2 class="section-title">What is covered</h2>
+          <div class="test-category">
+            <h3>GET — List / collection</h3>
+            <ul>
+              <li>List returns 200 and valid JSON array</li>
+              <li>Pagination (valid and invalid), empty list, query filters</li>
+              <li>Auth: 401 without token, 200 with valid token</li>
+            </ul>
+          </div>
+          <div class="test-category">
+            <h3>GET — Single resource by ID</h3>
+            <ul>
+              <li>Valid ID → 200 and correct body, expected fields and types</li>
+              <li>Non-existent ID → 404; invalid ID format → 400 or 404</li>
+              <li>Auth: 401 without token, 200 with valid token</li>
+            </ul>
+          </div>
+          <div class="test-category">
+            <h3>POST — Create</h3>
+            <ul>
+              <li>Valid body → 201 and Location header (or per contract)</li>
+              <li>Missing/invalid fields → 400 with validation message; wrong Content-Type → 415/400</li>
+              <li>Auth and duplicate handling (409/400) when applicable</li>
+            </ul>
+          </div>
+          <div class="test-category">
+            <h3>PUT &amp; PATCH — Update</h3>
+            <ul>
+              <li>Valid body + existing ID → 200 and updated resource</li>
+              <li>PATCH: only sent fields updated</li>
+              <li>404 for non-existent ID; 400 for invalid ID or validation errors; auth checks</li>
+            </ul>
+          </div>
+          <div class="test-category">
+            <h3>DELETE</h3>
+            <ul>
+              <li>Valid ID → 204 (or 200); GET after DELETE → 404</li>
+              <li>404 for non-existent, 400/404 for invalid ID; 409 when resource in use</li>
+              <li>Auth: 401 without token, success with valid token</li>
+            </ul>
+          </div>
+          <div class="test-category">
+            <h3>Headers, errors, performance</h3>
+            <ul>
+              <li>Accept: application/json and Content-Type in response</li>
+              <li>4xx with error body; 5xx handled without client crash</li>
+              <li>Response time within configured timeout (optional)</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="block">
+          <h2 class="section-title">Folder structure</h2>
+          <pre class="structure-list"><code>java-rest-api-automation/
+├── pom.xml
+├── rest-api-tests/
+│   ├── README.md
+│   ├── TEST_LIST.md
+│   ├── auth/           (4 tests)
+│   ├── delete/         (7 tests)
+│   ├── error-responses/(3 tests)
+│   ├── get-list/       (8 tests)
+│   ├── get-single/     (6 tests)
+│   ├── headers/        (3 tests)
+│   ├── patch-update/   (7 tests)
+│   ├── post-create/    (9 tests)
+│   ├── put-update/     (8 tests)
+│   └── [each test folder]
+│       ├── TEST_CASE.md
+│       └── *Test.java
+└── src/main/java/api/config/   (ApiConfig, EnvLoader)</code></pre>
+        </div>
+
+        <div class="block run-block">
+          <h2 class="section-title">How to run</h2>
+          <p>Requires Java 11+ and Maven. Copy <code>.env.example</code> to <code>.env</code> and set base URL and auth (no secrets in repo).</p>
+          <pre><code>cd java-rest-api-automation
+mvn test</code></pre>
+          <p>Run a single test class:</p>
+          <pre><code>mvn test -Dtest=GetByValidIdReturns200AndCorrectBodyTest</code></pre>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>QA-Automation — Portfolio. No credentials in code. Independent, repeatable tests.</p>
+    </div>
+  </footer>
+</body>
+</html>

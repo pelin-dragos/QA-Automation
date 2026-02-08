@@ -93,5 +93,20 @@
                 </plugins>
             </build>
         </profile>
+        <!-- Run only delete tests: mvn test -Pdelete-tests -->
+        <profile>
+            <id>delete-tests</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <configuration>
+                            <test>**/delete/**/*Test.java</test>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
     </profiles>
 </project>

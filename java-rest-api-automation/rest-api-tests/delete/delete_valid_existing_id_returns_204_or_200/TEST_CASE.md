@@ -34,3 +34,13 @@ Verify that a DELETE request with a valid existing resource ID returns HTTP 204 
 ## Automation Notes
 
 - Assert on status 204 (or 200). Create resource in setup if needed; do not rely on pre-existing data from other tests. Optional GET 404 assertion confirms deletion.
+
+---
+
+## Traceability (automation)
+
+| Item | Location |
+|------|----------|
+| **Test Case ID** | API-DELETE-001 |
+| **Automated test (source)** | `DeleteValidExistingIdReturns204Or200Test.java` (same folder) |
+| **Project path** | `java-rest-api-automation/rest-api-tests/delete/delete_valid_existing_id_returns_204_or_200/` |

@@ -32,3 +32,13 @@ Verify that a DELETE request with an invalid ID format in the path (e.g. non-num
 ## Automation Notes
 
 - Assert on status 400 or 404. Use a constant for the invalid ID.
+
+---
+
+## Traceability (automation)
+
+| Item | Location |
+|------|----------|
+| **Test Case ID** | API-DELETE-003 |
+| **Automated test (source)** | `DeleteInvalidIdFormatReturns400Or404Test.java` (same folder) |
+| **Project path** | `java-rest-api-automation/rest-api-tests/delete/delete_invalid_id_format_returns_400_or_404/` |

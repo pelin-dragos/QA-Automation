@@ -34,3 +34,13 @@ Verify that after a successful DELETE of a resource, a GET request for the same 
 ## Automation Notes
 
 - Assert on GET status 404. Create resource in setup and delete in test to keep test independent and repeatable. Ensures delete actually removed the resource.
+
+---
+
+## Traceability (automation)
+
+| Item | Location |
+|------|----------|
+| **Test Case ID** | API-DELETE-004 |
+| **Automated test (source)** | `GetAfterDeleteReturns404ForSameIdTest.java` (same folder) |
+| **Project path** | `java-rest-api-automation/rest-api-tests/delete/get_after_delete_returns_404_for_same_id/` |

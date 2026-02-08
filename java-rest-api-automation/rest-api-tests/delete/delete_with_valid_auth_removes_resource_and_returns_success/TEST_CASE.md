@@ -37,3 +37,13 @@ Verify that a DELETE request with valid authentication removes the resource and 
 ## Automation Notes
 
 - Assert on status and optionally on GET 404. Use auth from config; create resource in setup to keep test self-contained.
+
+---
+
+## Traceability (automation)
+
+| Item | Location |
+|------|----------|
+| **Test Case ID** | API-DELETE-006 |
+| **Automated test (source)** | `DeleteWithValidAuthRemovesResourceAndReturnsSuccessTest.java` (same folder) |
+| **Project path** | `java-rest-api-automation/rest-api-tests/delete/delete_with_valid_auth_removes_resource_and_returns_success/` |

@@ -15,6 +15,8 @@ public final class ApiConfig {
     private static final String USER_TOKEN_KEY = "USER_TOKEN";
     private static final String ADMIN_ENDPOINT_KEY = "ADMIN_ENDPOINT";
     private static final String EXPIRED_TOKEN_KEY = "EXPIRED_TOKEN";
+    private static final String CREATE_ENDPOINT_KEY = "CREATE_ENDPOINT";
+    private static final String CONFLICT_RESOURCE_ID_KEY = "CONFLICT_RESOURCE_ID";
 
     private ApiConfig() {
     }
@@ -68,5 +70,21 @@ public final class ApiConfig {
      */
     public static Optional<String> getExpiredToken() {
         return Optional.ofNullable(get(EXPIRED_TOKEN_KEY)).filter(s -> !s.isEmpty());
+    }
+
+    /**
+     * Endpoint for creating a resource (POST). Used by delete tests to create then delete.
+     * When not set, falls back to PROTECTED_ENDPOINT (e.g. /users).
+     */
+    public static Optional<String> getCreateEndpoint() {
+        Optional<String> create = Optional.ofNullable(get(CREATE_ENDPOINT_KEY)).filter(s -> !s.isEmpty());
+        return create.isPresent() ? create : getProtectedEndpoint();
+    }
+
+    /**
+     * Optional resource ID that cannot be deleted (e.g. has dependencies). Used for 409 conflict test. When not set, test is skipped.
+     */
+    public static Optional<String> getConflictResourceId() {
+        return Optional.ofNullable(get(CONFLICT_RESOURCE_ID_KEY)).filter(s -> !s.isEmpty());
     }
 }

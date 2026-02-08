@@ -36,3 +36,13 @@ Verify that when a resource cannot be deleted due to a business rule or dependen
 ## Automation Notes
 
 - Assert on status 409 (or 400) and on error message. Setup may require creating dependent resources. Document when test is N/A.
+
+---
+
+## Traceability (automation)
+
+| Item | Location |
+|------|----------|
+| **Test Case ID** | API-DELETE-007 |
+| **Automated test (source)** | `DeleteWithConflictReturns409WhenApplicableTest.java` (same folder) |
+| **Project path** | `java-rest-api-automation/rest-api-tests/delete/delete_with_conflict_returns_409_when_applicable/` |

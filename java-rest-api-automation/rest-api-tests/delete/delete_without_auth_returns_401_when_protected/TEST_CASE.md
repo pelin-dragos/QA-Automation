@@ -34,3 +34,13 @@ Verify that a DELETE request without valid authentication returns HTTP 401 Unaut
 ## Automation Notes
 
 - Assert on status 401. Optionally assert GET still returns 200 for the resource. Skip or tag when endpoint is not protected.
+
+---
+
+## Traceability (automation)
+
+| Item | Location |
+|------|----------|
+| **Test Case ID** | API-DELETE-005 |
+| **Automated test (source)** | `DeleteWithoutAuthReturns401WhenProtectedTest.java` (same folder) |
+| **Project path** | `java-rest-api-automation/rest-api-tests/delete/delete_without_auth_returns_401_when_protected/` |

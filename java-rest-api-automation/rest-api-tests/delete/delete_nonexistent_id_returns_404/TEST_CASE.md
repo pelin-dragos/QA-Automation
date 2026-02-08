@@ -33,3 +33,13 @@ Verify that a DELETE request with a non-existent resource ID returns HTTP 404 No
 ## Automation Notes
 
 - Assert on status 404 (or 204 per contract). Use a stable non-existent ID. Document API idempotency behaviour.
+
+---
+
+## Traceability (automation)
+
+| Item | Location |
+|------|----------|
+| **Test Case ID** | API-DELETE-002 |
+| **Automated test (source)** | `DeleteNonexistentIdReturns404Test.java` (same folder) |
+| **Project path** | `java-rest-api-automation/rest-api-tests/delete/delete_nonexistent_id_returns_404/` |

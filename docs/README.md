@@ -1,4 +1,4 @@
-# Portfolio site — QA Automation
+# Portfolio site
 
 This folder contains the portfolio site for the QA-Automation project. It is meant to be served via **GitHub Pages** from this repository.
 

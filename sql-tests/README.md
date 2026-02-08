@@ -1,42 +1,42 @@
 # SQL Tests
 
-Teste care verifică date în baza de date — validare după operații API, setup/cleanup, sau verificări de integritate.
+Tests that verify data in the database — validation after API operations, setup/cleanup, or integrity checks.
 
-## Obiectiv
+## Objective
 
-- Demonstra **proficiență în SQL** pentru QA (cerință JD Senior QA Engineer)
-- Verificări de date după POST/PUT/PATCH/DELETE
-- Setup de date de test înainte de rulare
-- Cleanup după teste (izolare, independență)
+- Demonstrate **SQL proficiency** for QA (Senior QA Engineer JD requirement)
+- Data verification after POST/PUT/PATCH/DELETE
+- Test data setup before execution
+- Cleanup after tests (isolation, independence)
 
-## Structură (de implementat)
+## Structure (to be implemented)
 
 ```
 sql-tests/
-├── scripts/                    # Scripturi SQL reutilizabile
-│   ├── setup/                  # Fișiere pentru setup (INSERT)
-│   ├── cleanup/                # Fișiere pentru cleanup (DELETE)
-│   └── assertions/             # Query-uri de verificare
-├── java/                       # (Opțional) Teste Java cu JDBC
+├── scripts/                    # Reusable SQL scripts
+│   ├── setup/                  # Setup files (INSERT)
+│   ├── cleanup/                # Cleanup files (DELETE)
+│   └── assertions/             # Verification queries
+├── java/                       # (Optional) Java tests with JDBC
 │   └── DbValidationTest.java
 ├── docs/
-│   └── Schema.md               # Schema DB, tabele relevante
-├── .env.example                # DB connection (user, host - fără parole)
+│   └── Schema.md               # DB schema, relevant tables
+├── .env.example                # DB connection (user, host — no passwords)
 └── README.md
 ```
 
-## Tipuri de teste
+## Test types
 
-1. **Setup**: INSERT date de test înainte de rulare
-2. **Assertion**: SELECT pentru validare după operație API
-3. **Cleanup**: DELETE/TRUNCATE pentru stare curată
+1. **Setup**: INSERT test data before execution
+2. **Assertion**: SELECT for validation after API operation
+3. **Cleanup**: DELETE/TRUNCATE for clean state
 
-## Cerințe
+## Requirements
 
-- **Nu hardcodați parole** — folosiți `.env` sau variabile de mediu
-- **Test DB only** — niciodată pe producție
-- **Parametrizare** — evitați concatenare directă în SQL (prevenire SQL injection)
+- **Do not hardcode passwords** — use `.env` or environment variables
+- **Test DB only** — never on production
+- **Parameterization** — avoid direct concatenation in SQL (SQL injection prevention)
 
-## Integrare cu Java
+## Java integration
 
-Poate folosi același API din `java-rest-api-automation` + JDBC pentru verificări DB după request-uri REST.
+Can use the same API from `java-rest-api-automation` + JDBC for DB verification after REST requests.

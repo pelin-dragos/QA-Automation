@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>QA Automation — Portfolio</title>
+  <title>Portfolio</title>
   <meta name="description" content="Portfolio of QA automation projects and tests: API (RestAssured, Postman), UI (Playwright).">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,10 +12,11 @@
   <link rel="stylesheet" href="css/home.css">
 </head>
 <body>
-  <header class="site-header">
+  <a href="#main" class="skip-link">Skip to main content</a>
+  <header class="site-header" role="banner">
     <div class="container">
-      <a href="index.html" class="logo">QA Automation</a>
-      <nav class="nav">
+      <a href="index.html" class="logo">Portfolio</a>
+      <nav class="nav" aria-label="Main">
         <a href="index.html">Home</a>
         <a href="#projects">Projects</a>
         <a href="#test-types">Test types</a>
@@ -23,20 +24,20 @@
     </div>
   </header>
 
-  <main>
-    <section class="hero">
+  <main id="main" role="main">
+    <section class="hero" aria-labelledby="hero-title">
       <div class="container">
-        <h1>QA &amp; Automation Portfolio<span class="hero-accent-line" aria-hidden="true"></span></h1>
+        <h1 id="hero-title">QA &amp; Automation Portfolio<span class="hero-accent-line" aria-hidden="true"></span></h1>
         <p class="hero-lead">
           Projects and test suites for REST APIs, Postman collections, and UI tests with Playwright.
-          Structured, independent code with no credentials in the repo.
+          Structured, independent tests with no credentials in the repo.
         </p>
       </div>
     </section>
 
-    <section id="projects" class="section projects">
+    <section id="projects" class="section projects" aria-labelledby="projects-heading">
       <div class="container">
-        <h2>Projects</h2>
+        <h2 id="projects-heading">Projects</h2>
         <div class="card-grid">
           <article class="card">
             <div class="card-icon" aria-hidden="true">☕</div>
@@ -85,9 +86,9 @@
       </div>
     </section>
 
-    <section id="test-types" class="section test-types">
+    <section id="test-types" class="section test-types" aria-labelledby="test-types-heading">
       <div class="container">
-        <h2>55 API tests — Java &amp; Postman aligned</h2>
+        <h2 id="test-types-heading">55 API tests — Java &amp; Postman aligned</h2>
         <p class="section-intro">Same test specification in both <a href="projects/java-rest-api.html">Java REST API</a> and <a href="projects/postman.html">Postman</a>. GoREST API, TEST_CASE.md per test.</p>
         <div class="test-list">
           <div class="test-group">
@@ -181,7 +182,7 @@
     </section>
   </main>
 
-  <footer class="site-footer">
+  <footer class="site-footer" role="contentinfo">
     <div class="container">
       <p>QA-Automation — Portfolio. No credentials in code. Independent, repeatable tests.</p>
     </div>

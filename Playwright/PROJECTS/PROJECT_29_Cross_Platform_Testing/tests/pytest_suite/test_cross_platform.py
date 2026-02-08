@@ -1,6 +1,6 @@
 """
-Test Suite: Cross-Platform Testing
-Teste identice care rulează pe Windows, Linux, macOS
+Test Suite: Cross-Platform Testing.
+Identical tests that run on Windows, Linux, macOS.
 """
 import pytest
 import sys
@@ -13,7 +13,7 @@ from utils.platform_utils import PlatformUtils
 
 @pytest.mark.cross_platform
 class TestCrossPlatformLogin:
-    """Teste login pe toate platformele"""
+    """Login tests on all platforms"""
     
     def test_login_success(self, driver, base_url, platform_info):
         """Test: Login reușit pe toate platformele"""
@@ -39,7 +39,7 @@ class TestCrossPlatformLogin:
 
 @pytest.mark.cross_platform
 class TestCrossPlatformNavigation:
-    """Teste navigation pe toate platformele"""
+    """Navigation tests on all platforms"""
     
     def test_page_loads(self, driver, base_url, platform_info):
         """Test: Verificare încărcare pagină pe toate platformele"""
@@ -63,7 +63,7 @@ class TestCrossPlatformNavigation:
 
 @pytest.mark.cross_platform
 class TestPlatformDetection:
-    """Teste pentru platform detection"""
+    """Tests for platform detection"""
     
     def test_platform_info_detection(self, platform_info):
         """Test: Verificare platform detection"""
@@ -110,7 +110,7 @@ class TestPlatformDetection:
 @pytest.mark.cross_platform
 @pytest.mark.smoke
 class TestCrossPlatformSmoke:
-    """Smoke tests pentru cross-platform"""
+    """Smoke tests for cross-platform"""
     
     def test_smoke_platform_compatibility(self, driver, base_url, platform_info):
         """Test: Smoke test - verificare compatibilitate platformă"""
@@ -126,7 +126,7 @@ class TestCrossPlatformSmoke:
 
 @pytest.mark.cross_platform
 class TestPlatformConsistency:
-    """Teste pentru verificare consistență între platforme"""
+    """Tests for consistency verification between platforms"""
     
     def test_same_functionality_across_platforms(self, driver, base_url, platform_info):
         """Test: Verificare că funcționalitatea este identică pe toate platformele"""

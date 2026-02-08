@@ -1,0 +1,10 @@
+### API-POST-003: Post Missing Required Field Returns 400
+POST {{base_url}}/users
+Authorization: Bearer {{auth_token}}
+Content-Type: application/json
+
+{
+  "email": "missing-name@example.com",
+  "gender": "male",
+  "status": "active"
+}

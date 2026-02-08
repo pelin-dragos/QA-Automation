@@ -3,17 +3,17 @@ import { APIClient } from '../api/APIClient';
 import { JSONViewerPage } from '../pages/JSONViewerPage';
 import { APIUISyncPage } from '../pages/APIUISyncPage';
 
-// Base URL pentru API (JSONPlaceholder demo API)
+// Base URL for API (JSONPlaceholder demo API)
 const API_BASE_URL = 'https://jsonplaceholder.typicode.com';
 
 test.describe('@integration @setup @api API Setup Tests', () => {
   /**
-   * Test: Creează un resource via API
-   * 
+   * Test: Create a resource via API
+   *
    * Steps:
-   * 1. Creează un resource via POST API
-   * 2. Verifică că resource-ul a fost creat
-   * 3. Returnează datele create pentru verificare UI
+   * 1. Create a resource via POST API
+   * 2. Verify the resource was created
+   * 3. Return created data for UI verification
    */
   test('@critical should create resource via API', async () => {
     const api = new APIClient(API_BASE_URL);
@@ -36,12 +36,12 @@ test.describe('@integration @setup @api API Setup Tests', () => {
 
 test.describe('@integration @verification @ui UI Verification Tests', () => {
   /**
-   * Test: Verifică JSON afișat în UI
-   * 
+   * Test: Verify JSON displayed in UI
+   *
    * Steps:
-   * 1. Navighează la un endpoint JSON
-   * 2. Verifică că JSON-ul este valid
-   * 3. Verifică că conține datele așteptate
+   * 1. Navigate to a JSON endpoint
+   * 2. Verify JSON is valid
+   * 3. Verify it contains expected data
    */
   test('should verify JSON in UI', async ({ page }) => {
     // Navigate to JSON endpoint in browser
@@ -64,12 +64,12 @@ test.describe('@integration @verification @ui UI Verification Tests', () => {
 
 test.describe('@integration @setup @verification @sync API Setup UI Verify Tests', () => {
   /**
-   * Test: Creează via API și verifică în UI
-   * 
+   * Test: Create via API and verify in UI
+   *
    * Steps:
-   * 1. Creează un resource via API
-   * 2. Navighează în UI la resource-ul creat
-   * 3. Verifică că datele din UI corespund cu API
+   * 1. Create a resource via API
+   * 2. Navigate in UI to the created resource
+   * 3. Verify UI data matches API
    */
   test('@critical should create via API and verify in UI', async ({ page }) => {
     const api = new APIClient(API_BASE_URL);
@@ -115,12 +115,12 @@ test.describe('@integration @setup @verification @sync API Setup UI Verify Tests
   });
 
   /**
-   * Test: Actualizează via API și verifică în UI
-   * 
+   * Test: Update via API and verify in UI
+   *
    * Steps:
-   * 1. Creează un resource via API
-   * 2. Actualizează resource-ul via API
-   * 3. Verifică modificările în UI
+   * 1. Create a resource via API
+   * 2. Update the resource via API
+   * 3. Verify changes in UI
    */
   test('should update via API and verify in UI', async ({ page }) => {
     const api = new APIClient(API_BASE_URL);
@@ -172,13 +172,13 @@ test.describe('@integration @setup @verification @sync API Setup UI Verify Tests
 
 test.describe('@integration @cleanup @api API Cleanup Tests', () => {
   /**
-   * Test: Verifică în UI, apoi șterge via API
-   * 
+   * Test: Verify in UI, then delete via API
+   *
    * Steps:
-   * 1. Creează resource via API
-   * 2. Verifică în UI
-   * 3. Șterge via API
-   * 4. Verifică că resource-ul nu mai există
+   * 1. Create resource via API
+   * 2. Verify in UI
+   * 3. Delete via API
+   * 4. Verify resource no longer exists
    */
   test('should verify in UI then delete via API', async ({ page }) => {
     const api = new APIClient(API_BASE_URL);
@@ -202,10 +202,10 @@ test.describe('@integration @cleanup @api API Cleanup Tests', () => {
     // DELETE via API
     await api.deleteResource('/posts', resourceId);
 
-    // Note: JSONPlaceholder nu șterge efectiv (demo API)
-    // Dar putem verifica că delete-ul a fost apelat
-    // Pentru API-uri reale, verificarea că resource-ul nu mai există
-    // ar fi: expect(await jsonPage.verifyJsonContains('id', resourceId)).toBeFalsy();
+    // Note: JSONPlaceholder does not actually delete (demo API)
+    // But we can verify the delete was called
+    // For real APIs, verifying resource no longer exists would be:
+    // expect(await jsonPage.verifyJsonContains('id', resourceId)).toBeFalsy();
     
     console.log('✅ Delete API call successful (JSONPlaceholder demo limitation)');
   });
@@ -213,17 +213,17 @@ test.describe('@integration @cleanup @api API Cleanup Tests', () => {
 
 test.describe('@integration @sync @flow Complete API UI Flow Tests', () => {
   /**
-   * Test: Flow complet API → UI → API
-   * 
+   * Test: Full flow API → UI → API
+   *
    * Steps:
-   * 1. CREATE: Creează resource via API
-   * 2. READ: Citește resource via API
-   * 3. UI VERIFY: Verifică resource în UI
-   * 4. UPDATE: Actualizează resource via API
-   * 5. UI VERIFY: Verifică update în UI
-   * 6. DELETE: Șterge resource via API (cleanup)
-   * 
-   * Acest test demonstrează sincronizarea completă API-UI
+   * 1. CREATE: Create resource via API
+   * 2. READ: Read resource via API
+   * 3. UI VERIFY: Verify resource in UI
+   * 4. UPDATE: Update resource via API
+   * 5. UI VERIFY: Verify update in UI
+   * 6. DELETE: Delete resource via API (cleanup)
+   *
+   * This test demonstrates full API-UI synchronization
    */
   test('@critical should complete full API UI flow', async ({ page }) => {
     test.setTimeout(60000); // Increase timeout for complete flow
@@ -253,7 +253,7 @@ test.describe('@integration @sync @flow Complete API UI Flow Tests', () => {
     expect(apiResource).not.toBeNull();
     expect(apiResource.id).toBe(resourceId);
 
-    // Step 3: UI VERIFY - Verifică în UI că resource-ul există
+    // Step 3: UI VERIFY - Verify resource exists in UI
     const jsonPage = new JSONViewerPage(page);
     await jsonPage.navigateTo(`${API_BASE_URL}/posts/${resourceId}`);
     await jsonPage.waitForPageLoad();
@@ -280,8 +280,8 @@ test.describe('@integration @sync @flow Complete API UI Flow Tests', () => {
       console.log('Update demonstrates API-UI integration concept');
     }
 
-    // Step 5: UI VERIFY - Verifică update în UI
-    // Refresh page sau navighează din nou
+    // Step 5: UI VERIFY - Verify update in UI
+    // Refresh page or navigate again
     await jsonPage.navigateTo(`${API_BASE_URL}/posts/${resourceId}`);
     await jsonPage.waitForPageLoad();
     await page.waitForTimeout(1000); // Wait for potential cache update
@@ -290,9 +290,9 @@ test.describe('@integration @sync @flow Complete API UI Flow Tests', () => {
     expect(updatedUiJson).not.toBeNull();
     expect(updatedUiJson).toHaveProperty('id');
 
-    // Verifică că datele actualizate sunt în UI
-    // Notă: Pentru JSONPlaceholder, update-ul poate să nu fie persistent
-    // Dar flow-ul demonstrează conceptul
+    // Verify updated data is in UI
+    // Note: For JSONPlaceholder, update may not be persistent
+    // But the flow demonstrates the concept
 
     // Step 6: DELETE via API (cleanup)
     await api.deleteResource('/posts', resourceId);
@@ -302,12 +302,12 @@ test.describe('@integration @sync @flow Complete API UI Flow Tests', () => {
   });
 
   /**
-   * Test: Creează multiple resources via API și verifică toate în UI
-   * 
+   * Test: Create multiple resources via API and verify all in UI
+   *
    * Steps:
-   * 1. Creează multiple resources via API
-   * 2. Obține toate resources via API
-   * 3. Verifică că toate sunt afișate în UI (lista)
+   * 1. Create multiple resources via API
+   * 2. Get all resources via API
+   * 3. Verify all are displayed in UI (list)
    */
   test('should create multiple resources and verify all in UI', async ({ page }) => {
     test.setTimeout(60000); // Increase timeout
@@ -325,7 +325,7 @@ test.describe('@integration @sync @flow Complete API UI Flow Tests', () => {
 
       const resource = await api.createResource('/posts', testData);
       createdResources.push(resource);
-      await page.waitForTimeout(500); // Delay între creări
+      await page.waitForTimeout(500); // Delay between creations
     }
 
     // Get all posts via API
@@ -360,12 +360,12 @@ test.describe('@integration @sync @flow Complete API UI Flow Tests', () => {
 
 test.describe('@integration @sync API UI Synchronization Tests', () => {
   /**
-   * Test: Verifică consistența datelor între API și UI
-   * 
+   * Test: Verify data consistency between API and UI
+   *
    * Steps:
-   * 1. Obține date din API
-   * 2. Obține date din UI
-   * 3. Compară datele pentru consistență
+   * 1. Get data from API
+   * 2. Get data from UI
+   * 3. Compare data for consistency
    */
   test('should verify data consistency between API and UI', async ({ page }) => {
     const api = new APIClient(API_BASE_URL);
@@ -393,12 +393,12 @@ test.describe('@integration @sync API UI Synchronization Tests', () => {
   });
 
   /**
-   * Test: Verifică sincronizare în timp real
-   * 
+   * Test: Verify real-time synchronization
+   *
    * Steps:
-   * 1. Creează resource via API
-   * 2. Verifică imediat în UI (fără refresh manual)
-   * 3. Verifică că datele sunt sincronizate
+   * 1. Create resource via API
+   * 2. Verify immediately in UI (without manual refresh)
+   * 3. Verify data is synchronized
    */
   test('should verify real-time synchronization', async ({ page }) => {
     const api = new APIClient(API_BASE_URL);

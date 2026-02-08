@@ -1,0 +1,4 @@
+### API-ERROR-002: 5xx Handled Without Crashing (N/A on GoREST - no 5xx trigger)
+# Fallback: client handles any response. Use mock/fault endpoint for true 5xx test.
+GET {{base_url}}/users/1
+Accept: application/json

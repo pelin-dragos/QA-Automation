@@ -1,0 +1,4 @@
+# Secrets - do not commit
+http-client.private.env.json
+.env
+*.postman_environment.local.json

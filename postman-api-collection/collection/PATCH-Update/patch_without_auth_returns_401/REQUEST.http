@@ -1,0 +1,5 @@
+### API-PATCH-006: Patch Without Auth Returns 401
+PATCH {{base_url}}/users/{{user_id}}
+Content-Type: application/json
+
+{"status":"inactive"}

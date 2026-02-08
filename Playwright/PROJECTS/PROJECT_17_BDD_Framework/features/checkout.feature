@@ -1,35 +1,34 @@
 Feature: Checkout Process
   Background:
-    Given că sunt logat în aplicație cu username-ul "standard_user" și parola "secret_sauce"
-    And că am adăugat un produs în coș
+    Given I am logged in with username "standard_user" and password "secret_sauce"
+    And I have added a product to the cart
 
-  Scenario: Proces checkout complet
-    Given că sunt pe pagina de coș
-    When click pe butonul "Checkout" la checkout
-    Then ar trebui să fiu pe pagina de checkout
-    When completez formularul cu numele "John", prenumele "Doe" și codul poștal "12345"
-    And click pe butonul "Continue" la checkout
-    Then ar trebui să văd pagina de overview
-    And ar trebui să văd produsul în lista de comenzi
-    When click pe butonul "Finish" la checkout
-    Then ar trebui să văd mesajul de succes "Thank you for your order"
-    And comanda ar trebui să fie finalizată
+  Scenario: Complete checkout process
+    Given I am on the cart page
+    When I click the "Checkout" button at checkout
+    Then I should be on the checkout page
+    When I fill the form with first name "John", last name "Doe" and postal code "12345"
+    And I click the "Continue" button at checkout
+    Then I should see the overview page
+    And I should see the product in the order list
+    When I click the "Finish" button at checkout
+    Then I should see the success message "Thank you for your order"
+    And the order should be completed
 
-  Scenario: Validare formular checkout - câmpuri goale
-    Given că sunt pe pagina de checkout
-    When click pe butonul "Continue" fără să completez formularul
-    Then ar trebui să văd un mesaj de eroare "Error: First Name is required"
+  Scenario: Checkout form validation - empty fields
+    Given I am on the checkout page
+    When I click the "Continue" button without filling the form
+    Then I should see an error message "Error: First Name is required"
 
-  Scenario: Validare formular checkout - nume lipsă
-    Given că sunt pe pagina de checkout
-    When completez formularul cu prenumele "Doe" și codul poștal "12345" dar fără nume
-    And click pe butonul "Continue" la checkout
-    Then ar trebui să văd un mesaj de eroare la checkout
+  Scenario: Checkout form validation - missing name
+    Given I am on the checkout page
+    When I fill the form with last name "Doe" and postal code "12345" but without first name
+    And I click the "Continue" button at checkout
+    Then I should see an error message at checkout
 
-  Scenario: Calculare corectă preț total
-    Given că am produse în coș cu preț total de "$50.00"
-    When accesez pagina de checkout overview
-    Then subtotal-ul ar trebui să fie "$50.00"
-    And tax-ul ar trebui să fie calculat corect
-    And total-ul final ar trebui să fie corect
-
+  Scenario: Correct total price calculation
+    Given I have products in the cart with total price of "$50.00"
+    When I access the checkout overview page
+    Then the subtotal should be "$50.00"
+    And the tax should be calculated correctly
+    And the final total should be correct

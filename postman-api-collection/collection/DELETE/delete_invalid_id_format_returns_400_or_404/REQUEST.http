@@ -1,0 +1,3 @@
+### API-DELETE-003: Delete Invalid ID Format
+DELETE {{base_url}}/users/invalid
+Authorization: Bearer {{auth_token}}

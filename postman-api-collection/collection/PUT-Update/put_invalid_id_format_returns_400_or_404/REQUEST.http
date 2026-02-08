@@ -1,0 +1,6 @@
+### API-PUT-004: Put Invalid ID Format
+PUT {{base_url}}/users/invalid
+Authorization: Bearer {{auth_token}}
+Content-Type: application/json
+
+{"name":"X","email":"x@x.com","gender":"male","status":"active"}

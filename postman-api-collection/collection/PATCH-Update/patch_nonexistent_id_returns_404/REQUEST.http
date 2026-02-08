@@ -1,0 +1,6 @@
+### API-PATCH-003: Patch Non-Existent ID Returns 404
+PATCH {{base_url}}/users/999999999
+Authorization: Bearer {{auth_token}}
+Content-Type: application/json
+
+{"status":"inactive"}

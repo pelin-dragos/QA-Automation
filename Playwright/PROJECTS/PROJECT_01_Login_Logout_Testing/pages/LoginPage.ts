@@ -2,7 +2,7 @@ import { Page, Locator, expect } from '@playwright/test';
 
 /**
  * Page Object Pattern - Login Page
- * Reprezintă pagina de login pentru site-uri demo (SauceDemo, DemoQA, etc.)
+ * Represents the login page for demo sites (SauceDemo, DemoQA, etc.)
  */
 export class LoginPage {
   readonly page: Page;
@@ -17,7 +17,7 @@ export class LoginPage {
     this.page = page;
     this.baseUrl = baseUrl;
 
-    // Locatori pentru elementele de pe pagină
+    // Locators for page elements
     this.usernameField = page.locator('#user-name');
     this.passwordField = page.locator('#password');
     this.loginButton = page.locator('#login-button');
@@ -26,7 +26,7 @@ export class LoginPage {
   }
 
   /**
-   * Navighează către pagina de login
+   * Navigate to the login page
    */
   async navigateTo(): Promise<void> {
     await this.page.goto(this.baseUrl);
@@ -34,9 +34,9 @@ export class LoginPage {
   }
 
   /**
-   * Introduce numele de utilizator
-   * 
-   * @param username - numele de utilizator de introdus
+   * Enter the username
+   *
+   * @param username - username to enter
    */
   async enterUsername(username: string): Promise<void> {
     await this.usernameField.clear();
@@ -44,9 +44,9 @@ export class LoginPage {
   }
 
   /**
-   * Introduce parola
-   * 
-   * @param password - parola de introdus
+   * Enter the password
+   *
+   * @param password - password to enter
    */
   async enterPassword(password: string): Promise<void> {
     await this.passwordField.clear();
@@ -54,33 +54,33 @@ export class LoginPage {
   }
 
   /**
-   * Click pe butonul de login
+   * Click the login button
    */
   async clickLogin(): Promise<void> {
     await this.loginButton.click();
   }
 
   /**
-   * Metodă care face login complet
-   * 
-   * @param username - numele de utilizator
-   * @param password - parola
+   * Perform full login
+   *
+   * @param username - username
+   * @param password - password
    */
   async login(username: string, password: string): Promise<void> {
     await this.enterUsername(username);
     await this.enterPassword(password);
     await this.clickLogin();
-    // Așteaptă navigarea către pagina de produse după login
+    // Wait for navigation to products page after login
     await this.page.waitForURL(/.*inventory.*/, { timeout: 15000 }).catch(() => {
-      // Dacă nu ajunge la inventory, probabil login-ul a eșuat
-      // Nu aruncăm eroare aici, lasă testele să verifice
+      // If we don't reach inventory, login likely failed
+      // Don't throw here, let tests verify
     });
   }
 
   /**
-   * Returnează mesajul de eroare dacă există
-   * 
-   * @returns mesajul de eroare sau null
+   * Return the error message if present
+   *
+   * @returns error message or null
    */
   async getErrorMessage(): Promise<string | null> {
     try {
@@ -95,9 +95,9 @@ export class LoginPage {
   }
 
   /**
-   * Verifică dacă pagina de login este încărcată corect
-   * 
-   * @returns true dacă pagina este încărcată, false altfel
+   * Check if the login page is loaded correctly
+   *
+   * @returns true if page is loaded, false otherwise
    */
   async isLoaded(): Promise<boolean> {
     try {
@@ -109,16 +109,16 @@ export class LoginPage {
   }
 
   /**
-   * Returnează titlul paginii
+   * Return the page title
    */
   async getPageTitle(): Promise<string> {
     return await this.page.title();
   }
 
   /**
-   * Verifică dacă este afișat un mesaj de eroare
-   * 
-   * @returns true dacă există mesaj de eroare, false altfel
+   * Check if an error message is displayed
+   *
+   * @returns true if error message exists, false otherwise
    */
   async isErrorMessageDisplayed(): Promise<boolean> {
     const errorMessage = await this.getErrorMessage();

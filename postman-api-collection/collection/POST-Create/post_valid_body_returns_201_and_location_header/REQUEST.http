@@ -1,0 +1,12 @@
+### API-POST-001: Post Valid Body Returns 201
+# Use unique email (e.g. post-12345@example.com) to avoid duplicate. Postman uses post-{{$timestamp}}@example.com
+POST {{base_url}}/users
+Authorization: Bearer {{auth_token}}
+Content-Type: application/json
+
+{
+  "name": "Post Test User",
+  "email": "post-test@example.com",
+  "gender": "male",
+  "status": "active"
+}

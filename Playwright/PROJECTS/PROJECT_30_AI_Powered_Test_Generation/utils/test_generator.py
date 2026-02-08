@@ -1,7 +1,7 @@
 """
 AI-Powered Test Generator
-Generează teste automat din natural language descriptions
-Proof-of-concept pentru test generation
+Generate tests automatically from natural language descriptions.
+Proof-of-concept for test generation.
 """
 import re
 import logging
@@ -12,7 +12,7 @@ logger = logging.getLogger(__name__)
 class TestGenerator:
     """
     AI-Powered Test Generator
-    Generează test code din natural language descriptions
+    Generate test code from natural language descriptions
     """
     
     def __init__(self):
@@ -21,14 +21,14 @@ class TestGenerator:
     
     def generate_test_from_description(self, description, test_name=None):
         """
-        Generează test code din descriere
+        Generate test code from description
         
         Args:
-            description: Descriere natural language (ex: "test login with valid credentials")
-            test_name: Nume test (opțional)
+            description: Natural language description (e.g. "test login with valid credentials")
+            test_name: Test name (optional)
             
         Returns:
-            str: Test code generat
+            str: Generated test code
         """
         description_lower = description.lower()
         
@@ -64,7 +64,7 @@ class TestGenerator:
         return 'generic'
     
     def _generate_test_name(self, description):
-        """Generează nume test din descriere"""
+        """Generate test name from description"""
         # Remove common words
         words = re.findall(r'\b\w+\b', description)
         filtered = [w for w in words if w not in ['test', 'a', 'an', 'the', 'with', 'and', 'or']]
@@ -72,7 +72,7 @@ class TestGenerator:
         return f"test_{test_name}"
     
     def _generate_login_test(self, description, test_name):
-        """Generează test pentru login"""
+        """Generate test for login"""
         template = """
 def {test_name}(driver, base_url):
     \"\"\"Test: {description}\"\"\"
@@ -89,7 +89,7 @@ def {test_name}(driver, base_url):
         return template.format(test_name=test_name, description=description)
     
     def _generate_navigation_test(self, description, test_name):
-        """Generează test pentru navigation"""
+        """Generate test for navigation"""
         template = """
 def {test_name}(driver, base_url):
     \"\"\"Test: {description}\"\"\"
@@ -104,7 +104,7 @@ def {test_name}(driver, base_url):
         return template.format(test_name=test_name, description=description)
     
     def _generate_form_test(self, description, test_name):
-        """Generează test pentru form"""
+        """Generate test for form"""
         template = """
 def {test_name}(driver, base_url):
     \"\"\"Test: {description}\"\"\"
@@ -127,7 +127,7 @@ def {test_name}(driver, base_url):
         return template.format(test_name=test_name, description=description)
     
     def _generate_click_test(self, description, test_name):
-        """Generează test pentru click"""
+        """Generate test for click"""
         template = """
 def {test_name}(driver, base_url):
     \"\"\"Test: {description}\"\"\"
@@ -143,7 +143,7 @@ def {test_name}(driver, base_url):
         return template.format(test_name=test_name, description=description)
     
     def _generate_generic_test(self, description, test_name):
-        """Generează test generic"""
+        """Generate generic test"""
         template = """
 def {test_name}(driver, base_url):
     \"\"\"Test: {description}\"\"\"
@@ -158,7 +158,7 @@ def {test_name}(driver, base_url):
         return template.format(test_name=test_name, description=description)
     
     def _load_templates(self):
-        """Încarcă template-uri pentru test generation"""
+        """Load templates for test generation"""
         return {
             'login': self._generate_login_test,
             'navigation': self._generate_navigation_test,

@@ -1,0 +1,7 @@
+### API-PUT-005: Put Missing Required Fields Returns 400
+# Run after Setup. GoREST may return 200 (permissive).
+PUT {{base_url}}/users/{{user_id}}
+Authorization: Bearer {{auth_token}}
+Content-Type: application/json
+
+{"name":"OnlyName"}

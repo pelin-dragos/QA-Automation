@@ -4,23 +4,23 @@ import { ProductsPage } from '../pages/ProductsPage';
 
 /**
  * Test Suite: Logout Scenarios
- * Teste pentru funcționalitatea de logout
+ * Tests for logout functionality
  */
 test.describe('Logout Tests', () => {
   
   test('should logout after successful login', async ({ page }) => {
     /**
-     * Test: Flow complet login → logout
-     * 
+     * Test: Full flow login → logout
+     *
      * Steps:
-     * 1. Login cu credențiale valide
-     * 2. Verifică că suntem pe pagina de produse
-     * 3. Face logout
-     * 4. Verifică că suntem returnați la pagina de login
+     * 1. Login with valid credentials
+     * 2. Verify we are on the products page
+     * 3. Log out
+     * 4. Verify we are returned to the login page
      */
     const loginPage = new LoginPage(page);
     
-    // Step 1: Login cu credențiale valide
+    // Step 1: Login with valid credentials
     await loginPage.navigateTo();
     await loginPage.login('standard_user', 'secret_sauce');
     
@@ -28,19 +28,19 @@ test.describe('Logout Tests', () => {
     expect(await productsPage.isLoaded()).toBeTruthy();
     expect(await productsPage.isLoggedIn()).toBeTruthy();
     
-    // Step 2: Face logout
+    // Step 2: Log out
     const logoutLoginPage = await productsPage.logout();
     
-    // Step 3: Verifică că logout-ul a reușit
-    // Verifică că suntem pe pagina de login
+    // Step 3: Verify logout succeeded
+    // Verify we are on the login page
     expect(await logoutLoginPage.isLoaded()).toBeTruthy();
     
-    // Verifică că URL-ul este cel al paginii de login
+    // Verify URL is the login page
     const currentUrl = page.url();
     expect(currentUrl).toContain('saucedemo.com');
     expect(currentUrl).not.toContain('inventory');
     
-    // Verifică că elementele de login sunt vizibile
+    // Verify login elements are visible
     await expect(logoutLoginPage.usernameField).toBeVisible();
     await expect(logoutLoginPage.passwordField).toBeVisible();
     await expect(logoutLoginPage.loginButton).toBeVisible();
@@ -48,38 +48,38 @@ test.describe('Logout Tests', () => {
 
   test('should clear session after logout', async ({ page }) => {
     /**
-     * Test: Verifică că sesiunea este ștearsă după logout
-     * (nu poți accesa direct pagina de produse)
+     * Test: Verify session is cleared after logout
+     * (cannot access products page directly)
      */
     const loginPage = new LoginPage(page);
     
-    // Step 1: Login și apoi logout
+    // Step 1: Login then logout
     await loginPage.navigateTo();
     await loginPage.login('standard_user', 'secret_sauce');
     
     const productsPage = new ProductsPage(page);
     await productsPage.logout();
     
-    // Step 2: Încearcă acces direct la pagina de produse
+    // Step 2: Try direct access to products page
     await page.goto('https://www.saucedemo.com/inventory.html');
     
-    // Step 3: Verifică că suntem redirecționați la login
+    // Step 3: Verify we are redirected to login
     await page.waitForTimeout(2000);
     const currentUrl = page.url();
     
-    // Verifică că nu suntem pe inventory sau că suntem redirecționați
+    // Verify we are not on inventory or we are redirected
     const isOnLoginPage = await loginPage.isLoaded();
     expect(
       !currentUrl.includes('inventory.html') || isOnLoginPage
     ).toBeTruthy();
     
-    // Verifică că elementele de login sunt prezente
+    // Verify login elements are present
     expect(await loginPage.isLoaded()).toBeTruthy();
   });
 
   test('should allow relogin after logout', async ({ page }) => {
     /**
-     * Test: Verifică că poți face login din nou după logout
+     * Test: Verify you can log in again after logout
      */
     const loginPage = new LoginPage(page);
     
@@ -90,10 +90,10 @@ test.describe('Logout Tests', () => {
     const productsPage = new ProductsPage(page);
     const logoutLoginPage = await productsPage.logout();
     
-    // Step 2: Login din nou cu aceleași credențiale
+    // Step 2: Log in again with same credentials
     await logoutLoginPage.login('standard_user', 'secret_sauce');
     
-    // Step 3: Verifică că al doilea login a reușit (isLoaded() așteaptă automat)
+    // Step 3: Verify second login succeeded (isLoaded() waits automatically)
     const newProductsPage = new ProductsPage(page);
     expect(await newProductsPage.isLoaded()).toBeTruthy();
     expect(await newProductsPage.isLoggedIn()).toBeTruthy();

@@ -1,31 +1,31 @@
-﻿# Proiect 27: Accessibility Testing Automation
+# Project 27: Accessibility Testing Automation
 
-## 🎯 Obiectiv
-Automatizare completă a verificărilor de accesibilitate web: ARIA labels, keyboard navigation, focus management, alt text, și integrare cu axe-core pentru scanning comprehensiv conform WCAG.
+## 🎯 Objective
+Full automation of web accessibility checks: ARIA labels, keyboard navigation, focus management, alt text, and integration with axe-core for comprehensive WCAG-compliant scanning.
 
-## 📋 Cerințe
-- ✅ Teste pentru ARIA labels
-- ✅ Teste pentru keyboard navigation
-- ✅ Teste pentru screen reader compatibility (via ARIA)
+## 📋 Requirements
+- ✅ Tests for ARIA labels
+- ✅ Tests for keyboard navigation
+- ✅ Tests for screen reader compatibility (via ARIA)
 - ✅ Color contrast verification (via axe-core)
 - ✅ Focus management testing
-- ✅ Alt text pentru images
+- ✅ Alt text for images
 
-## 🛠️ Tehnologii
-- **Playwright** - Modern automation framework cu suport nativ pentru accessibility
+## 🛠️ Technologies
+- **Playwright** - Modern automation framework with native accessibility support
 - **TypeScript** - Strongly typed JavaScript
 - **axe-core** - Accessibility testing engine (CDN injection)
 - **WCAG 2.1** - Web Content Accessibility Guidelines
 - **Node.js** - Runtime environment
 
-## 📁 Structură Proiect
+## 📁 Project Structure
 
 ```
 PROJECT_27_Accessibility_Testing/
-├── package.json                  # Dependențe Node.js
-├── tsconfig.json                 # Configurare TypeScript
-├── playwright.config.ts          # Configurare Playwright
-├── README.md                     # Acest fișier
+├── package.json                  # Node.js dependencies
+├── tsconfig.json                 # TypeScript configuration
+├── playwright.config.ts          # Playwright configuration
+├── README.md                     # This file
 │
 ├── utils/                         # Utilities
 │   ├── AccessibilityChecker.ts  # Accessibility checks (ARIA, keyboard, focus, axe-core)
@@ -37,58 +37,58 @@ PROJECT_27_Accessibility_Testing/
 ├── tests/                         # Test suite
 │   └── test_accessibility.spec.ts
 │
-└── reports/                       # Reports (generat)
+└── reports/                       # Reports (generated)
     ├── accessibility_report.json # JSON report
     └── accessibility_report.txt  # Text report
 ```
 
-## ✨ Funcționalități
+## ✨ Features
 
 ### 1. ARIA Labels Testing
-- **ARIA Label Check**: Verificare prezență aria-label
-- **aria-labelledby Check**: Verificare aria-labelledby
-- **Element Accessibility**: Verificare dacă elemente sunt accesibile
+- **ARIA Label Check**: Check for aria-label presence
+- **aria-labelledby Check**: Check aria-labelledby
+- **Element Accessibility**: Check whether elements are accessible
 
 ### 2. Keyboard Navigation Testing
-- **Tab Navigation**: Navigare prin pagină cu Tab key
-- **Focusable Elements**: Verificare elemente focusable
-- **Keyboard Accessibility**: Test accesibilitate completă prin keyboard
+- **Tab Navigation**: Navigate through page with Tab key
+- **Focusable Elements**: Check focusable elements
+- **Keyboard Accessibility**: Full keyboard accessibility test
 
 ### 3. Focus Management Testing
-- **Focus Indicators**: Verificare focus indicators vizibili
+- **Focus Indicators**: Check visible focus indicators
 - **Focus Visibility**: Check focus styling
-- **Focus Order**: Verificare logical focus order
+- **Focus Order**: Check logical focus order
 
 ### 4. Alt Text Testing
-- **Image Alt Text**: Verificare alt text pe images
-- **Missing Alt Detection**: Detectare images fără alt text
-- **Empty Alt Detection**: Detectare empty alt text
+- **Image Alt Text**: Check alt text on images
+- **Missing Alt Detection**: Detect images without alt text
+- **Empty Alt Detection**: Detect empty alt text
 
 ### 5. axe-core Integration
-- **axe-core Injection**: Injectare axe-core în pagină (CDN)
-- **WCAG Compliance**: Scanning conform WCAG 2.1 Level AA
-- **Violation Detection**: Detectare și reporting violations
-- **Comprehensive Analysis**: Analiză completă a paginii
+- **axe-core Injection**: Inject axe-core into page (CDN)
+- **WCAG Compliance**: Scanning per WCAG 2.1 Level AA
+- **Violation Detection**: Detect and report violations
+- **Comprehensive Analysis**: Full page analysis
 
 ### 6. Accessibility Reporting
 - **JSON Report**: Structured accessibility data
 - **Text Report**: Human-readable format
 - **HTML Report**: Playwright HTML integration
-- **Violation Summary**: Count și severity
+- **Violation Summary**: Count and severity
 
 ## 📝 Deliverables
-- ✅ Suite de teste pentru accessibility (ARIA, keyboard, focus, alt text)
-- ✅ Integration cu axe-core (JavaScript injection)
+- ✅ Test suite for accessibility (ARIA, keyboard, focus, alt text)
+- ✅ Integration with axe-core (JavaScript injection)
 - ✅ Accessibility report (JSON, text)
-- ✅ Documentație despre WCAG compliance
+- ✅ Documentation on WCAG compliance
 - ✅ Accessibility utilities (AccessibilityChecker class)
 - ✅ Reporting system (AccessibilityReporter)
 
-## ✅ Criterii de Evaluare
-- ✅ Teste pentru multiple aspecte de accessibility (ARIA, keyboard, focus, alt text)
-- ✅ Report clar pentru accessibility issues (JSON, text)
-- ✅ Integration cu tools de accessibility (axe-core)
-- ✅ WCAG compliance checking funcțională
+## ✅ Evaluation Criteria
+- ✅ Tests for multiple accessibility aspects (ARIA, keyboard, focus, alt text)
+- ✅ Clear report for accessibility issues (JSON, text)
+- ✅ Integration with accessibility tools (axe-core)
+- ✅ Functional WCAG compliance checking
 
 ## 🚀 Quick Start
 
@@ -129,7 +129,7 @@ cat reports/accessibility_report.txt
 npm run report
 ```
 
-## 📚 Documentație
+## 📚 Documentation
 
 ### Code Examples:
 
@@ -169,7 +169,7 @@ console.log(result.message);
 - Natural accessibility: button, a, input tags
 
 ### Keyboard Navigation:
-- Tab key pentru navigation
+- Tab key for navigation
 - Focusable elements check
 - Logical tab order verification
 
@@ -188,41 +188,41 @@ console.log(result.message);
 - Multiple violation types
 - Impact levels: critical, serious, moderate, minor
 
-## 📊 Status Implementare
+## 📊 Implementation Status
 
-| Funcționalitate | Status | Note |
-|----------------|--------|------|
-| ARIA Labels | ✅ Implementat | aria-label, aria-labelledby |
-| Keyboard Navigation | ✅ Implementat | Tab navigation, focusable |
-| Focus Management | ✅ Implementat | Focus indicators |
-| Alt Text | ✅ Implementat | Image alt text checks |
-| axe-core Integration | ✅ Implementat | CDN injection |
-| WCAG Compliance | ✅ Implementat | Level AA default |
-| Reporting | ✅ Implementat | JSON, text |
-| Test Suites | ✅ Implementat | Comprehensive tests |
+| Feature | Status | Notes |
+|---------|--------|-------|
+| ARIA Labels | ✅ Implemented | aria-label, aria-labelledby |
+| Keyboard Navigation | ✅ Implemented | Tab navigation, focusable |
+| Focus Management | ✅ Implemented | Focus indicators |
+| Alt Text | ✅ Implemented | Image alt text checks |
+| axe-core Integration | ✅ Implemented | CDN injection |
+| WCAG Compliance | ✅ Implemented | Level AA default |
+| Reporting | ✅ Implemented | JSON, text |
+| Test Suites | ✅ Implemented | Comprehensive tests |
 
 ## 💡 Tips
 
-1. **Pentru Accurate Checks:**
-   - Run tests pe production-like pages
+1. **For Accurate Checks:**
+   - Run tests on production-like pages
    - Check multiple pages
    - Verify dynamic content accessibility
 
-2. **Pentru axe-core:**
-   - Requires internet pentru CDN
-   - Inject înainte de interacțiuni
+2. **For axe-core:**
+   - Requires internet for CDN
+   - Inject before interactions
    - Review violations carefully
 
-3. **Pentru Keyboard Navigation:**
+3. **For Keyboard Navigation:**
    - Test full tab order
    - Verify Enter/Space work
    - Check Escape key behavior
 
-4. **Pentru WCAG Compliance:**
-   - Use WCAG 2.1 Level AA ca standard
+4. **For WCAG Compliance:**
+   - Use WCAG 2.1 Level AA as standard
    - Fix critical violations first
    - Document accessibility improvements
 
 ---
 
-**Succes cu Accessibility Testing! ♿**
+**Good luck with Accessibility Testing! ♿**

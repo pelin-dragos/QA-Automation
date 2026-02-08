@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Postman API Collection — QA Portfolio</title>
-  <meta name="description" content="Postman (or Bruno) collection for REST API testing: requests, environments, automated assertions, Newman CLI.">
+  <meta name="description" content="Postman collection for REST API testing: 55 tests, aligned with Java REST API. GoREST, Newman CLI, TEST_CASE.md per test.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,600;0,9..40,700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -33,14 +33,14 @@
       <section class="project-hero">
         <h1>Postman API Collection</h1>
         <p class="lead">
-          Structured Postman (or Bruno) collection for REST API testing: requests, environment variables, and automated assertions. Reusable, shareable, and runnable in CI with Newman or Bruno CLI. No secrets in repo; use env files or Postman environment for credentials.
+          Same 55 tests as <a href="java-rest-api.html">Java REST API</a>, implemented in Postman. GoREST API, TEST_CASE.md per test, requests and assertions in collection. Run via Postman UI or Newman CLI. No secrets in repo; use environment variables.
         </p>
         <div class="project-meta">
           <ul class="tags">
             <li>Postman</li>
-            <li>REST API</li>
             <li>Newman</li>
-            <li>Bruno</li>
+            <li>REST API</li>
+            <li>GoREST</li>
           </ul>
           <a href="https://github.com/pelin-dragos/QA-Automation/tree/main/postman-api-collection" class="btn btn-primary" target="_blank" rel="noopener">View on GitHub</a>
         </div>
@@ -48,44 +48,127 @@
 
       <section class="project-content">
         <div class="block">
-          <h2 class="section-title">Purpose</h2>
-          <p class="section-intro">
-            Demonstrate API testing with Postman (or Bruno) as per industry practice. The collection includes tests for status codes, response body, and optional schema validation. Variables (e.g. base URL, API key placeholder) live in environment files; real secrets stay out of version control.
-          </p>
+          <h2 class="section-title">Test categories</h2>
+          <p class="section-intro">55 test cases in 9 categories, aligned with <a href="java-rest-api.html">Java REST API</a>. Each test has its own folder with TEST_CASE.md and REQUEST.http (or collection request). Assertions via <code>pm.test()</code> and <code>pm.expect()</code>.</p>
+
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Category</th>
+                  <th>Description</th>
+                  <th>Tests</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td><code>Auth</code></td><td>Valid/invalid/expired token, no token</td><td>4</td></tr>
+                <tr><td><code>GET-List</code></td><td>GET collection/list endpoint</td><td>8</td></tr>
+                <tr><td><code>GET-Single</code></td><td>GET resource by ID</td><td>6</td></tr>
+                <tr><td><code>POST-Create</code></td><td>POST create resource</td><td>9</td></tr>
+                <tr><td><code>PUT-Update</code></td><td>PUT full update</td><td>8</td></tr>
+                <tr><td><code>PATCH-Update</code></td><td>PATCH partial update</td><td>7</td></tr>
+                <tr><td><code>DELETE</code></td><td>DELETE resource</td><td>7</td></tr>
+                <tr><td><code>Headers</code></td><td>Accept, Content-Type, sensitive headers</td><td>3</td></tr>
+                <tr><td><code>Error-Responses</code></td><td>4xx/5xx and response time</td><td>3</td></tr>
+                <tr><td colspan="2"><strong>Total</strong></td><td><strong>55</strong></td></tr>
+              </tbody>
+            </table>
+          </div>
         </div>
 
         <div class="block">
-          <h2 class="section-title">Suggested structure</h2>
+          <h2 class="section-title">What is covered</h2>
+          <div class="test-category">
+            <h3>Auth</h3>
+            <ul>
+              <li>Valid token → 200/201; No token → 401</li>
+              <li>Invalid token → 401; Expired token → 401</li>
+            </ul>
+          </div>
+          <div class="test-category">
+            <h3>GET — List / collection</h3>
+            <ul>
+              <li>List returns 200 and valid JSON array</li>
+              <li>Pagination (valid and invalid), empty list, query filters</li>
+              <li>Auth: 401 without token, 200 with valid token</li>
+            </ul>
+          </div>
+          <div class="test-category">
+            <h3>GET — Single resource by ID</h3>
+            <ul>
+              <li>Valid ID → 200 and correct body, expected fields and types</li>
+              <li>Non-existent ID → 404; invalid ID format → 400 or 404</li>
+              <li>Auth: 401 without token, 200 with valid token</li>
+            </ul>
+          </div>
+          <div class="test-category">
+            <h3>POST — Create</h3>
+            <ul>
+              <li>Valid body → 201 and Location header (or per contract)</li>
+              <li>Missing/invalid fields → 400 with validation message; wrong Content-Type → 415/400</li>
+              <li>Auth and duplicate handling (409/400) when applicable</li>
+            </ul>
+          </div>
+          <div class="test-category">
+            <h3>PUT &amp; PATCH — Update</h3>
+            <ul>
+              <li>Valid body + existing ID → 200 and updated resource</li>
+              <li>PATCH: only sent fields updated</li>
+              <li>404 for non-existent ID; 400 for invalid ID or validation errors; auth checks</li>
+            </ul>
+          </div>
+          <div class="test-category">
+            <h3>DELETE</h3>
+            <ul>
+              <li>Valid ID → 204 (or 200); GET after DELETE → 404</li>
+              <li>404 for non-existent, 400/404 for invalid ID; 409 when resource in use</li>
+              <li>Auth: 401 without token, success with valid token</li>
+            </ul>
+          </div>
+          <div class="test-category">
+            <h3>Headers, errors, performance</h3>
+            <ul>
+              <li>Accept: application/json and Content-Type in response</li>
+              <li>4xx with error body; 5xx handled without client crash</li>
+              <li>Response time within configured timeout (optional)</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="block">
+          <h2 class="section-title">Folder structure</h2>
           <pre class="structure-list"><code>postman-api-collection/
 ├── collection/
-│   └── REST-API-Tests.postman_collection.json
+│   ├── REST-API-Tests.postman_collection.json
+│   ├── Auth/              (4 tests)
+│   ├── GET-List/          (8 tests)
+│   ├── GET-Single/        (6 tests)
+│   ├── POST-Create/       (9 tests)
+│   ├── PUT-Update/        (8 tests)
+│   ├── PATCH-Update/      (7 tests)
+│   ├── DELETE/            (7 tests)
+│   ├── Headers/           (3 tests)
+│   ├── Error-Responses/   (3 tests)
+│   └── [each test folder]
+│       ├── TEST_CASE.md
+│       └── REQUEST.http
 ├── environments/
-│   ├── demo.postman_environment.json
 │   └── .env.example
 ├── docs/
-│   └── API-Scope.md
+│   ├── TEST_LIST.md
+│   └── README.md
 └── README.md</code></pre>
-          <p class="section-intro">
-            Collection folders can be grouped by resource or flow (e.g. Users, Posts, Auth). Each request can have pre-request scripts (e.g. token, timestamp) and a Tests tab with <code>pm.test()</code> and <code>pm.expect()</code> for assertions.
-          </p>
-        </div>
-
-        <div class="block">
-          <h2 class="section-title">Contents (suggested)</h2>
-          <ul style="color: var(--text-muted); font-size: 0.9375rem; line-height: 1.7;">
-            <li><strong>Collection:</strong> Folders by resource or flow. Pre-request scripts for auth/tokens; Tests tab for status, body, optional schema validation.</li>
-            <li><strong>Environments:</strong> <code>base_url</code>, <code>api_key</code> (placeholder); real values via Postman env or <code>.env</code> (not committed).</li>
-            <li><strong>README:</strong> How to import, set environment, run collection or Newman.</li>
-          </ul>
         </div>
 
         <div class="block run-block">
           <h2 class="section-title">How to run</h2>
-          <p><strong>Postman UI:</strong> Import collection and environment → select environment → Run collection.</p>
+          <p>Copy <code>.env.example</code> to <code>.env</code> and set <code>base_url</code>, <code>auth_token</code> (GoREST token). The <code>.env</code> file is gitignored — it never goes into the repo, so your token stays local.</p>
+          <p><strong>Postman UI:</strong> Import <code>REST-API-Tests.postman_collection.json</code> and environment → select environment → Run collection.</p>
           <p><strong>CLI (Newman):</strong></p>
-          <pre><code>newman run collection/REST-API-Tests.postman_collection.json \
+          <pre><code>cd postman-api-collection
+newman run collection/REST-API-Tests.postman_collection.json \
   -e environments/demo.postman_environment.json</code></pre>
-          <p class="section-intro">Add your API endpoints, tests, and environment files as needed. See the repo README for up-to-date instructions.</p>
+          <p class="section-intro">See the repo README for up-to-date instructions.</p>
         </div>
       </section>
     </div>

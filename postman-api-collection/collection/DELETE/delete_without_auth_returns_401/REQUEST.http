@@ -1,0 +1,3 @@
+### API-DELETE-005: Delete Without Auth Returns 401
+# Fixed ID - 401 returned before resource check
+DELETE {{base_url}}/users/1

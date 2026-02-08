@@ -1,0 +1,7 @@
+### API-PATCH-004: Patch Invalid Field Value Returns 400
+# Run after Setup. GoREST returns 422 for invalid status.
+PATCH {{base_url}}/users/{{user_id}}
+Authorization: Bearer {{auth_token}}
+Content-Type: application/json
+
+{"status":"invalid_status"}

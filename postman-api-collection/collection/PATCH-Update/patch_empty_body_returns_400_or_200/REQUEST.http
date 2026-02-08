@@ -1,0 +1,7 @@
+### API-PATCH-005: Patch Empty Body Returns 400 or 200
+# Run after Setup. GoREST returns 200 for empty body {}.
+PATCH {{base_url}}/users/{{user_id}}
+Authorization: Bearer {{auth_token}}
+Content-Type: application/json
+
+{}

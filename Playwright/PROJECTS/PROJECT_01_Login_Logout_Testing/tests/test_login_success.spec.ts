@@ -4,31 +4,31 @@ import { ProductsPage } from '../pages/ProductsPage';
 
 /**
  * Test Suite: Login Success Scenarios
- * Teste pentru login cu credențiale valide
+ * Tests for login with valid credentials
  */
 test.describe('Login Success Tests', () => {
   
   test('should login with valid credentials - standard_user', async ({ page }) => {
     /**
-     * Test: Login cu standard_user (credențiale valide)
-     * 
+     * Test: Login with standard_user (valid credentials)
+     *
      * Steps:
-     * 1. Navighează către pagina de login
-     * 2. Introdu credențiale valide (standard_user/secret_sauce)
-     * 3. Click pe butonul de login
-     * 4. Verifică că login-ul a reușit (pagina de produse este încărcată)
-     * 5. Verifică că URL-ul conține 'inventory'
+     * 1. Navigate to login page
+     * 2. Enter valid credentials (standard_user/secret_sauce)
+     * 3. Click login button
+     * 4. Verify login succeeded (products page is loaded)
+     * 5. Verify URL contains 'inventory'
      */
     const loginPage = new LoginPage(page);
     
-    // Step 1: Navighează către pagina de login
+    // Step 1: Navigate to login page
     await loginPage.navigateTo();
     expect(await loginPage.isLoaded()).toBeTruthy();
     
-    // Step 2: Introdu credențiale valide
+    // Step 2: Enter valid credentials
     await loginPage.login('standard_user', 'secret_sauce');
     
-    // Step 3: Verifică că login-ul a reușit (isLoaded() așteaptă automat)
+    // Step 3: Verify login succeeded (isLoaded() waits automatically)
     const productsPage = new ProductsPage(page);
     
     expect(await productsPage.isLoaded()).toBeTruthy();
@@ -46,15 +46,15 @@ test.describe('Login Success Tests', () => {
   for (const user of validUsers) {
     test(`should login with valid credentials - ${user.username}`, async ({ page }) => {
       /**
-       * Test: Login cu diferite tipuri de utilizatori valizi
+       * Test: Login with different valid user types
        */
       const loginPage = new LoginPage(page);
       
-      // Step 1: Navighează și face login
+      // Step 1: Navigate and login
       await loginPage.navigateTo();
       await loginPage.login(user.username, user.password);
       
-      // Step 2: Verifică că login-ul a reușit (isLoaded() așteaptă automat)
+      // Step 2: Verify login succeeded (isLoaded() waits automatically)
       const productsPage = new ProductsPage(page);
       
       expect(await productsPage.isLoaded()).toBeTruthy();
@@ -64,22 +64,22 @@ test.describe('Login Success Tests', () => {
 
   test('should verify elements after successful login', async ({ page }) => {
     /**
-     * Test: Verifică că toate elementele importante sunt prezente după login
+     * Test: Verify all important elements are present after login
      */
     const loginPage = new LoginPage(page);
     
-    // Step 1: Face login
+    // Step 1: Log in
     await loginPage.navigateTo();
     await loginPage.login('standard_user', 'secret_sauce');
     
-    // Step 2: Verifică prezența elementelor importante (isLoaded() așteaptă automat)
+    // Step 2: Verify important elements are present (isLoaded() waits automatically)
     const productsPage = new ProductsPage(page);
     expect(await productsPage.isLoaded()).toBeTruthy();
     
-    // Verifică că meniul este prezent
+    // Verify menu is present
     await expect(productsPage.menuButton).toBeVisible();
     
-    // Verifică că shopping cart este prezent
+    // Verify shopping cart is present
     await expect(productsPage.shoppingCart).toBeVisible();
   });
 });

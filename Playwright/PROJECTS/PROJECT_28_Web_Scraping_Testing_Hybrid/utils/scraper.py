@@ -1,6 +1,6 @@
 """
-Web scraping utilities cu Selenium și BeautifulSoup
-⚠️ Respectă robots.txt și Terms of Service!
+Web scraping utilities with Selenium and BeautifulSoup.
+Respect robots.txt and Terms of Service!
 """
 import time
 import logging
@@ -15,7 +15,7 @@ logger = logging.getLogger(__name__)
 
 
 class WebScraper:
-    """Clasă pentru web scraping cu Selenium și BeautifulSoup"""
+    """Class for web scraping with Selenium and BeautifulSoup"""
     
     def __init__(self, driver: WebDriver):
         """
@@ -30,12 +30,12 @@ class WebScraper:
     
     def check_robots_txt(self, base_url, http_session=None):
         """
-        Verifică robots.txt pentru permisiuni
-        
+        Check robots.txt for permissions.
+
         Args:
-            base_url: Base URL al site-ului
+            base_url: Site base URL
             http_session: Requests session (optional)
-            
+
         Returns:
             dict: Robots.txt information
         """
@@ -71,7 +71,7 @@ class WebScraper:
             }
     
     def get_page_source(self):
-        """Obține page source și parse cu BeautifulSoup"""
+        """Get page source and parse with BeautifulSoup"""
         try:
             page_source = self.driver.page_source
             soup = BeautifulSoup(page_source, 'lxml')
@@ -112,7 +112,7 @@ class WebScraper:
         Scrape toate linkurile din pagină
         
         Args:
-            base_url: Base URL pentru absolute URLs
+            base_url: Base URL for absolute URLs
             
         Returns:
             list: Lista de links
@@ -148,7 +148,7 @@ class WebScraper:
         Scrape date din tabele
         
         Args:
-            table_selector: CSS selector pentru tabel (optional)
+            table_selector: CSS selector for table (optional)
             
         Returns:
             list: Lista de date din tabel (rows)

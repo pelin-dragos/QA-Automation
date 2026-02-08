@@ -1,38 +1,38 @@
-﻿# Proiect 23: Headless Browser Testing + Docker
+# Project 23: Headless Browser Testing + Docker
 
-## 🎯 Obiectiv
-Containerizare completă a testelor Playwright în Docker containers cu headless browser configuration și orchestration cu Docker Compose.
+## 🎯 Objective
+Full containerization of Playwright tests in Docker containers with headless browser configuration and Docker Compose orchestration.
 
-## 📋 Cerințe
-- ✅ Dockerfile pentru Playwright tests
-- ✅ Docker Compose pentru orchestration
+## 📋 Requirements
+- ✅ Dockerfile for Playwright tests
+- ✅ Docker Compose for orchestration
 - ✅ Headless browser configuration
-- ✅ Volume mounting pentru results
-- ✅ Network configuration pentru services
+- ✅ Volume mounting for results
+- ✅ Network configuration for services
 - ✅ Multi-container setup (tests container)
 
-## 🛠️ Tehnologii
+## 🛠️ Technologies
 - **Docker** - Containerization
 - **Docker Compose** - Orchestration
-- **Playwright** - Modern automation framework cu suport nativ pentru headless
+- **Playwright** - Modern automation framework with native headless support
 - **TypeScript** - Strongly typed JavaScript
 - **Node.js** - Runtime environment
 
-## 📁 Structură Proiect
+## 📁 Project Structure
 
 ```
 PROJECT_23_Headless_Docker/
 ├── Dockerfile                    # Docker image definition
 ├── docker-compose.yml            # Docker Compose orchestration
 ├── .dockerignore                 # Files to exclude from build
-├── Makefile                      # Make commands pentru Docker
-├── package.json                  # Dependențe Node.js
-├── tsconfig.json                 # Configurare TypeScript
-├── playwright.config.ts          # Configurare Playwright (Docker optimized)
-├── README.md                     # Acest fișier
+├── Makefile                      # Make commands for Docker
+├── package.json                  # Node.js dependencies
+├── tsconfig.json                 # TypeScript configuration
+├── playwright.config.ts          # Playwright configuration (Docker optimized)
+├── README.md                     # This file
 │
 ├── scripts/                       # Scripts
-│   └── run_docker_tests.sh      # Bash script pentru Docker
+│   └── run_docker_tests.sh      # Bash script for Docker
 │
 ├── pages/                         # Page Object Pattern
 │   ├── LoginPage.ts             # Login page
@@ -41,69 +41,69 @@ PROJECT_23_Headless_Docker/
 ├── tests/                         # Test suite
 │   └── test_docker_headless.spec.ts
 │
-├── test-results/                 # Test results (generat, mounted volume)
-├── playwright-report/            # HTML reports (generat, mounted volume)
-├── screenshots/                   # Screenshots (generat, mounted volume)
-└── logs/                          # Logs (generat, mounted volume)
+├── test-results/                 # Test results (generated, mounted volume)
+├── playwright-report/            # HTML reports (generated, mounted volume)
+├── screenshots/                   # Screenshots (generated, mounted volume)
+└── logs/                          # Logs (generated, mounted volume)
 ```
 
-## ✨ Funcționalități
+## ✨ Features
 
 ### 1. Dockerfile
 - **Base Image**: mcr.microsoft.com/playwright (official Playwright image)
-- **Playwright Browsers**: Chromium cu dependencies
-- **Dependencies**: Node.js packages din package.json
+- **Playwright Browsers**: Chromium with dependencies
+- **Dependencies**: Node.js packages from package.json
 - **Headless Configuration**: Environment variables
 
 ### 2. Docker Compose
 - **Service**: playwright-tests container
-- **Volumes**: Mount pentru results, reports, screenshots, logs
-- **Network**: Isolated network pentru services
+- **Volumes**: Mount for results, reports, screenshots, logs
+- **Network**: Isolated network for services
 - **Environment**: CI, DOCKER, HEADLESS variables
 
 ### 3. Headless Browser
-- **Automatic Headless**: Activ în Docker
+- **Automatic Headless**: Active in Docker
 - **Optimized Options**: no-sandbox, disable-dev-shm-usage, disable-gpu
-- **Window Size**: Consistent pentru screenshots
+- **Window Size**: Consistent for screenshots
 
 ### 4. Volume Mounting
-- **Results**: Accesibile după execuție
+- **Results**: Accessible after execution
 - **Reports**: HTML reports persist
 - **Screenshots**: Failure screenshots persist
 - **Logs**: Log files persist
 
 ### 5. Make Commands
 - **build**: Build Docker image
-- **test**: Run tests în Docker
+- **test**: Run tests in Docker
 - **test-smoke**: Run smoke tests
-- **shell**: Shell în container
-- **clean**: Clean up containers și images
+- **shell**: Shell in container
+- **clean**: Clean up containers and images
 
 ## 📝 Deliverables
-- ✅ Dockerfile funcțional (Playwright official image)
-- ✅ docker-compose.yml complet (orchestration + volumes)
-- ✅ Documentație pentru build și run
-- ✅ Instructions pentru deployment (README + Makefile)
-- ✅ Scripts pentru automation (run_docker_tests.sh)
+- ✅ Functional Dockerfile (Playwright official image)
+- ✅ Complete docker-compose.yml (orchestration + volumes)
+- ✅ Documentation for build and run
+- ✅ Deployment instructions (README + Makefile)
+- ✅ Automation scripts (run_docker_tests.sh)
 
-## ✅ Criterii de Evaluare
-- ✅ Containerizare completă (Dockerfile + docker-compose)
-- ✅ Teste rulează în Docker (headless mode)
-- ✅ Setup simplu cu docker-compose (one command)
-- ✅ Results accesibile după run (volume mounting)
-- ✅ Headless browser configuration corectă
-- ✅ Network configuration funcțională
+## ✅ Evaluation Criteria
+- ✅ Full containerization (Dockerfile + docker-compose)
+- ✅ Tests run in Docker (headless mode)
+- ✅ Simple setup with docker-compose (one command)
+- ✅ Results accessible after run (volume mounting)
+- ✅ Correct headless browser configuration
+- ✅ Functional network configuration
 
 ## 🚀 Quick Start
 
-### 1. Prerequisitări
+### 1. Prerequisites
 ```bash
-# Verifică Docker
+# Verify Docker
 docker --version
 docker-compose --version
 ```
 
-### 2. Build și Run
+### 2. Build and Run
 ```bash
 cd PROJECTS/PROJECT_23_Headless_Docker
 
@@ -114,7 +114,7 @@ docker-compose build
 docker-compose up --abort-on-container-exit
 ```
 
-### 3. Cu Make (Simplificat)
+### 3. With Make (Simplified)
 ```bash
 # Build
 make build
@@ -125,15 +125,15 @@ make test
 # Run smoke tests
 make test-smoke
 
-# Shell în container
+# Shell in container
 make shell
 ```
 
-## 📚 Documentație
+## 📚 Documentation
 
 ### Code Examples:
 
-**Build și Run:**
+**Build and Run:**
 ```bash
 # Build image
 docker-compose build
@@ -141,7 +141,7 @@ docker-compose build
 # Run tests
 docker-compose up --abort-on-container-exit
 
-# Sau cu Make
+# Or with Make
 make build
 make test
 ```
@@ -151,16 +151,16 @@ make test
 # Run specific tests
 docker-compose run --rm playwright-tests npm run test:smoke
 
-# Sau cu Make
+# Or with Make
 make test-custom ARGS="--grep @regression"
 ```
 
-**Shell în Container:**
+**Shell in Container:**
 ```bash
-# Debug în container
+# Debug in container
 docker-compose run --rm playwright-tests /bin/bash
 
-# Sau cu Make
+# Or with Make
 make shell
 ```
 
@@ -168,9 +168,9 @@ make shell
 
 ### Dockerfile Components:
 1. **Base Image**: mcr.microsoft.com/playwright (official)
-2. **Node.js**: Included în base image
-3. **Playwright Browsers**: Chromium cu dependencies
-4. **Dependencies**: npm ci pentru production install
+2. **Node.js**: Included in base image
+3. **Playwright Browsers**: Chromium with dependencies
+4. **Dependencies**: npm ci for production install
 5. **Working Directory**: /app
 6. **Default Command**: npm run test:docker
 
@@ -183,39 +183,39 @@ make shell
 - `./screenshots:/app/screenshots` - Screenshots
 - `./logs:/app/logs` - Log files
 
-## 📊 Status Implementare
+## 📊 Implementation Status
 
-| Funcționalitate | Status | Note |
-|----------------|--------|------|
-| Dockerfile | ✅ Implementat | Playwright official image |
-| Docker Compose | ✅ Implementat | Orchestration + volumes |
-| Headless Mode | ✅ Implementat | Automatic în Docker |
-| Volume Mounting | ✅ Implementat | Results, reports, screenshots |
-| Network Config | ✅ Implementat | Isolated network |
-| Make Commands | ✅ Implementat | Simplified operations |
-| Test Suites | ✅ Implementat | Docker-optimized tests |
+| Feature | Status | Notes |
+|---------|--------|-------|
+| Dockerfile | ✅ Implemented | Playwright official image |
+| Docker Compose | ✅ Implemented | Orchestration + volumes |
+| Headless Mode | ✅ Implemented | Automatic in Docker |
+| Volume Mounting | ✅ Implemented | Results, reports, screenshots |
+| Network Config | ✅ Implemented | Isolated network |
+| Make Commands | ✅ Implemented | Simplified operations |
+| Test Suites | ✅ Implemented | Docker-optimized tests |
 
 ## 💡 Tips
 
-1. **Pentru Docker:**
-   - Folosește `docker-compose` pentru orchestration
-   - Volume mounting pentru results accesibile
-   - Headless mode pentru performance
+1. **For Docker:**
+   - Use `docker-compose` for orchestration
+   - Volume mounting for accessible results
+   - Headless mode for performance
 
-2. **Pentru Debugging:**
-   - Use `make shell` pentru shell în container
+2. **For Debugging:**
+   - Use `make shell` for shell in container
    - Check logs: `make logs`
-   - Verify Playwright: `npx playwright --version` în container
+   - Verify Playwright: `npx playwright --version` in container
 
-3. **Pentru Performance:**
-   - Build cache pentru faster builds
-   - Parallel execution cu multiple containers
-   - Headless mode pentru speed
+3. **For Performance:**
+   - Build cache for faster builds
+   - Parallel execution with multiple containers
+   - Headless mode for speed
 
-4. **Pentru Deployment:**
-   - Build image o singură dată
-   - Run tests în isolated containers
-   - Results persist prin volumes
+4. **For Deployment:**
+   - Build image once
+   - Run tests in isolated containers
+   - Results persist via volumes
 
 ## 🔧 Configuration
 
@@ -253,4 +253,4 @@ HEADLESS=true npm test
 
 ---
 
-**Succes cu Docker containerization! 🐳**
+**Good luck with Docker containerization! 🐳**

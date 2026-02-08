@@ -1,17 +1,17 @@
-# 📁 Projects Portfolio - Selenium Python Automation
+# 📁 Projects Portfolio - Playwright Automation
 
-Acest folder conține **30 de proiecte** organizate pe nivele de dificultate, de la începător la expert.
+This folder contains **30 projects** organized by difficulty level, from beginner to expert.
 
-## 📊 Organizare
+## 📊 Organization
 
-### 🟢 Nivel Începător (Projects 1-5)
+### 🟢 Beginner Level (Projects 1-5)
 - **PROJECT_01** - Login/Logout Testing
 - **PROJECT_02** - Form Validation
 - **PROJECT_03** - Google Search Automation
 - **PROJECT_04** - Multiple Browser Testing
 - **PROJECT_05** - Screenshot on Failure
 
-### 🟡 Nivel Intermediar (Projects 6-12)
+### 🟡 Intermediate Level (Projects 6-12)
 - **PROJECT_06** - E-Commerce Shopping Cart Flow
 - **PROJECT_07** - Dynamic Content Testing
 - **PROJECT_08** - File Upload/Download
@@ -20,7 +20,7 @@ Acest folder conține **30 de proiecte** organizate pe nivele de dificultate, de
 - **PROJECT_11** - Iframe Handling
 - **PROJECT_12** - Alert & Popup Handling
 
-### 🟠 Nivel Avansat (Projects 13-18)
+### 🟠 Advanced Level (Projects 13-18)
 - **PROJECT_13** - Social Media Automation
 - **PROJECT_14** - Banking Application Testing
 - **PROJECT_15** - Admin Panel Testing Suite
@@ -28,7 +28,7 @@ Acest folder conține **30 de proiecte** organizate pe nivele de dificultate, de
 - **PROJECT_17** - BDD Framework
 - **PROJECT_18** - Parallel Test Execution
 
-### 🔴 Nivel Expert (Projects 19-30)
+### 🔴 Expert Level (Projects 19-30)
 - **PROJECT_19** - Custom Test Framework
 - **PROJECT_20** - Mobile Web Testing
 - **PROJECT_21** - Visual Regression Testing
@@ -42,23 +42,23 @@ Acest folder conține **30 de proiecte** organizate pe nivele de dificultate, de
 - **PROJECT_29** - Cross-Platform Testing
 - **PROJECT_30** - AI-Powered Test Generation
 
-## 🎯 Cum să Folosești
+## 🎯 How to Use
 
-1. **Alege un proiect** din folder-ul corespunzător nivelului tău
-2. **Citește README-ul** din folder-ul proiectului pentru cerințe detaliate
-3. **Implementează proiectul** conform specificațiilor
-4. **Documentează** progresul și rezultatele
+1. **Choose a project** from the folder matching your level
+2. **Read the README** in the project folder for detailed requirements
+3. **Implement the project** according to the specifications
+4. **Document** progress and results
 
-## 💡 Recomandări
+## 💡 Recommendations
 
-### Pentru Începători:
-Începe cu **Projects 1-5**, apoi progresează către 6-12.
+### For Beginners:
+Start with **Projects 1-5**, then progress to 6-12.
 
-### Pentru Intermediari:
-Completează **Projects 6-12**, apoi înțelege 13-18.
+### For Intermediate:
+Complete **Projects 6-12**, then move on to 13-18.
 
-### Pentru Avansați:
-Focus pe **Projects 19-22** pentru un portofoliu impresionant.
+### For Advanced:
+Focus on **Projects 19-22** for an impressive portfolio.
 
 ### Portfolio Minimum:
 1. Project 1 (Login/Logout)
@@ -68,19 +68,18 @@ Focus pe **Projects 19-22** pentru un portofoliu impresionant.
 5. Project 19 (Custom Framework)
 6. Project 22 (CI/CD)
 
-## 📝 Structură Fiecare Proiect
+## 📝 Each Project Structure
 
-Fiecare folder de proiect conține:
-- `README.md` - Descriere completă, cerințe, tehnologii, deliverables
-- Structura de cod (când e implementat)
+Each project folder contains:
+- `README.md` - Full description, requirements, technologies, deliverables
+- Code structure (when implemented)
 - Test examples
 - Documentation
 
 ## 🚀 Start Here
 
-Pentru lista completă cu detalii despre toate proiectele, vezi: **[docs/PROIECTE_PORTOFOLIU.md](../docs/PROIECTE_PORTOFOLIU.md)**
+For the full list with details about all projects, see: **[docs/PROIECTE_PORTOFOLIU.md](../docs/PROIECTE_PORTOFOLIU.md)**
 
 ---
 
-**Succes cu implementarea proiectelor! 🎯**
-
+**Good luck with implementing the projects! 🎯**

@@ -26,7 +26,7 @@
   <main>
     <section class="hero">
       <div class="container">
-        <h1>QA &amp; Automation Portfolio</h1>
+        <h1>QA &amp; Automation Portfolio<span class="hero-accent-line" aria-hidden="true"></span></h1>
         <p class="hero-lead">
           Projects and test suites for REST APIs, Postman collections, and UI tests with Playwright.
           Structured, independent code with no credentials in the repo.
@@ -56,7 +56,7 @@
           <article class="card">
             <div class="card-icon" aria-hidden="true">📮</div>
             <h3>Postman API Collection</h3>
-            <p>Postman (or Bruno) collection for REST API testing: requests, environments, and automated assertions. Run in UI or via Newman CLI.</p>
+            <p>Same 55 API tests as Java REST API, in Postman. GoREST, TEST_CASE.md per test. Run in Postman UI or Newman CLI.</p>
             <ul class="card-tags">
               <li>Postman</li>
               <li>REST API</li>
@@ -87,39 +87,86 @@
 
     <section id="test-types" class="section test-types">
       <div class="container">
-        <h2>Test types (Java REST API)</h2>
-        <p class="section-intro">Example scenarios covered in the API test suite.</p>
+        <h2>55 API tests — Java &amp; Postman aligned</h2>
+        <p class="section-intro">Same test specification in both <a href="projects/java-rest-api.html">Java REST API</a> and <a href="projects/postman.html">Postman</a>. GoREST API, TEST_CASE.md per test.</p>
         <div class="test-list">
           <div class="test-group">
-            <h4>Authentication &amp; authorization</h4>
+            <h4>Auth <span class="test-count">4</span></h4>
             <ul>
-              <li>Endpoint with valid token → 200/201</li>
-              <li>No token or invalid token → 401</li>
-              <li>Insufficient role → 403</li>
-              <li>Expired token → 401 with message</li>
+              <li>Valid token → 200/201</li>
+              <li>No token → 401</li>
+              <li>Invalid token → 401</li>
+              <li>Expired token → 401</li>
             </ul>
           </div>
           <div class="test-group">
-            <h4>GET (list &amp; by id)</h4>
+            <h4>GET List <span class="test-count">8</span></h4>
             <ul>
-              <li>List 200, valid JSON array, pagination, filters</li>
-              <li>By ID: 200 + correct body, 404 not found, 400/404 invalid ID</li>
+              <li>List 200, valid JSON array</li>
+              <li>Pagination valid/invalid</li>
+              <li>Empty list, query filters</li>
+              <li>Auth: 401 without, 200 with token</li>
             </ul>
           </div>
           <div class="test-group">
-            <h4>POST, PUT, PATCH, DELETE</h4>
+            <h4>GET Single <span class="test-count">6</span></h4>
             <ul>
-              <li>POST: 201 + Location header, validation</li>
-              <li>PUT/PATCH: 200 + updated resource, 404, validation</li>
-              <li>DELETE: success, 404, invalid ID</li>
+              <li>Valid ID → 200, correct body</li>
+              <li>Expected fields and types</li>
+              <li>404, 400/404 invalid ID</li>
+              <li>Auth: 401 without, 200 with token</li>
             </ul>
           </div>
           <div class="test-group">
-            <h4>Errors &amp; performance</h4>
+            <h4>POST Create <span class="test-count">9</span></h4>
             <ul>
-              <li>4xx with body (message/error code)</li>
-              <li>5xx handled without client crash</li>
-              <li>Response time within configured timeout</li>
+              <li>201 + Location, created resource</li>
+              <li>Missing/invalid field → 400/422</li>
+              <li>Empty body, wrong Content-Type</li>
+              <li>Auth, duplicate → 409/400</li>
+            </ul>
+          </div>
+          <div class="test-group">
+            <h4>PUT Update <span class="test-count">8</span></h4>
+            <ul>
+              <li>Valid body → 200, updated fields</li>
+              <li>404, 400/404 invalid ID</li>
+              <li>Validation errors</li>
+              <li>Auth: 401 without, 200 with token</li>
+            </ul>
+          </div>
+          <div class="test-group">
+            <h4>PATCH Update <span class="test-count">7</span></h4>
+            <ul>
+              <li>Partial body → 200</li>
+              <li>Only sent fields updated</li>
+              <li>404, 400 validation</li>
+              <li>Auth: 401 without, 200 with token</li>
+            </ul>
+          </div>
+          <div class="test-group">
+            <h4>DELETE <span class="test-count">7</span></h4>
+            <ul>
+              <li>Valid ID → 204/200</li>
+              <li>404, 400/404 invalid ID</li>
+              <li>GET after DELETE → 404</li>
+              <li>Auth, conflict 409</li>
+            </ul>
+          </div>
+          <div class="test-group">
+            <h4>Headers <span class="test-count">3</span></h4>
+            <ul>
+              <li>Accept application/json</li>
+              <li>Content-Type in response</li>
+              <li>No sensitive headers</li>
+            </ul>
+          </div>
+          <div class="test-group">
+            <h4>Error responses <span class="test-count">3</span></h4>
+            <ul>
+              <li>4xx with error body</li>
+              <li>5xx without client crash</li>
+              <li>Response time &lt; 5000 ms</li>
             </ul>
           </div>
         </div>

@@ -1,6 +1,6 @@
 """
-Base Page pentru toate page objects
-Optimizat pentru Cross-Platform Testing
+Base Page for all page objects.
+Optimized for Cross-Platform Testing.
 """
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -12,7 +12,7 @@ logger = logging.getLogger(__name__)
 
 
 class BasePage:
-    """Clasă de bază pentru toate page objects"""
+    """Base class for all page objects"""
     
     def __init__(self, driver):
         """
@@ -49,7 +49,7 @@ class BasePage:
             raise
     
     def is_element_present(self, locator, timeout=5):
-        """Verifică dacă un element este prezent"""
+        """Check if an element is present"""
         try:
             self.wait_for_element(locator, timeout)
             return True

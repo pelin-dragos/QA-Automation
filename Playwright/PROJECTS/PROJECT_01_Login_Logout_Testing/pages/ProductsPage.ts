@@ -2,8 +2,8 @@ import { Page, Locator, expect } from '@playwright/test';
 import { LoginPage } from './LoginPage';
 
 /**
- * Page Object Pattern - Products Page (pagina după login)
- * Reprezintă pagina care apare după login de succes
+ * Page Object Pattern - Products Page (page after login)
+ * Represents the page shown after successful login
  */
 export class ProductsPage {
   readonly page: Page;
@@ -16,7 +16,7 @@ export class ProductsPage {
   constructor(page: Page) {
     this.page = page;
 
-    // Locatori
+    // Locators
     this.inventoryContainer = page.locator('#inventory_container');
     this.menuButton = page.locator('#react-burger-menu-btn');
     this.logoutLink = page.locator('#logout_sidebar_link');
@@ -25,25 +25,25 @@ export class ProductsPage {
   }
 
   /**
-   * Verifică dacă pagina de produse este încărcată
-   * 
-   * @returns true dacă pagina este încărcată
+   * Check if the products page is loaded
+   *
+   * @returns true if page is loaded
    */
   async isLoaded(): Promise<boolean> {
     try {
-      // Așteaptă ca URL-ul să conțină 'inventory' (pagina de produse)
+      // Wait for URL to contain 'inventory' (products page)
       await this.page.waitForURL(/.*inventory.*/, { timeout: 15000 });
       
-      // Așteaptă ca elementul container să fie prezent și vizibil
+      // Wait for container element to be present and visible
       await expect(this.inventoryContainer).toBeVisible({ timeout: 10000 });
       
       return true;
     } catch (error) {
-      // Dacă prima verificare eșuează, verifică alternativ
+      // If first check fails, try alternative check
       try {
         const currentUrl = this.getCurrentUrl();
         if (currentUrl.includes('inventory')) {
-          // Dacă URL-ul este corect, așteaptă meniul care este sigur prezent
+          // If URL is correct, wait for menu which is always present
           await expect(this.menuButton).toBeVisible({ timeout: 5000 });
           return true;
         }
@@ -55,7 +55,7 @@ export class ProductsPage {
   }
 
   /**
-   * Returnează titlul paginii
+   * Return the page title
    */
   async getPageTitle(): Promise<string | null> {
     try {
@@ -66,40 +66,40 @@ export class ProductsPage {
   }
 
   /**
-   * Returnează URL-ul curent
+   * Return the current URL
    */
   getCurrentUrl(): string {
     return this.page.url();
   }
 
   /**
-   * Deschide meniul hamburger
+   * Open the hamburger menu
    */
   async openMenu(): Promise<void> {
     await this.menuButton.click();
-    // Așteaptă ca meniul să fie deschis
+    // Wait for menu to open
     await expect(this.logoutLink).toBeVisible();
   }
 
   /**
-   * Face logout din aplicație
-   * 
-   * @returns instanță a paginii de login
+   * Log out from the application
+   *
+   * @returns instance of login page
    */
   async logout(): Promise<LoginPage> {
     await this.openMenu();
     await this.logoutLink.click();
     
-    // Așteaptă redirect la pagina de login
+    // Wait for redirect to login page
     await this.page.waitForURL(/.*saucedemo\.com.*/, { timeout: 5000 });
     
     return new LoginPage(this.page);
   }
 
   /**
-   * Verifică dacă utilizatorul este logat
-   * 
-   * @returns true dacă utilizatorul este logat (pagina de produse este vizibilă)
+   * Check if the user is logged in
+   *
+   * @returns true if user is logged in (products page is visible)
    */
   async isLoggedIn(): Promise<boolean> {
     const isLoaded = await this.isLoaded();

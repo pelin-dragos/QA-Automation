@@ -28,7 +28,7 @@ class SmartWaitStrategy:
         """
         self.driver = driver
         self.base_timeout = base_timeout
-        self.page_load_history = []  # History pentru page load times
+        self.page_load_history = []  # History for page load times
         self.adaptive_timeout = base_timeout
     
     def set_driver(self, driver):
@@ -37,11 +37,11 @@ class SmartWaitStrategy:
     
     def smart_wait_for_element(self, locator, description=None):
         """
-        Smart wait pentru element cu adaptive timeout
+        Smart wait for element with adaptive timeout
         
         Args:
             locator: Locator (tuple: By, value)
-            description: Descriere element (pentru logging)
+            description: Element description (for logging)
             
         Returns:
             WebElement: Elementul găsit
@@ -75,11 +75,11 @@ class SmartWaitStrategy:
     
     def smart_wait_for_clickable(self, locator, description=None):
         """
-        Smart wait pentru element clickable
+        Smart wait for clickable element
         
         Args:
             locator: Locator
-            description: Descriere
+            description: Description
             
         Returns:
             WebElement: Elementul clickable
@@ -100,10 +100,10 @@ class SmartWaitStrategy:
     
     def smart_wait_for_page_load(self, timeout=None):
         """
-        Smart wait pentru page load cu adaptive timeout
+        Smart wait for page load with adaptive timeout
         
         Args:
-            timeout: Custom timeout (opțional)
+            timeout: Custom timeout (optional)
             
         Returns:
             bool: Success
@@ -148,7 +148,7 @@ class SmartWaitStrategy:
         
         Args:
             locator: Locator element
-            stability_time: Timp în secunde pentru stabilitate
+            stability_time: Time in seconds for stability
             max_wait: Max wait time
             
         Returns:
@@ -211,13 +211,13 @@ class SmartWaitStrategy:
         return adaptive
     
     def _record_success(self, elapsed_time):
-        """Record success time pentru adaptive timeout"""
+        """Record success time for adaptive timeout"""
         self.page_load_history.append(elapsed_time)
         if len(self.page_load_history) > 10:
             self.page_load_history.pop(0)
     
     def _record_failure(self, elapsed_time):
-        """Record failure pentru adaptive timeout"""
+        """Record failure for adaptive timeout"""
         # Increase timeout after failure
         self.adaptive_timeout = min(self.adaptive_timeout * 1.2, 30)
 

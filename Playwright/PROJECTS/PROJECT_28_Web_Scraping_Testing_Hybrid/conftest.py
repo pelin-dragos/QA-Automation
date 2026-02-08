@@ -1,5 +1,5 @@
 """
-Pytest configuration și fixtures pentru Web Scraping + Testing Hybrid
+Pytest configuration and fixtures for Web Scraping + Testing Hybrid
 """
 import pytest
 import logging
@@ -10,7 +10,7 @@ from selenium.webdriver.chrome.options import Options
 from webdriver_manager.chrome import ChromeDriverManager
 import requests
 
-# Configurare logging
+# Logging configuration
 logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
@@ -21,7 +21,7 @@ logger = logging.getLogger(__name__)
 @pytest.fixture(scope="function")
 def driver():
     """
-    Fixture pentru WebDriver - optimizat pentru scraping + testing
+    Fixture for WebDriver - optimized for scraping + testing
     """
     logger.info("Setting up WebDriver for scraping + testing...")
     
@@ -52,13 +52,13 @@ def driver():
 
 @pytest.fixture
 def base_url():
-    """Base URL pentru teste - TREBUIE să fie site propriu sau cu permisiune"""
+    """Base URL for tests - MUST be your own site or one you have permission to use"""
     return os.getenv("BASE_URL", "https://quotes.toscrape.com/")
 
 
 @pytest.fixture
 def http_session():
-    """HTTP session pentru robots.txt checks"""
+    """HTTP session for robots.txt checks"""
     session = requests.Session()
     session.headers.update({
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'

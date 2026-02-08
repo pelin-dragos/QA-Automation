@@ -1,0 +1,12 @@
+### API-POST-009: Post Duplicate Returns 409/400
+# Run twice with same body. First: 201. Second: 409/422 (duplicate email). GoREST returns 422.
+POST {{base_url}}/users
+Authorization: Bearer {{auth_token}}
+Content-Type: application/json
+
+{
+  "name": "Duplicate Test",
+  "email": "duplicate-test@example.com",
+  "gender": "male",
+  "status": "active"
+}

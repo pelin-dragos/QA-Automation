@@ -3,26 +3,26 @@ import { LoginPage } from '../pages/LoginPage';
 
 /**
  * Test Suite: Login Failure Scenarios
- * Teste pentru login cu credențiale invalide și cazuri negative
+ * Tests for login with invalid credentials and negative cases
  */
 test.describe('Login Failure Tests', () => {
   
   test('should show error message with invalid username', async ({ page }) => {
     /**
-     * Test: Login cu username invalid și parolă validă
-     * 
-     * Expected: Mesaj de eroare afișat
+     * Test: Login with invalid username and valid password
+     *
+     * Expected: Error message displayed
      */
     const loginPage = new LoginPage(page);
     
-    // Step 1: Navighează către pagina de login
+    // Step 1: Navigate to login page
     await loginPage.navigateTo();
     expect(await loginPage.isLoaded()).toBeTruthy();
     
-    // Step 2: Încearcă login cu username invalid
+    // Step 2: Try login with invalid username
     await loginPage.login('invalid_user', 'secret_sauce');
     
-    // Step 3: Verifică că apare mesajul de eroare
+    // Step 3: Verify error message appears
     const errorMessage = await loginPage.getErrorMessage();
     
     expect(errorMessage).not.toBeNull();
@@ -31,17 +31,17 @@ test.describe('Login Failure Tests', () => {
 
   test('should show error message with invalid password', async ({ page }) => {
     /**
-     * Test: Login cu username valid și parolă invalidă
-     * 
-     * Expected: Mesaj de eroare afișat
+     * Test: Login with valid username and invalid password
+     *
+     * Expected: Error message displayed
      */
     const loginPage = new LoginPage(page);
     
-    // Step 1: Navighează și încearcă login cu parolă greșită
+    // Step 1: Navigate and try login with wrong password
     await loginPage.navigateTo();
     await loginPage.login('standard_user', 'wrong_password');
     
-    // Step 2: Verifică mesajul de eroare
+    // Step 2: Verify error message
     const errorMessage = await loginPage.getErrorMessage();
     
     expect(errorMessage).not.toBeNull();
@@ -54,25 +54,25 @@ test.describe('Login Failure Tests', () => {
 
   test('should show validation with empty credentials', async ({ page }) => {
     /**
-     * Test: Login fără a introduce credențiale
-     * 
-     * Expected: Mesaj de eroare sau validare de formular
+     * Test: Login without entering credentials
+     *
+     * Expected: Error message or form validation
      */
     const loginPage = new LoginPage(page);
     
-    // Step 1: Navighează și încearcă login fără credențiale
+    // Step 1: Navigate and try login without credentials
     await loginPage.navigateTo();
     
-    // Nu introduce nimic, doar click pe login
+    // Enter nothing, just click login
     await loginPage.clickLogin();
     
-    // Step 2: Verifică comportamentul
-    // Poate fi mesaj de eroare sau validare HTML5
+    // Step 2: Verify behaviour
+    // May be error message or HTML5 validation
     const errorMessage = await loginPage.getErrorMessage();
     const usernameRequired = await loginPage.usernameField.getAttribute('required');
     const passwordRequired = await loginPage.passwordField.getAttribute('required');
     
-    // Verifică validarea HTML5 sau mesajul de eroare
+    // Verify HTML5 validation or error message
     expect(usernameRequired !== null || errorMessage !== null).toBeTruthy();
     expect(passwordRequired !== null || errorMessage !== null).toBeTruthy();
   });
@@ -87,11 +87,11 @@ test.describe('Login Failure Tests', () => {
   for (const cred of invalidCredentials) {
     test(`should fail login with ${cred.description}`, async ({ page }) => {
       /**
-       * Test parametrizat: Login cu diferite combinații de credențiale invalide
+       * Parameterized test: Login with different invalid credential combinations
        */
       const loginPage = new LoginPage(page);
       
-      // Step 1: Testează login cu credențiale invalide
+      // Step 1: Test login with invalid credentials
       await loginPage.navigateTo();
       
       if (cred.username) {
@@ -103,15 +103,15 @@ test.describe('Login Failure Tests', () => {
       
       await loginPage.clickLogin();
       
-      // Step 2: Verifică rezultatul
-      // Login ar trebui să eșueze
+      // Step 2: Verify result
+      // Login should fail
       const currentUrl = page.url();
       const productsPageLoaded = currentUrl.includes('inventory');
       
       expect(productsPageLoaded).toBeFalsy();
       
       const errorMessage = await loginPage.getErrorMessage();
-      // Dacă există un mesaj de eroare, verifică-l
+      // If there is an error message, verify it
       if (errorMessage) {
         expect(errorMessage.length).toBeGreaterThan(0);
       }

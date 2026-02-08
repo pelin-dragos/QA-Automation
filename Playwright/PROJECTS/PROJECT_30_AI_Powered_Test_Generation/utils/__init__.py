@@ -1,4 +1,4 @@
 """
-AI-Powered utilities pentru Test Generation
+AI-Powered utilities for Test Generation
 """
 

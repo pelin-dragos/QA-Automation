@@ -1,4 +1,4 @@
 """
-Test Suite pentru AI-Powered Test Generation
+Test Suite for AI-Powered Test Generation
 """
 

@@ -1,0 +1,7 @@
+### API-PATCH-001: Patch Valid Partial Body Returns 200
+# Run after Setup. user_id must be a resource you own (GoREST).
+PATCH {{base_url}}/users/{{user_id}}
+Authorization: Bearer {{auth_token}}
+Content-Type: application/json
+
+{"status":"inactive"}

@@ -1,30 +1,30 @@
-﻿# Proiect 24: Performance Testing with Playwright
+# Project 24: Performance Testing with Playwright
 
-## 🎯 Obiectiv
-Măsurare completă a performance-ului aplicațiilor web: page load time, network timing, action timing, și comparare cu baseline pentru detectare regressions.
+## 🎯 Objective
+Complete measurement of web application performance: page load time, network timing, action timing, and comparison with baseline for regression detection.
 
-## 📋 Cerințe
-- ✅ Măsurare page load time
-- ✅ Măsurare timp pentru acțiuni specifice
+## 📋 Requirements
+- ✅ Page load time measurement
+- ✅ Measurement of time for specific actions
 - ✅ Network timing (via Performance API)
 - ✅ Performance metrics collection
-- ✅ Reporting pentru performance
-- ✅ Baseline și threshold management
+- ✅ Performance reporting
+- ✅ Baseline and threshold management
 
-## 🛠️ Tehnologii
-- **Playwright** - Modern automation framework cu suport nativ pentru Performance API
+## 🛠️ Technologies
+- **Playwright** - Modern automation framework with native Performance API support
 - **TypeScript** - Strongly typed JavaScript
 - **Performance API** - Navigation Timing, Resource Timing
 - **Node.js** - Runtime environment
 
-## 📁 Structură Proiect
+## 📁 Project Structure
 
 ```
 PROJECT_24_Performance_Testing/
-├── package.json                  # Dependențe Node.js
-├── tsconfig.json                 # Configurare TypeScript
-├── playwright.config.ts          # Configurare Playwright
-├── README.md                     # Acest fișier
+├── package.json                  # Node.js dependencies
+├── tsconfig.json                 # TypeScript configuration
+├── playwright.config.ts          # Playwright configuration
+├── README.md                     # This file
 │
 ├── utils/                         # Utilities
 │   ├── PerformanceMetrics.ts    # PerformanceMetrics class
@@ -38,21 +38,21 @@ PROJECT_24_Performance_Testing/
 ├── tests/                         # Test suite
 │   └── test_performance.spec.ts
 │
-├── reports/                       # Reports (generat)
+├── reports/                       # Reports (generated)
 │   ├── performance_report.json  # JSON report
 │   └── performance_report.txt    # Text report
 │
-└── baselines/                     # Baseline metrics (generat)
+└── baselines/                     # Baseline metrics (generated)
     └── performance_baseline.json # Baseline storage
 ```
 
-## ✨ Funcționalități
+## ✨ Features
 
 ### 1. Page Load Time Measurement
-- **DOM Content Loaded**: Timp până la DOMContentLoaded event
-- **Load Complete**: Timp până la load event complete
-- **DOM Interactive**: Timp până la DOM interactive
-- **DOM Complete**: Timp până la DOM complete
+- **DOM Content Loaded**: Time until DOMContentLoaded event
+- **Load Complete**: Time until load event complete
+- **DOM Interactive**: Time until DOM interactive
+- **DOM Complete**: Time until DOM complete
 
 ### 2. Network Timing
 - **DNS Lookup**: DNS resolution time
@@ -69,15 +69,15 @@ PROJECT_24_Performance_Testing/
 - **Slowest Resources**: Identification
 
 ### 4. Action Timing
-- **Login Action**: Timp pentru login
-- **Navigation**: Timp pentru navigation
-- **Custom Actions**: Măsurare pentru orice acțiune
+- **Login Action**: Time for login
+- **Navigation**: Time for navigation
+- **Custom Actions**: Measurement for any action
 
 ### 5. Baseline Management
-- **Save Baseline**: Salvează metrics ca baseline
-- **Compare**: Compară cu baseline
+- **Save Baseline**: Save metrics as baseline
+- **Compare**: Compare with baseline
 - **Threshold**: Configurable threshold (default 15%)
-- **Regression Detection**: Detectează performance regressions
+- **Regression Detection**: Detect performance regressions
 
 ### 6. Reporting
 - **JSON Report**: Structured data
@@ -86,19 +86,19 @@ PROJECT_24_Performance_Testing/
 - **Summary**: Pass/Fail summary
 
 ## 📝 Deliverables
-- ✅ Suite de teste pentru performance (page load, network, actions)
+- ✅ Test suite for performance (page load, network, actions)
 - ✅ Metrics collection (PerformanceMetrics class)
 - ✅ Performance reports (JSON, text)
-- ✅ Baseline definition și comparison (BaselineManager)
+- ✅ Baseline definition and comparison (BaselineManager)
 - ✅ Threshold management (configurable)
-- ✅ Documentation completă
+- ✅ Complete documentation
 
-## ✅ Criterii de Evaluare
-- ✅ Metrics corecte colectate (page load, network, actions)
-- ✅ Reports clare pentru performance (JSON, text)
-- ✅ Baseline și threshold management funcțional
-- ✅ Regression detection funcțională
-- ✅ Test assertions pentru performance thresholds
+## ✅ Evaluation Criteria
+- ✅ Correct metrics collected (page load, network, actions)
+- ✅ Clear reports for performance (JSON, text)
+- ✅ Functional baseline and threshold management
+- ✅ Functional regression detection
+- ✅ Test assertions for performance thresholds
 
 ## 🚀 Quick Start
 
@@ -136,11 +136,11 @@ cat reports/performance_report.txt
 npm run report
 ```
 
-## 📚 Documentație
+## 📚 Documentation
 
 ### Code Examples:
 
-**Măsurare Page Load:**
+**Page Load Measurement:**
 ```typescript
 import { PerformanceMetrics } from '../utils/PerformanceMetrics';
 
@@ -152,7 +152,7 @@ const pageLoadMetrics = await metrics.getPageLoadTime();
 console.log(`Load time: ${pageLoadMetrics.loadComplete.toFixed(2)}s`);
 ```
 
-**Măsurare Network:**
+**Network Measurement:**
 ```typescript
 const networkMetrics = await metrics.getNetworkTiming();
 console.log(`DNS: ${networkMetrics.dns.toFixed(2)}s`);
@@ -204,40 +204,40 @@ console.log(`Action time: ${actionTime.toFixed(2)}s`);
 - **transferSize**: Resource size
 - **initiatorType**: Resource type
 
-## 📊 Status Implementare
+## 📊 Implementation Status
 
-| Funcționalitate | Status | Note |
-|----------------|--------|------|
-| Page Load Metrics | ✅ Implementat | Navigation Timing API |
-| Network Timing | ✅ Implementat | Performance API |
-| Resource Timing | ✅ Implementat | Resource Timing API |
-| Action Timing | ✅ Implementat | Custom measurement |
-| Baseline Manager | ✅ Implementat | JSON storage |
-| Threshold Comparison | ✅ Implementat | Configurable |
-| Reporting | ✅ Implementat | JSON, text |
-| Test Suites | ✅ Implementat | Comprehensive tests |
+| Feature | Status | Notes |
+|---------|--------|-------|
+| Page Load Metrics | ✅ Implemented | Navigation Timing API |
+| Network Timing | ✅ Implemented | Performance API |
+| Resource Timing | ✅ Implemented | Resource Timing API |
+| Action Timing | ✅ Implemented | Custom measurement |
+| Baseline Manager | ✅ Implemented | JSON storage |
+| Threshold Comparison | ✅ Implemented | Configurable |
+| Reporting | ✅ Implemented | JSON, text |
+| Test Suites | ✅ Implemented | Comprehensive tests |
 
 ## 💡 Tips
 
-1. **Pentru Accurate Metrics:**
-   - Run tests în controlled environment
+1. **For Accurate Metrics:**
+   - Run tests in a controlled environment
    - Close background applications
    - Use consistent network conditions
-   - Run multiple times pentru average
+   - Run multiple times for average
 
-2. **Pentru Baseline:**
-   - Create baseline după optimizări
-   - Update baseline după major changes
+2. **For Baseline:**
+   - Create baseline after optimizations
+   - Update baseline after major changes
    - Use reasonable threshold (10-15%)
 
-3. **Pentru Debugging:**
-   - Check network tab în browser
+3. **For Debugging:**
+   - Check network tab in browser
    - Review resource timing
    - Check server response times
 
-4. **Pentru CI/CD:**
-   - Set thresholds pentru CI/CD
-   - Fail tests dacă performance degrades
+4. **For CI/CD:**
+   - Set thresholds for CI/CD
+   - Fail tests if performance degrades
    - Track metrics over time
 
 ## 🔧 Configuration
@@ -262,4 +262,4 @@ const comparison = baselineManager.compareWithBaseline(
 
 ---
 
-**Succes cu Performance Testing! 🚀**
+**Good luck with Performance Testing! 🚀**

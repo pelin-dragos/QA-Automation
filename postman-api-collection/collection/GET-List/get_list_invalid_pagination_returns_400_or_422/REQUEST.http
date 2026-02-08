@@ -1,0 +1,4 @@
+### API-GET-LIST-004: Get List Invalid Pagination
+# GoREST returns 200 (ignores invalid params). Accept 200/400/422.
+GET {{base_url}}/users?page=-1
+Accept: application/json

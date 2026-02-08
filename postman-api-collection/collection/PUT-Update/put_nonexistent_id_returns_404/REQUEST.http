@@ -1,0 +1,6 @@
+### API-PUT-003: Put Non-Existent ID Returns 404
+PUT {{base_url}}/users/999999999
+Authorization: Bearer {{auth_token}}
+Content-Type: application/json
+
+{"name":"X","email":"x@x.com","gender":"male","status":"active"}

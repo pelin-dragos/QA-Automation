@@ -1,4 +1,4 @@
 """
-Utilities pentru Cross-Platform Testing
+Utilities for Cross-Platform Testing
 """
 

@@ -2,14 +2,14 @@ import { Given, When, Then } from '@cucumber/cucumber';
 import { PlaywrightWorld } from '../../support/PlaywrightWorld';
 import { LoginPage } from '../../pages/LoginPage';
 
-Given('că sunt pe pagina de login', async function (this: PlaywrightWorld) {
+Given('I am on the login page', async function (this: PlaywrightWorld) {
   const loginPage = new LoginPage(this.page!, this.baseUrl);
   await loginPage.navigateTo();
   await this.page!.waitForTimeout(1000);
 });
 
 Given(
-  'că sunt logat în aplicație cu username-ul {string} și parola {string}',
+  'I am logged in with username {string} and password {string}',
   async function (this: PlaywrightWorld, username: string, password: string) {
     const loginPage = new LoginPage(this.page!, this.baseUrl);
     await loginPage.navigateTo();
@@ -18,21 +18,21 @@ Given(
   }
 );
 
-Given('că sunt logat în aplicație', async function (this: PlaywrightWorld) {
+Given('I am logged in', async function (this: PlaywrightWorld) {
   const loginPage = new LoginPage(this.page!, this.baseUrl);
   await loginPage.navigateTo();
   await loginPage.login('standard_user', 'secret_sauce');
   await this.page!.waitForTimeout(1000);
 });
 
-Given('că sunt pe pagina de produse', async function (this: PlaywrightWorld) {
+Given('I am on the products page', async function (this: PlaywrightWorld) {
   const loginPage = new LoginPage(this.page!, this.baseUrl);
   await loginPage.navigateTo();
   await loginPage.login('standard_user', 'secret_sauce');
   await this.page!.waitForTimeout(1000);
 });
 
-Given('că sunt pe pagina de coș', async function (this: PlaywrightWorld) {
+Given('I am on the cart page', async function (this: PlaywrightWorld) {
   const loginPage = new LoginPage(this.page!, this.baseUrl);
   await loginPage.navigateTo();
   await loginPage.login('standard_user', 'secret_sauce');
@@ -40,7 +40,7 @@ Given('că sunt pe pagina de coș', async function (this: PlaywrightWorld) {
   await this.page!.waitForTimeout(1000);
 });
 
-Given('că am adăugat un produs în coș', async function (this: PlaywrightWorld) {
+Given('I have added a product to the cart', async function (this: PlaywrightWorld) {
   const loginPage = new LoginPage(this.page!, this.baseUrl);
   await loginPage.navigateTo();
   await loginPage.login('standard_user', 'secret_sauce');
@@ -51,7 +51,7 @@ Given('că am adăugat un produs în coș', async function (this: PlaywrightWorl
   await this.page!.waitForTimeout(1000);
 });
 
-Given('că am adăugat produse în coș', async function (this: PlaywrightWorld) {
+Given('I have added products to the cart', async function (this: PlaywrightWorld) {
   const loginPage = new LoginPage(this.page!, this.baseUrl);
   await loginPage.navigateTo();
   await loginPage.login('standard_user', 'secret_sauce');
@@ -63,7 +63,7 @@ Given('că am adăugat produse în coș', async function (this: PlaywrightWorld)
   await this.page!.waitForTimeout(1000);
 });
 
-Given('că am produse în coș cu preț total de {string}', async function (this: PlaywrightWorld, totalPrice: string) {
+Given('I have products in the cart with total price of {string}', async function (this: PlaywrightWorld, totalPrice: string) {
   const loginPage = new LoginPage(this.page!, this.baseUrl);
   await loginPage.navigateTo();
   await loginPage.login('standard_user', 'secret_sauce');
@@ -74,7 +74,7 @@ Given('că am produse în coș cu preț total de {string}', async function (this
   await this.page!.waitForTimeout(1000);
 });
 
-Given('că sunt pe pagina de checkout', async function (this: PlaywrightWorld) {
+Given('I am on the checkout page', async function (this: PlaywrightWorld) {
   const loginPage = new LoginPage(this.page!, this.baseUrl);
   await loginPage.navigateTo();
   await loginPage.login('standard_user', 'secret_sauce');
@@ -90,7 +90,7 @@ Given('că sunt pe pagina de checkout', async function (this: PlaywrightWorld) {
   await this.page!.waitForTimeout(1000);
 });
 
-Given('că am făcut logout', async function (this: PlaywrightWorld) {
+Given('I have logged out', async function (this: PlaywrightWorld) {
   const loginPage = new LoginPage(this.page!, this.baseUrl);
   await loginPage.navigateTo();
   await loginPage.login('standard_user', 'secret_sauce');

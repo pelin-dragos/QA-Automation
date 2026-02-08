@@ -1,4 +1,4 @@
 """
-Test Suite pentru Web Scraping + Testing Hybrid
+Test Suite for Web Scraping + Testing Hybrid
 """
 

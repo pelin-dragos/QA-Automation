@@ -1,0 +1,6 @@
+### API-AUTH-001: No Token Returns 401
+POST {{base_url}}/users
+Accept: application/json
+Content-Type: application/json
+
+{"name":"Test","email":"test@example.com","gender":"male","status":"active"}

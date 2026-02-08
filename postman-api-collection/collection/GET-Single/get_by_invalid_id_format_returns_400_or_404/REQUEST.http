@@ -1,0 +1,3 @@
+### API-GET-SINGLE-004: Get Invalid ID Format Returns 400/404
+GET {{base_url}}/users/invalid
+Accept: application/json

@@ -1,6 +1,6 @@
 """
 AI-Powered Element Finder
-Proof-of-concept pentru identificare automată de elemente folosind heuristics și pattern matching
+Proof-of-concept for automatic element identification using heuristics and pattern matching
 Simulează AI-based element identification
 """
 from selenium.webdriver.common.by import By
@@ -15,7 +15,7 @@ logger = logging.getLogger(__name__)
 class AIElementFinder:
     """
     AI-Powered Element Finder
-    Folosește heuristics și pattern matching pentru identificare automată de elemente
+    Uses heuristics and pattern matching for automatic element identification
     """
     
     def __init__(self, driver=None):
@@ -33,10 +33,10 @@ class AIElementFinder:
     
     def find_by_text_pattern(self, text_pattern, element_type="*"):
         """
-        Găsește elemente bazat pe text pattern (NLP-like)
+        Find elements based on text pattern (NLP-like)
         
         Args:
-            text_pattern: Text pattern pentru căutare (ex: "login", "submit", "email")
+            text_pattern: Text pattern for search (e.g. "login", "submit", "email")
             element_type: Tip element (button, input, link, etc.)
             
         Returns:
@@ -48,23 +48,23 @@ class AIElementFinder:
         elements = []
         text_pattern_lower = text_pattern.lower()
         
-        # Pattern matching pentru common terms
+        # Pattern matching for common terms
         patterns = self._generate_search_patterns(text_pattern_lower)
         
-        # Caută după text în diferite moduri
+        # Search by text in different ways
         for pattern in patterns:
             try:
-                # Caută după text visible
+                # Search by visible text
                 xpath = f"//{element_type}[contains(translate(text(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '{pattern}')]"
                 found = self.driver.find_elements(By.XPATH, xpath)
                 elements.extend(found)
                 
-                # Caută după value attribute
+                # Search by value attribute
                 xpath = f"//{element_type}[contains(translate(@value, 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '{pattern}')]"
                 found = self.driver.find_elements(By.XPATH, xpath)
                 elements.extend(found)
                 
-                # Caută după placeholder
+                # Search by placeholder
                 xpath = f"//{element_type}[contains(translate(@placeholder, 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '{pattern}')]"
                 found = self.driver.find_elements(By.XPATH, xpath)
                 elements.extend(found)
@@ -89,11 +89,11 @@ class AIElementFinder:
     
     def find_by_semantic_meaning(self, semantic_description, driver=None):
         """
-        Găsește elemente bazat pe descriere semantică (NLP-based)
+        Find elements based on semantic description (NLP-based)
         
         Args:
-            semantic_description: Descriere semantică (ex: "submit button", "email input")
-            driver: WebDriver (opțional, dacă nu e setat în constructor)
+            semantic_description: Semantic description (e.g. "submit button", "email input")
+            driver: WebDriver (optional, if not set in constructor)
             
         Returns:
             List[WebElement]: Lista de elemente găsite
@@ -110,7 +110,7 @@ class AIElementFinder:
         element_type = self._extract_element_type(semantic_lower)
         action = self._extract_action(semantic_lower)
         
-        # Caută după tip și acțiune
+        # Search by type and action
         if element_type and action:
             patterns = self._generate_semantic_patterns(action, element_type)
             for pattern in patterns:
@@ -134,11 +134,11 @@ class AIElementFinder:
     
     def find_best_match(self, description, driver=None):
         """
-        Găsește cel mai bun match pentru o descriere (AI-like scoring)
+        Find the best match for a description (AI-like scoring)
         
         Args:
-            description: Descriere element
-            driver: WebDriver (opțional)
+            description: Element description
+            driver: WebDriver (optional)
             
         Returns:
             WebElement sau None
@@ -182,7 +182,7 @@ class AIElementFinder:
         return None
     
     def _generate_search_patterns(self, text):
-        """Generează pattern-uri de căutare din text"""
+        """Generate search patterns from text"""
         patterns = [text]
         
         # Remove common words
@@ -203,7 +203,7 @@ class AIElementFinder:
         return patterns[:3]  # Return top 3
     
     def _generate_semantic_patterns(self, action, element_type):
-        """Generează pattern-uri XPath bazate pe semantic"""
+        """Generate XPath patterns based on semantic"""
         patterns = []
         
         # Button patterns
@@ -243,7 +243,7 @@ class AIElementFinder:
         return None
     
     def _find_by_id_name(self, description, driver):
-        """Caută după ID sau name attribute"""
+        """Search by ID or name attribute"""
         elements = []
         description_clean = description.lower().replace(' ', '_').replace('-', '_')
         

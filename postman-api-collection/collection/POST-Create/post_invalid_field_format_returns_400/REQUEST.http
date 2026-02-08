@@ -1,0 +1,11 @@
+### API-POST-004: Post Invalid Field Format Returns 400
+POST {{base_url}}/users
+Authorization: Bearer {{auth_token}}
+Content-Type: application/json
+
+{
+  "name": "Test",
+  "email": "not-an-email",
+  "gender": "male",
+  "status": "active"
+}

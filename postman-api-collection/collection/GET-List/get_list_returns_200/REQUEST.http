@@ -1,0 +1,3 @@
+### API-GET-LIST-001: Get List Returns 200
+GET {{base_url}}/users
+Accept: application/json

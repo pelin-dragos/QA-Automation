@@ -1,4 +1,4 @@
 """
-Teste pentru AI-Powered Test Generation (fără Allure)
+Tests for AI-Powered Test Generation (without Allure)
 """
 

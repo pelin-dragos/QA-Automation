@@ -12,14 +12,14 @@ logger = logging.getLogger(__name__)
 
 
 class DataStorage:
-    """Clasă pentru storage și processing date scraped"""
-    
+    """Class for storage and processing of scraped data"""
+
     def __init__(self, storage_dir="data"):
         """
-        Constructor
-        
+        Constructor.
+
         Args:
-            storage_dir: Directory pentru storage
+            storage_dir: Directory for storage
         """
         self.storage_dir = storage_dir
         
@@ -119,7 +119,7 @@ class DataStorage:
         
         Args:
             data: Date de agregat
-            group_by: Column pentru group by
+            group_by: Column for group by
             aggregate: Aggregation operation (count, sum, mean, etc.)
             
         Returns:
@@ -149,13 +149,13 @@ class DataStorage:
     
     def load_from_json(self, filename: str) -> List[Dict]:
         """
-        Încarcă date din JSON
-        
+        Load data from JSON.
+
         Args:
-            filename: Nume fișier (fără extensie)
-            
+            filename: File name (without extension)
+
         Returns:
-            list: Date încărcate
+            list: Loaded data
         """
         filepath = os.path.join(self.storage_dir, f"{filename}.json")
         
@@ -174,11 +174,11 @@ class DataStorage:
     
     def load_from_csv(self, filename: str) -> pd.DataFrame:
         """
-        Încarcă date din CSV
-        
+        Load data from CSV.
+
         Args:
-            filename: Nume fișier (fără extensie)
-            
+            filename: File name (without extension)
+
         Returns:
             DataFrame: pandas DataFrame
         """

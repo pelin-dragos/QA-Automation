@@ -1,4 +1,4 @@
 """
-Page Object Pattern pentru AI-Powered Test Generation
+Page Object Pattern for AI-Powered Test Generation
 """
 

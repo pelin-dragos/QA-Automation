@@ -1,4 +1,4 @@
 """
-Page Object Pattern pentru Cross-Platform Testing
+Page Object Pattern for Cross-Platform Testing
 """
 

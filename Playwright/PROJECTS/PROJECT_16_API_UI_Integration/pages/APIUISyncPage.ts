@@ -2,8 +2,8 @@ import { Page } from '@playwright/test';
 
 /**
  * Page Object Pattern - API UI Sync Page
- * Pentru verificarea sincronizării între API și UI
- * Folosește un site care afișează date din API
+ * For verifying synchronization between API and UI
+ * Uses a site that displays data from API
  */
 export class APIUISyncPage {
   private page: Page;
@@ -13,14 +13,14 @@ export class APIUISyncPage {
   }
 
   /**
-   * Navighează la o URL
+   * Navigate to a URL
    */
   async navigateTo(url: string): Promise<void> {
     await this.page.goto(url);
   }
 
   /**
-   * Așteaptă ca pagina să se încarce
+   * Wait for page to load
    */
   async waitForPageLoad(): Promise<void> {
     await this.page.waitForLoadState('networkidle');
@@ -28,7 +28,7 @@ export class APIUISyncPage {
   }
 
   /**
-   * Verifică dacă pagina este încărcată
+   * Check if page is loaded
    */
   async isLoaded(): Promise<boolean> {
     try {
@@ -40,7 +40,7 @@ export class APIUISyncPage {
   }
 
   /**
-   * Verifică dacă un item cu ID-ul specificat este prezent în UI
+   * Check if an item with the specified ID is present in UI
    */
   async verifyItemPresent(itemId: number | string): Promise<boolean> {
     const pageContent = await this.page.content();
@@ -48,13 +48,13 @@ export class APIUISyncPage {
   }
 
   /**
-   * Verifică dacă datele unui item din UI corespund cu datele așteptate
+   * Check if item data in UI matches expected data
    */
   async verifyItemData(itemId: number | string, expectedData: Record<string, any>): Promise<boolean> {
     const pageContent = await this.page.content();
 
     for (const [key, value] of Object.entries(expectedData)) {
-      // Verifică că valoarea este prezentă în page
+      // Verify value is present on page
       if (!pageContent.includes(String(value))) {
         return false;
       }
@@ -64,14 +64,14 @@ export class APIUISyncPage {
   }
 
   /**
-   * Returnează numărul de item-uri afișate în UI
+   * Return the number of items displayed in UI
    */
   async getAllItemsCount(): Promise<number> {
     try {
-      // Pentru JSONPlaceholder, putem căuta pattern-uri simple
+      // For JSONPlaceholder, we can search for simple patterns
       const pageContent = await this.page.content();
       
-      // Caută pattern-uri de ID-uri în JSON
+      // Search for ID patterns in JSON
       const idMatches = pageContent.match(/"id"\s*:\s*\d+/g);
       return idMatches ? idMatches.length : 0;
     } catch {

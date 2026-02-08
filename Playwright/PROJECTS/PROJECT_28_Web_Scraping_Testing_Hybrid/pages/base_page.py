@@ -1,6 +1,6 @@
 """
-Base Page pentru toate page objects
-Optimizat pentru Scraping + Testing
+Base Page for all page objects.
+Optimized for Scraping + Testing.
 """
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -11,7 +11,7 @@ logger = logging.getLogger(__name__)
 
 
 class BasePage:
-    """Clasă de bază pentru toate page objects"""
+    """Base class for all page objects"""
     
     def __init__(self, driver):
         """
@@ -26,16 +26,16 @@ class BasePage:
     
     def navigate_to(self, url):
         """
-        Navighează la o URL
-        
+        Navigate to a URL.
+
         Args:
-            url: URL-ul de navigat
+            url: URL to navigate to
         """
         self.logger.info(f"Navigating to: {url}")
         self.driver.get(url)
     
     def wait_for_element(self, locator, timeout=10):
-        """Așteaptă ca un element să fie prezent"""
+        """Wait for an element to be present"""
         try:
             return self.wait.until(EC.presence_of_element_located(locator))
         except TimeoutException:
@@ -43,7 +43,7 @@ class BasePage:
             raise
     
     def is_element_present(self, locator, timeout=5):
-        """Verifică dacă un element este prezent"""
+        """Check if an element is present"""
         try:
             self.wait_for_element(locator, timeout)
             return True

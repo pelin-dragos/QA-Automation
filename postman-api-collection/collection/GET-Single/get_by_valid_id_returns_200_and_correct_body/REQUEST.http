@@ -1,0 +1,4 @@
+### API-GET-SINGLE-001: Get By Valid ID Returns 200
+# Run after Setup or GET-List. user_id must be valid.
+GET {{base_url}}/users/{{user_id}}
+Accept: application/json

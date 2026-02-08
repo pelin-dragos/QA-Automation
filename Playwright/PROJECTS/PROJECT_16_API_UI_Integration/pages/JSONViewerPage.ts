@@ -2,7 +2,7 @@ import { Page } from '@playwright/test';
 
 /**
  * Page Object Pattern - JSON Viewer Page
- * Pentru vizualizare JSON în browser (pentru verificare API data)
+ * For viewing JSON in browser (for API data verification)
  */
 export class JSONViewerPage {
   private page: Page;
@@ -12,14 +12,14 @@ export class JSONViewerPage {
   }
 
   /**
-   * Navighează la o URL
+   * Navigate to a URL
    */
   async navigateTo(url: string): Promise<void> {
     await this.page.goto(url);
   }
 
   /**
-   * Așteaptă ca pagina să se încarce
+   * Wait for page to load
    */
   async waitForPageLoad(): Promise<void> {
     await this.page.waitForLoadState('networkidle');
@@ -27,11 +27,11 @@ export class JSONViewerPage {
   }
 
   /**
-   * Obține JSON din pagină
+   * Get JSON from page
    */
   async getJsonFromPage(): Promise<any> {
     try {
-      // Metoda 1: Din <pre> tag
+      // Method 1: From <pre> tag
       const preElement = this.page.locator('pre').first();
       if (await preElement.isVisible().catch(() => false)) {
         const jsonText = await preElement.textContent();
@@ -40,7 +40,7 @@ export class JSONViewerPage {
         }
       }
 
-      // Metoda 2: Din body (raw JSON)
+      // Method 2: From body (raw JSON)
       const bodyElement = this.page.locator('body');
       const bodyText = await bodyElement.textContent();
       
@@ -59,7 +59,7 @@ export class JSONViewerPage {
   }
 
   /**
-   * Verifică dacă pagina conține JSON valid
+   * Check if page contains valid JSON
    */
   async isJsonValid(): Promise<boolean> {
     const jsonData = await this.getJsonFromPage();
@@ -67,7 +67,7 @@ export class JSONViewerPage {
   }
 
   /**
-   * Verifică dacă JSON-ul conține o cheie (și opțional valoarea)
+   * Check if JSON contains a key (and optionally the value)
    */
   async verifyJsonContains(key: string, value?: any): Promise<boolean> {
     const jsonData = await this.getJsonFromPage();
@@ -76,9 +76,9 @@ export class JSONViewerPage {
       return false;
     }
 
-    // Verifică în dict sau list
+    // Check in dict or list
     if (Array.isArray(jsonData)) {
-      // Caută în toate item-urile din listă
+      // Search in all list items
       for (const item of jsonData) {
         if (typeof item === 'object' && item !== null && key in item) {
           if (value === undefined) {
@@ -102,7 +102,7 @@ export class JSONViewerPage {
   }
 
   /**
-   * Găsește un item într-o listă JSON după un field
+   * Find an item in a JSON list by field
    */
   async findItemByField(fieldName: string, fieldValue: any): Promise<any> {
     const jsonData = await this.getJsonFromPage();

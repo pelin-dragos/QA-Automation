@@ -3,18 +3,18 @@ import { PlaywrightWorld } from '../../support/PlaywrightWorld';
 import { ProductsPage } from '../../pages/ProductsPage';
 import { CartPage } from '../../pages/CartPage';
 
-When('navighează la pagina de produse', async function (this: PlaywrightWorld) {
+When('I navigate to the products page', async function (this: PlaywrightWorld) {
   await this.page!.goto(`${this.baseUrl}/inventory.html`);
   await this.page!.waitForTimeout(1000);
 });
 
-When('click pe iconița coșului', async function (this: PlaywrightWorld) {
+When('I click the cart icon', async function (this: PlaywrightWorld) {
   const productsPage = new ProductsPage(this.page!);
   await productsPage.clickCartIcon();
   await this.page!.waitForTimeout(1000);
 });
 
-When('click pe butonul {string} din navigare', async function (this: PlaywrightWorld, buttonText: string) {
+When('I click the {string} button in navigation', async function (this: PlaywrightWorld, buttonText: string) {
   if (buttonText === 'Continue Shopping') {
     const cartPage = new CartPage(this.page!);
     await cartPage.clickContinueShopping();
@@ -22,7 +22,7 @@ When('click pe butonul {string} din navigare', async function (this: PlaywrightW
   await this.page!.waitForTimeout(1000);
 });
 
-When('navighează prin aplicație', async function (this: PlaywrightWorld) {
+When('I navigate through the application', async function (this: PlaywrightWorld) {
   // Navigate through different pages
   await this.page!.goto(`${this.baseUrl}/inventory.html`);
   await this.page!.waitForTimeout(500);
@@ -31,7 +31,7 @@ When('navighează prin aplicație', async function (this: PlaywrightWorld) {
   await this.page!.waitForTimeout(1000);
 });
 
-Then('ar trebui să văd lista de produse', async function (this: PlaywrightWorld) {
+Then('I should see the product list', async function (this: PlaywrightWorld) {
   const productsPage = new ProductsPage(this.page!);
   const isLoaded = await productsPage.isLoaded();
   if (!isLoaded) {
@@ -39,7 +39,7 @@ Then('ar trebui să văd lista de produse', async function (this: PlaywrightWorl
   }
 });
 
-Then('ar trebui să văd cel puțin un produs', async function (this: PlaywrightWorld) {
+Then('I should see at least one product', async function (this: PlaywrightWorld) {
   const productsPage = new ProductsPage(this.page!);
   const productCount = await productsPage.getProductCount();
   if (productCount === 0) {
@@ -47,7 +47,7 @@ Then('ar trebui să văd cel puțin un produs', async function (this: Playwright
   }
 });
 
-Then('ar trebui să fiu redirectat la pagina de coș', async function (this: PlaywrightWorld) {
+Then('I should be redirected to the cart page', async function (this: PlaywrightWorld) {
   const cartPage = new CartPage(this.page!);
   const isLoaded = await cartPage.isLoaded();
   if (!isLoaded) {
@@ -55,14 +55,14 @@ Then('ar trebui să fiu redirectat la pagina de coș', async function (this: Pla
   }
 });
 
-Then('URL-ul ar trebui să conțină {string}', async function (this: PlaywrightWorld, urlPart: string) {
+Then('the URL should contain {string}', async function (this: PlaywrightWorld, urlPart: string) {
   const currentUrl = this.page!.url();
   if (!currentUrl.includes(urlPart)) {
     throw new Error(`URL does not contain ${urlPart}. Current URL: ${currentUrl}`);
   }
 });
 
-Then('ar trebui să revin la pagina de produse', async function (this: PlaywrightWorld) {
+Then('I should return to the products page', async function (this: PlaywrightWorld) {
   const productsPage = new ProductsPage(this.page!);
   const isLoaded = await productsPage.isLoaded();
   if (!isLoaded) {
@@ -70,7 +70,7 @@ Then('ar trebui să revin la pagina de produse', async function (this: Playwrigh
   }
 });
 
-Then('toate link-urile din meniu ar trebui să fie accesibile', async function (this: PlaywrightWorld) {
+Then('all menu links should be accessible', async function (this: PlaywrightWorld) {
   // Verify menu links are accessible
   const productsPage = new ProductsPage(this.page!);
   await productsPage.clickMenuButton();

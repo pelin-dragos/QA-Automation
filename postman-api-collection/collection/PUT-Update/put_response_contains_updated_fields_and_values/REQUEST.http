@@ -1,0 +1,12 @@
+### API-PUT-002: Put Response Contains Updated Fields
+# Run after Setup. user_id must be a resource you own.
+PUT {{base_url}}/users/{{user_id}}
+Authorization: Bearer {{auth_token}}
+Content-Type: application/json
+
+{
+  "name": "ExactMatch",
+  "email": "exact@example.com",
+  "gender": "female",
+  "status": "active"
+}

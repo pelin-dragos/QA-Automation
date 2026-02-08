@@ -1,24 +1,23 @@
 Feature: Logout Functionality
   Background:
-    Given că sunt logat în aplicație cu username-ul "standard_user" și parola "secret_sauce"
+    Given I am logged in with username "standard_user" and password "secret_sauce"
 
-  Scenario: Logout reușit
-    Given că sunt logat în aplicație
-    When click pe butonul de logout
-    Then ar trebui să fiu delogat
-    And ar trebui să fiu redirectat la pagina de login
-    And URL-ul ar trebui să conțină "index.html"
+  Scenario: Successful logout
+    Given I am logged in
+    When I click the logout button
+    Then I should be logged out
+    And I should be redirected to the login page
+    And the URL should contain "index.html"
 
-  Scenario: Verificare logout - acces restricționat
-    Given că am făcut logout
-    When încerc să accesez pagina de produse direct
-    Then ar trebui să fiu redirectat la pagina de login
-    And nu ar trebui să pot accesa pagina de produse fără login
+  Scenario: Logout verification - restricted access
+    Given I have logged out
+    When I try to access the products page directly
+    Then I should be redirected to the login page
+    And I should not be able to access the products page without login
 
   @smoke
-  Scenario: Logout din meniu
-    Given că sunt pe pagina de produse
-    When deschid meniul
-    And click pe opțiunea "Logout"
-    Then ar trebui să fiu delogat cu succes
-
+  Scenario: Logout from menu
+    Given I am on the products page
+    When I open the menu
+    And I click the "Logout" option
+    Then I should be logged out successfully

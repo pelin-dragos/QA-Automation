@@ -3,6 +3,7 @@
 .project-hero {
   padding-block: 2rem 3rem;
   border-bottom: 1px solid var(--border);
+  position: relative;
 }
 .project-hero h1 {
   margin: 0 0 0.5rem;
@@ -10,12 +11,23 @@
   font-weight: 700;
   letter-spacing: -0.03em;
   line-height: 1.2;
+  color: var(--text);
+}
+.project-hero h1::after {
+  content: "";
+  display: block;
+  width: 2.5rem;
+  height: 4px;
+  margin-top: 0.75rem;
+  background: linear-gradient(90deg, var(--accent), var(--accent-dim));
+  border-radius: 2px;
 }
 .project-hero .lead {
   margin: 0;
   color: var(--text-muted);
   font-size: 1.0625rem;
   max-width: 60ch;
+  line-height: 1.65;
 }
 .project-meta {
   margin-top: 1.25rem;
@@ -35,11 +47,13 @@
 .project-meta .tags li {
   font-family: var(--font-mono);
   font-size: 0.75rem;
-  padding: 0.25rem 0.5rem;
+  padding: 0.28rem 0.55rem;
   background: var(--accent-soft);
   color: var(--accent);
   border-radius: 6px;
+  transition: background 0.2s var(--ease-out), color 0.2s var(--ease-out);
 }
+.project-meta .tags li:hover { background: rgba(63, 185, 80, 0.25); }
 
 .project-content { padding-block: 2rem; }
 .project-content .block {
@@ -52,9 +66,13 @@
   background: var(--bg-card);
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  padding: 1.5rem;
+  padding: 1.5rem 1.5rem 1.5rem 1.75rem;
   margin-bottom: 1.25rem;
+  border-left: 3px solid var(--accent);
+  box-shadow: var(--shadow-card);
+  transition: border-left-color 0.2s var(--ease-out), box-shadow 0.2s var(--ease-out);
 }
+.test-category:hover { box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3); }
 .test-category h3 {
   margin: 0 0 0.75rem;
   font-size: 1.0625rem;
@@ -88,7 +106,9 @@
   border-radius: var(--radius-sm);
   padding: 1rem 1.25rem;
   font-size: 0.9375rem;
+  transition: border-color 0.2s var(--ease-out), box-shadow 0.2s var(--ease-out);
 }
+.project-list li:hover { border-color: rgba(63, 185, 80, 0.4); box-shadow: var(--shadow-card); }
 .project-list li strong { color: var(--text); display: block; margin-bottom: 0.25rem; }
 .project-list li span { color: var(--text-muted); font-size: 0.875rem; }
 
@@ -97,11 +117,13 @@
   background: var(--bg-card);
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  padding: 1.5rem;
+  padding: 1.75rem;
+  border-left: 3px solid var(--accent);
+  box-shadow: var(--shadow-card);
 }
-.run-block h3 { margin: 0 0 0.75rem; font-size: 1rem; font-weight: 600; }
+.run-block .section-title { margin-bottom: 0.75rem; }
 .run-block p { margin: 0 0 0.75rem; color: var(--text-muted); font-size: 0.9375rem; }
-.run-block pre { margin: 0; }
+.run-block pre { margin: 0.75rem 0 0; }
 
 /* ===== Structure list ===== */
 .structure-list {
@@ -110,9 +132,10 @@
   background: var(--bg-card);
   border: 1px solid var(--border);
   border-radius: var(--radius-sm);
-  padding: 1rem 1.25rem;
+  padding: 1.25rem 1.5rem;
   color: var(--text-muted);
   line-height: 1.8;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.15);
 }
 .structure-list .folder { color: var(--accent); }
 .structure-list .file { color: var(--text-muted); }

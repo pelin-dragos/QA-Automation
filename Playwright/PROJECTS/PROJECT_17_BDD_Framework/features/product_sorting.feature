@@ -1,32 +1,32 @@
 Feature: Product Sorting
   Background:
-    Given că sunt logat în aplicație cu username-ul "standard_user" și parola "secret_sauce"
-    And că sunt pe pagina de produse
+    Given I am logged in with username "standard_user" and password "secret_sauce"
+    And I am on the products page
 
-  Scenario: Sortare produse după nume A-Z
-    When selectez opțiunea de sortare "Name (A to Z)"
-    Then produsele ar trebui să fie sortate alfabetic A-Z
-    And primul produs ar trebui să înceapă cu o literă mai devreme în alfabet
+  Scenario: Sort products by name A-Z
+    When I select the sort option "Name (A to Z)"
+    Then the products should be sorted alphabetically A-Z
+    And the first product should start with an earlier letter in the alphabet
 
-  Scenario: Sortare produse după nume Z-A
-    When selectez opțiunea de sortare "Name (Z to A)"
-    Then produsele ar trebui să fie sortate alfabetic Z-A
-    And primul produs ar trebui să înceapă cu o literă mai târzie în alfabet
+  Scenario: Sort products by name Z-A
+    When I select the sort option "Name (Z to A)"
+    Then the products should be sorted alphabetically Z-A
+    And the first product should start with a later letter in the alphabet
 
-  Scenario: Sortare produse după preț Low to High
-    When selectez opțiunea de sortare "Price (low to high)"
-    Then produsele ar trebui să fie sortate după preț crescător
-    And primul produs ar trebui să aibă cel mai mic preț
+  Scenario: Sort products by price Low to High
+    When I select the sort option "Price (low to high)"
+    Then the products should be sorted by price ascending
+    And the first product should have the lowest price
 
-  Scenario: Sortare produse după preț High to Low
-    When selectez opțiunea de sortare "Price (high to low)"
-    Then produsele ar trebui să fie sortate după preț descrescător
-    And primul produs ar trebui să aibă cel mai mare preț
+  Scenario: Sort products by price High to Low
+    When I select the sort option "Price (high to low)"
+    Then the products should be sorted by price descending
+    And the first product should have the highest price
 
   @smoke
-  Scenario Outline: Sortare cu diferite opțiuni
-    When selectez opțiunea de sortare "<sort_option>"
-    Then produsele ar trebui să fie sortate conform "<sort_option>"
+  Scenario Outline: Sort with different options
+    When I select the sort option "<sort_option>"
+    Then the products should be sorted according to "<sort_option>"
 
     Examples:
       | sort_option            |
@@ -34,4 +34,3 @@ Feature: Product Sorting
       | Name (Z to A)          |
       | Price (low to high)    |
       | Price (high to low)    |
-

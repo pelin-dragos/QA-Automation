@@ -1,0 +1,3 @@
+### API-DELETE-004: Get After Delete Returns 404 (run after Delete Valid ID)
+GET {{base_url}}/users/{{user_id}}
+Accept: application/json

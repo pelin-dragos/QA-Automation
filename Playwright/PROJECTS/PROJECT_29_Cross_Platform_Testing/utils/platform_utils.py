@@ -1,5 +1,5 @@
 """
-Platform detection și utilities pentru cross-platform testing
+Platform detection and utilities for cross-platform testing
 """
 import platform
 import os
@@ -10,13 +10,13 @@ logger = logging.getLogger(__name__)
 
 
 class PlatformUtils:
-    """Clasă pentru platform detection și utilities"""
-    
+    """Class for platform detection and utilities"""
+
     @staticmethod
     def get_platform_info():
         """
-        Obține informații despre platformă
-        
+        Get platform information.
+
         Returns:
             dict: Platform information
         """
@@ -35,8 +35,8 @@ class PlatformUtils:
     @staticmethod
     def get_path_separator():
         """
-        Obține path separator pentru platformă curentă
-        
+        Get path separator for current platform.
+
         Returns:
             str: Path separator
         """
@@ -48,8 +48,8 @@ class PlatformUtils:
     @staticmethod
     def normalize_path(path: str):
         """
-        Normalizează path pentru platformă curentă
-        
+        Normalize path for current platform.
+
         Args:
             path: Path string
             
@@ -64,10 +64,10 @@ class PlatformUtils:
     @staticmethod
     def get_chrome_driver_path():
         """
-        Obține path către ChromeDriver pentru platformă
-        
+        Get path to ChromeDriver for platform.
+
         Returns:
-            str: ChromeDriver path sau None
+            str: ChromeDriver path or None
         """
         platform_name = platform.system().lower()
         
@@ -82,10 +82,10 @@ class PlatformUtils:
     @staticmethod
     def is_ci_environment():
         """
-        Verifică dacă rulează în CI/CD environment
-        
+        Check if running in CI/CD environment.
+
         Returns:
-            bool: True dacă este CI/CD
+            bool: True if CI/CD
         """
         ci_vars = ['CI', 'GITHUB_ACTIONS', 'JENKINS_URL', 'TRAVIS', 'CIRCLECI']
         return any(os.getenv(var) for var in ci_vars)
@@ -93,8 +93,8 @@ class PlatformUtils:
     @staticmethod
     def get_platform_specific_config():
         """
-        Obține configurare specifică platformă
-        
+        Get platform-specific configuration.
+
         Returns:
             dict: Platform-specific configuration
         """
@@ -110,7 +110,7 @@ class PlatformUtils:
             config['download_path'] = os.path.join(os.path.expanduser('~'), 'Downloads')
             config['window_size'] = '1920,1080'
         elif platform_name == 'linux':
-            config['headless'] = True  # Default pentru Linux în CI
+            config['headless'] = True  # Default for Linux in CI
             config['download_path'] = os.path.join(os.path.expanduser('~'), 'Downloads')
             config['window_size'] = '1920,1080'
         elif platform_name == 'darwin':  # macOS
@@ -121,7 +121,7 @@ class PlatformUtils:
     
     @staticmethod
     def print_platform_info():
-        """Printează informații despre platformă"""
+        """Print platform information"""
         info = PlatformUtils.get_platform_info()
         
         print("\n" + "=" * 80)

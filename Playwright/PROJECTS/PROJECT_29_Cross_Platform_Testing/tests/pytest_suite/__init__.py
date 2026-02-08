@@ -1,4 +1,4 @@
 """
-Teste pentru Cross-Platform Testing (fără Allure)
+Tests for Cross-Platform Testing (without Allure)
 """
 

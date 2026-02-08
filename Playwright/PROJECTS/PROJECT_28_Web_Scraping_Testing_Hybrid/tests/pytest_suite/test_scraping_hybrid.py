@@ -1,7 +1,7 @@
 """
-Test Suite: Web Scraping + Testing Hybrid
-⚠️ ATENȚIE: Respectă robots.txt și Terms of Service!
-Teste care combină scraping de date cu validare și functional testing
+Test Suite: Web Scraping + Testing Hybrid.
+Respect robots.txt and Terms of Service!
+Tests that combine data scraping with validation and functional testing.
 """
 import pytest
 import sys
@@ -17,7 +17,7 @@ from utils.data_storage import DataStorage
 @pytest.mark.scraping
 @pytest.mark.hybrid
 class TestScrapingAndValidation:
-    """Teste hibrid: scraping + validation"""
+    """Hybrid tests: scraping + validation"""
     
     def test_scrape_and_validate_text(self, driver, base_url, http_session):
         """Test: Scrape text și validare"""
@@ -29,7 +29,7 @@ class TestScrapingAndValidation:
         robots_info = scraper.check_robots_txt(base_url, http_session)
         print(f"Robots.txt check: {robots_info}")
         
-        # Navigate și scrape
+        # Navigate and scrape
         page.navigate_to(base_url)
         
         # Scrape text content
@@ -50,7 +50,7 @@ class TestScrapingAndValidation:
         scraper = WebScraper(driver)
         validator = DataValidator()
         
-        # Navigate și scrape
+        # Navigate and scrape
         page.navigate_to(base_url)
         
         # Scrape links
@@ -72,7 +72,7 @@ class TestScrapingAndValidation:
 
 @pytest.mark.scraping
 class TestDataExtraction:
-    """Teste pentru data extraction"""
+    """Tests for data extraction"""
     
     def test_scrape_table_data(self, driver, base_url):
         """Test: Scrape date din tabele"""
@@ -122,7 +122,7 @@ class TestDataExtraction:
 @pytest.mark.scraping
 @pytest.mark.data
 class TestDataStorageAndProcessing:
-    """Teste pentru data storage și processing"""
+    """Tests for data storage and processing"""
     
     def test_save_scraped_data_to_json(self, driver, base_url):
         """Test: Scrape date și salvare în JSON"""
@@ -191,7 +191,7 @@ class TestDataStorageAndProcessing:
 @pytest.mark.scraping
 @pytest.mark.hybrid
 class TestHybridScrapingTesting:
-    """Teste hibrid: scraping în timpul functional testing"""
+    """Hybrid tests: scraping during functional testing"""
     
     def test_scrape_during_navigation(self, driver, base_url):
         """Test: Scrape date în timpul navigării"""
@@ -250,7 +250,7 @@ class TestHybridScrapingTesting:
 @pytest.mark.scraping
 @pytest.mark.smoke
 class TestScrapingSmoke:
-    """Smoke tests pentru scraping"""
+    """Smoke tests for scraping"""
     
     def test_smoke_scrape_basic_content(self, driver, base_url):
         """Test: Smoke test - scrape basic content"""

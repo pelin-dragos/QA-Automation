@@ -1,0 +1,6 @@
+### API-AUTH-004: Expired Token Returns 401 (N/A if no expired token - set expired_token in env)
+POST {{base_url}}/users
+Authorization: Bearer {{expired_token}}
+Content-Type: application/json
+
+{"name":"Test","email":"expired-test@example.com","gender":"male","status":"active"}

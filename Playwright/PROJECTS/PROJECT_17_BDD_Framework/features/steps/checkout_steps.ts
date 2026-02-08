@@ -4,7 +4,7 @@ import { CheckoutPage } from '../../pages/CheckoutPage';
 import { CheckoutOverviewPage } from '../../pages/CheckoutOverviewPage';
 import { CheckoutCompletePage } from '../../pages/CheckoutCompletePage';
 
-When('click pe butonul {string} la checkout', async function (this: PlaywrightWorld, buttonText: string) {
+When('I click the {string} button at checkout', async function (this: PlaywrightWorld, buttonText: string) {
   if (buttonText === 'Checkout') {
     const { CartPage } = await import('../../pages/CartPage');
     const cartPage = new CartPage(this.page!);
@@ -22,7 +22,7 @@ When('click pe butonul {string} la checkout', async function (this: PlaywrightWo
 });
 
 When(
-  'completez formularul cu numele {string}, prenumele {string} și codul poștal {string}',
+  'I fill the form with first name {string}, last name {string} and postal code {string}',
   async function (this: PlaywrightWorld, firstName: string, lastName: string, postalCode: string) {
     const checkoutPage = new CheckoutPage(this.page!);
     await checkoutPage.fillCheckoutForm(firstName, lastName, postalCode);
@@ -30,7 +30,7 @@ When(
   }
 );
 
-When('click pe butonul {string} la checkout fără să completez formularul', async function (this: PlaywrightWorld, buttonText: string) {
+When('I click the {string} button without filling the form', async function (this: PlaywrightWorld, buttonText: string) {
   if (buttonText === 'Continue') {
     const checkoutPage = new CheckoutPage(this.page!);
     await checkoutPage.clickContinue();
@@ -39,7 +39,7 @@ When('click pe butonul {string} la checkout fără să completez formularul', as
 });
 
 When(
-  'completez formularul cu prenumele {string} și codul poștal {string} dar fără nume',
+  'I fill the form with last name {string} and postal code {string} but without first name',
   async function (this: PlaywrightWorld, lastName: string, postalCode: string) {
     const checkoutPage = new CheckoutPage(this.page!);
     await checkoutPage.fillLastName(lastName);
@@ -49,12 +49,12 @@ When(
   }
 );
 
-When('acesez pagina de checkout overview', async function (this: PlaywrightWorld) {
+When('I access the checkout overview page', async function (this: PlaywrightWorld) {
   const checkoutOverviewPage = new CheckoutOverviewPage(this.page!);
   await checkoutOverviewPage.waitForPageLoad();
 });
 
-Then('ar trebui să fiu pe pagina de checkout', async function (this: PlaywrightWorld) {
+Then('I should be on the checkout page', async function (this: PlaywrightWorld) {
   const checkoutPage = new CheckoutPage(this.page!);
   const isLoaded = await checkoutPage.isLoaded();
   if (!isLoaded) {
@@ -62,7 +62,7 @@ Then('ar trebui să fiu pe pagina de checkout', async function (this: Playwright
   }
 });
 
-Then('ar trebui să văd pagina de overview', async function (this: PlaywrightWorld) {
+Then('I should see the overview page', async function (this: PlaywrightWorld) {
   const checkoutOverviewPage = new CheckoutOverviewPage(this.page!);
   const isLoaded = await checkoutOverviewPage.isLoaded();
   if (!isLoaded) {
@@ -70,7 +70,7 @@ Then('ar trebui să văd pagina de overview', async function (this: PlaywrightWo
   }
 });
 
-Then('ar trebui să văd produsul în lista de comenzi', async function (this: PlaywrightWorld) {
+Then('I should see the product in the order list', async function (this: PlaywrightWorld) {
   const checkoutOverviewPage = new CheckoutOverviewPage(this.page!);
   const itemCount = await checkoutOverviewPage.getCartItemCount();
   if (itemCount === 0) {
@@ -78,7 +78,7 @@ Then('ar trebui să văd produsul în lista de comenzi', async function (this: P
   }
 });
 
-Then('ar trebui să văd mesajul de succes {string}', async function (this: PlaywrightWorld, expectedMessage: string) {
+Then('I should see the success message {string}', async function (this: PlaywrightWorld, expectedMessage: string) {
   const checkoutCompletePage = new CheckoutCompletePage(this.page!);
   await checkoutCompletePage.waitForPageLoad();
   const isVisible = await checkoutCompletePage.isSuccessMessageVisible(expectedMessage);
@@ -87,7 +87,7 @@ Then('ar trebui să văd mesajul de succes {string}', async function (this: Play
   }
 });
 
-Then('comanda ar trebui să fie finalizată', async function (this: PlaywrightWorld) {
+Then('the order should be completed', async function (this: PlaywrightWorld) {
   const checkoutCompletePage = new CheckoutCompletePage(this.page!);
   const isLoaded = await checkoutCompletePage.isLoaded();
   if (!isLoaded) {
@@ -95,7 +95,7 @@ Then('comanda ar trebui să fie finalizată', async function (this: PlaywrightWo
   }
 });
 
-Then('ar trebui să văd un mesaj de eroare {string} la checkout', async function (this: PlaywrightWorld, expectedError: string) {
+Then('I should see an error message {string} at checkout', async function (this: PlaywrightWorld, expectedError: string) {
   const checkoutPage = new CheckoutPage(this.page!);
   const isErrorVisible = await checkoutPage.isErrorVisible();
   if (!isErrorVisible) {
@@ -107,7 +107,7 @@ Then('ar trebui să văd un mesaj de eroare {string} la checkout', async functio
   }
 });
 
-Then('ar trebui să văd un mesaj de eroare la checkout', async function (this: PlaywrightWorld) {
+Then('I should see an error message at checkout', async function (this: PlaywrightWorld) {
   const checkoutPage = new CheckoutPage(this.page!);
   const isErrorVisible = await checkoutPage.isErrorVisible();
   if (!isErrorVisible) {
@@ -115,7 +115,7 @@ Then('ar trebui să văd un mesaj de eroare la checkout', async function (this: 
   }
 });
 
-Then('subtotal-ul ar trebui să fie {string}', async function (this: PlaywrightWorld, expectedSubtotal: string) {
+Then('the subtotal should be {string}', async function (this: PlaywrightWorld, expectedSubtotal: string) {
   const checkoutOverviewPage = new CheckoutOverviewPage(this.page!);
   const subtotal = await checkoutOverviewPage.getSubtotal();
   if (!subtotal.includes(expectedSubtotal.replace('$', ''))) {
@@ -123,7 +123,7 @@ Then('subtotal-ul ar trebui să fie {string}', async function (this: PlaywrightW
   }
 });
 
-Then('tax-ul ar trebui să fie calculat corect', async function (this: PlaywrightWorld) {
+Then('the tax should be calculated correctly', async function (this: PlaywrightWorld) {
   const checkoutOverviewPage = new CheckoutOverviewPage(this.page!);
   const tax = await checkoutOverviewPage.getTax();
   if (!tax || tax === '') {
@@ -131,7 +131,7 @@ Then('tax-ul ar trebui să fie calculat corect', async function (this: Playwrigh
   }
 });
 
-Then('total-ul final ar trebui să fie corect', async function (this: PlaywrightWorld) {
+Then('the final total should be correct', async function (this: PlaywrightWorld) {
   const checkoutOverviewPage = new CheckoutOverviewPage(this.page!);
   const total = await checkoutOverviewPage.getTotal();
   if (!total || total === '') {

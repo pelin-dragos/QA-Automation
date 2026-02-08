@@ -1,6 +1,6 @@
 """
-Base Page pentru toate page objects
-Cu suport pentru AI-powered element finding
+Base Page for all page objects.
+With support for AI-powered element finding.
 """
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -11,7 +11,7 @@ logger = logging.getLogger(__name__)
 
 
 class BasePage:
-    """Clasă de bază pentru toate page objects cu AI support"""
+    """Base class for all page objects with AI support"""
     
     def __init__(self, driver, ai_finder=None):
         """
@@ -19,7 +19,7 @@ class BasePage:
         
         Args:
             driver: WebDriver instance
-            ai_finder: AIElementFinder instance (opțional)
+            ai_finder: AIElementFinder instance (optional)
         """
         self.driver = driver
         self.wait = WebDriverWait(driver, 10)
@@ -41,10 +41,10 @@ class BasePage:
     
     def find_element_ai(self, description):
         """
-        Găsește element folosind AI finder
-        
+        Find element using AI finder.
+
         Args:
-            description: Descriere natural language a elementului
+            description: Natural language description of the element
             
         Returns:
             WebElement: Elementul găsit

@@ -1,0 +1,4 @@
+### API-DELETE-007: Delete With Conflict Returns 409
+# GoREST: deleting already-deleted returns 404. APIs with conflict rules return 409.
+DELETE {{base_url}}/users/{{user_id}}
+Authorization: Bearer {{auth_token}}

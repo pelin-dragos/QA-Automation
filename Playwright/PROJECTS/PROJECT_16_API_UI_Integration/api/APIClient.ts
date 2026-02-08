@@ -1,6 +1,6 @@
 /**
- * API Client pentru API calls în teste
- * Helper methods pentru HTTP requests folosind fetch API
+ * API Client for API calls in tests
+ * Helper methods for HTTP requests using fetch API
  */
 
 export interface APIResponse<T = any> {
@@ -177,35 +177,35 @@ export class APIClient {
   }
 
   /**
-   * Obține un resource via GET
+   * Get a resource via GET
    */
   async getResource<T = any>(endpoint: string, resourceId: number | string): Promise<T> {
     return this.getJson<T>(`${endpoint}/${resourceId}`);
   }
 
   /**
-   * Actualizează un resource via PUT
+   * Update a resource via PUT
    */
   async updateResource<T = any>(endpoint: string, resourceId: number | string, data: any): Promise<T> {
     return this.putJson<T>(`${endpoint}/${resourceId}`, data);
   }
 
   /**
-   * Șterge un resource via DELETE
+   * Delete a resource via DELETE
    */
   async deleteResource(endpoint: string, resourceId: number | string): Promise<APIResponse> {
     return this.delete(`${endpoint}/${resourceId}`);
   }
 
   /**
-   * Obține toate resource-urile dintr-un endpoint
+   * Get all resources from an endpoint
    */
   async getAllResources<T = any>(endpoint: string, params?: Record<string, string>): Promise<T> {
     return this.getJson<T>(endpoint, params);
   }
 
   /**
-   * Construiește URL cu query parameters
+   * Build URL with query parameters
    */
   private buildUrl(endpoint: string, params?: Record<string, string>): string {
     const url = `${this.baseUrl}${endpoint}`;

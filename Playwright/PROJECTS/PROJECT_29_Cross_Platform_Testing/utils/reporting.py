@@ -11,14 +11,14 @@ logger = logging.getLogger(__name__)
 
 
 class CrossPlatformReporter:
-    """Clasă pentru generare cross-platform reports"""
-    
+    """Class for generating cross-platform reports"""
+
     def __init__(self, reports_dir="reports"):
         """
-        Constructor
-        
+        Constructor.
+
         Args:
-            reports_dir: Directory pentru reports
+            reports_dir: Directory for reports
         """
         self.reports_dir = reports_dir
         
@@ -28,8 +28,8 @@ class CrossPlatformReporter:
     
     def generate_comparative_report(self, test_results_by_platform):
         """
-        Generează report comparativ între platforme
-        
+        Generate comparative report between platforms.
+
         Args:
             test_results_by_platform: Dict cu results per platform
                 {
@@ -75,7 +75,7 @@ class CrossPlatformReporter:
         return report
     
     def _compare_platforms(self, platforms_data):
-        """Compară results între platforme"""
+        """Compare results between platforms"""
         comparison = {
             'consistency': {},
             'differences': []
@@ -103,7 +103,7 @@ class CrossPlatformReporter:
         return comparison
     
     def _generate_text_report(self, report, output_file):
-        """Generează text report"""
+        """Generate text report"""
         with open(output_file, 'w') as f:
             f.write("=" * 80 + "\n")
             f.write("CROSS-PLATFORM TEST REPORT\n")
@@ -138,7 +138,7 @@ class CrossPlatformReporter:
                     f.write("No significant differences between platforms.\n")
     
     def print_comparison(self, report):
-        """Printează comparison în console"""
+        """Print comparison to console"""
         print("\n" + "=" * 80)
         print("CROSS-PLATFORM TEST COMPARISON")
         print("=" * 80)

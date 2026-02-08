@@ -1,17 +1,17 @@
-﻿# Proiect 25: Security Testing Automation
+# Project 25: Security Testing Automation
 
-## 🎯 Obiectiv
-Suite completă de teste pentru vulnerabilități web (XSS, SQL injection, CSRF, Security headers, HTTPS) cu payloads collection și reporting automat.
+## 🎯 Objective
+Complete test suite for web vulnerabilities (XSS, SQL injection, CSRF, Security headers, HTTPS) with payload collection and automated reporting.
 
-## 📋 Cerințe
-- ✅ Teste pentru XSS în input fields
-- ✅ Teste pentru SQL injection în forms
-- ✅ Teste pentru CSRF protection
-- ✅ Teste pentru authentication bypass
+## 📋 Requirements
+- ✅ Tests for XSS in input fields
+- ✅ Tests for SQL injection in forms
+- ✅ Tests for CSRF protection
+- ✅ Tests for authentication bypass
 - ✅ Security headers verification
 - ✅ Secure data transmission (HTTPS)
 
-## 🛠️ Tehnologii
+## 🛠️ Technologies
 - **Playwright** - Modern automation framework
 - **TypeScript** - Strongly typed JavaScript
 - **Security Payloads** - XSS, SQL injection, CSRF payloads
@@ -20,23 +20,23 @@ Suite completă de teste pentru vulnerabilități web (XSS, SQL injection, CSRF,
 
 ## ⚠️ IMPORTANT - Legal Notice
 
-**🔒 TESTEAZĂ DOAR APLICAȚII PROPRII SAU CU PERMISIUNE EXPLICITĂ!**
+**🔒 TEST ONLY YOUR OWN APPLICATIONS OR WITH EXPLICIT PERMISSION!**
 
-- ✅ Testează aplicații proprii sau demo
-- ✅ Folosește doar cu permisiune scrisă
-- ❌ NU folosi pe aplicații fără autorizație
-- ❌ NU face penetration testing neautorizat
+- ✅ Test your own or demo applications
+- ✅ Use only with written permission
+- ❌ Do not use on applications without authorization
+- ❌ Do not perform unauthorized penetration testing
 
-**Consecințe legale:** Utilizarea neautorizată poate fi ilegală!
+**Legal consequences:** Unauthorized use may be illegal!
 
-## 📁 Structură Proiect
+## 📁 Project Structure
 
 ```
 PROJECT_25_Security_Testing/
-├── package.json                  # Dependențe Node.js
-├── tsconfig.json                 # Configurare TypeScript
-├── playwright.config.ts          # Configurare Playwright
-├── README.md                     # Acest fișier
+├── package.json                  # Node.js dependencies
+├── tsconfig.json                 # TypeScript configuration
+├── playwright.config.ts          # Playwright configuration
+├── README.md                     # This file
 │
 ├── utils/                         # Utilities
 │   ├── SecurityPayloads.ts      # XSS, SQL injection, CSRF payloads
@@ -49,33 +49,33 @@ PROJECT_25_Security_Testing/
 ├── tests/                         # Test suite
 │   └── test_security.spec.ts
 │
-└── reports/                       # Reports (generat)
+└── reports/                       # Reports (generated)
     ├── security_report.json      # JSON report
     └── security_report.txt       # Text report
 ```
 
-## ✨ Funcționalități
+## ✨ Features
 
 ### 1. XSS Testing
 - **Payloads Collection**: Basic, encoded, advanced XSS payloads
-- **Input Field Testing**: Inject payloads în input fields
-- **Vulnerability Detection**: Detectare XSS vulnerabilities
-- **Alert Detection**: Detectare JavaScript alerts
+- **Input Field Testing**: Inject payloads into input fields
+- **Vulnerability Detection**: Detect XSS vulnerabilities
+- **Alert Detection**: Detect JavaScript alerts
 
 ### 2. SQL Injection Testing
 - **Payloads Collection**: Basic, time-based, union-based SQL injection
-- **Input Field Testing**: Inject payloads în forms
-- **Error Detection**: Detectare SQL errors în responses
+- **Input Field Testing**: Inject payloads into forms
+- **Error Detection**: Detect SQL errors in responses
 - **Vulnerability Reporting**: Report SQL injection vulnerabilities
 
 ### 3. Security Headers Verification
 - **Required Headers**: X-Content-Type-Options, X-Frame-Options, X-XSS-Protection
 - **Recommended Headers**: CSP, HSTS, Referrer-Policy
-- **Header Validation**: Verificare prezență și valori corecte
-- **Missing Headers**: Report headers lipsă
+- **Header Validation**: Check presence and correct values
+- **Missing Headers**: Report missing headers
 
 ### 4. HTTPS/SSL Testing
-- **HTTPS Verification**: Verificare că site-ul folosește HTTPS
+- **HTTPS Verification**: Verify the site uses HTTPS
 - **SSL Certificate**: Check SSL certificate validity
 - **Secure Transmission**: Verify secure data transmission
 
@@ -85,7 +85,7 @@ PROJECT_25_Security_Testing/
 - **Session Security**: Verify session management
 
 ### 6. CSRF Testing
-- **CSRF Form Generation**: Generează CSRF attack forms
+- **CSRF Form Generation**: Generate CSRF attack forms
 - **Token Validation**: Verify CSRF token presence
 - **Protection Detection**: Detect CSRF protection mechanisms
 
@@ -93,22 +93,22 @@ PROJECT_25_Security_Testing/
 - **JSON Report**: Structured vulnerability data
 - **Text Report**: Human-readable format
 - **HTML Report**: Playwright HTML integration
-- **Vulnerability Summary**: Count și severity
+- **Vulnerability Summary**: Count and severity
 
 ## 📝 Deliverables
-- ✅ Suite de teste pentru security (XSS, SQL injection, headers, HTTPS)
-- ✅ Payloads collection pentru testing (XSSPayloads, SQLInjectionPayloads)
+- ✅ Test suite for security (XSS, SQL injection, headers, HTTPS)
+- ✅ Payload collection for testing (XSSPayloads, SQLInjectionPayloads)
 - ✅ Security report (JSON, text)
-- ✅ Documentație despre vulnerabilități testate
+- ✅ Documentation on tested vulnerabilities
 - ✅ Security checks utilities (SecurityChecker class)
 - ✅ Reporting system (SecurityReporter)
 
-## ✅ Criterii de Evaluare
-- ✅ Teste pentru multiple tipuri de vulnerabilități (XSS, SQL, CSRF, headers)
-- ✅ Payloads efective (diverse tipuri de payloads)
-- ✅ Report clar pentru security issues (JSON, text)
-- ✅ Security headers verification funcțională
-- ✅ HTTPS verification funcțională
+## ✅ Evaluation Criteria
+- ✅ Tests for multiple vulnerability types (XSS, SQL, CSRF, headers)
+- ✅ Effective payloads (diverse payload types)
+- ✅ Clear report for security issues (JSON, text)
+- ✅ Functional security headers verification
+- ✅ Functional HTTPS verification
 
 ## 🚀 Quick Start
 
@@ -148,7 +148,7 @@ cat reports/security_report.txt
 npm run report
 ```
 
-## 📚 Documentație
+## 📚 Documentation
 
 ### Code Examples:
 
@@ -200,55 +200,55 @@ const result = await checker.checkSQLInjection('#username', payloads[0]);
 - `Strict-Transport-Security`
 - `Content-Security-Policy`
 
-## 📊 Status Implementare
+## 📊 Implementation Status
 
-| Funcționalitate | Status | Note |
-|----------------|--------|------|
-| XSS Testing | ✅ Implementat | Payloads + detection |
-| SQL Injection | ✅ Implementat | Payloads + error detection |
-| Security Headers | ✅ Implementat | Full header verification |
-| HTTPS Verification | ✅ Implementat | HTTPS check |
-| CSRF Testing | ✅ Implementat | CSRF form generation |
-| Authentication Security | ✅ Implementat | Bypass payloads |
-| Reporting | ✅ Implementat | JSON, text |
-| Payloads Collection | ✅ Implementat | Comprehensive payloads |
+| Feature | Status | Notes |
+|---------|--------|-------|
+| XSS Testing | ✅ Implemented | Payloads + detection |
+| SQL Injection | ✅ Implemented | Payloads + error detection |
+| Security Headers | ✅ Implemented | Full header verification |
+| HTTPS Verification | ✅ Implemented | HTTPS check |
+| CSRF Testing | ✅ Implemented | CSRF form generation |
+| Authentication Security | ✅ Implemented | Bypass payloads |
+| Reporting | ✅ Implemented | JSON, text |
+| Payloads Collection | ✅ Implemented | Comprehensive payloads |
 
 ## 💡 Tips
 
-1. **Pentru Accuracy:**
-   - Adaptează testele la aplicația specifică
-   - Update locators pentru input fields
+1. **For Accuracy:**
+   - Adapt tests to the specific application
+   - Update locators for input fields
    - Customize error detection
 
-2. **Pentru Safety:**
-   - Testează DOAR aplicații proprii
-   - Folosește environment de test
-   - Documentează findings
+2. **For Safety:**
+   - Test ONLY your own applications
+   - Use a test environment
+   - Document findings
 
-3. **Pentru Debugging:**
+3. **For Debugging:**
    - Review security reports
    - Check payload execution
    - Verify vulnerability detection logic
 
-4. **Pentru CI/CD:**
-   - Run security tests în CI/CD
+4. **For CI/CD:**
+   - Run security tests in CI/CD
    - Fail builds on critical vulnerabilities
    - Track security metrics over time
 
 ## ⚠️ Legal Notice
 
-**Această suită de teste este destinată doar pentru:**
-- ✅ Testarea aplicațiilor proprii
-- ✅ Testarea aplicațiilor cu permisiune explicită
-- ✅ Educație și învățare
+**This test suite is intended only for:**
+- ✅ Testing your own applications
+- ✅ Testing applications with explicit permission
+- ✅ Education and learning
 
-**NU folosiți pentru:**
-- ❌ Testarea aplicațiilor fără autorizație
-- ❌ Hacking sau penetration testing neautorizat
-- ❌ Activități ilegale
+**Do NOT use for:**
+- ❌ Testing applications without authorization
+- ❌ Hacking or unauthorized penetration testing
+- ❌ Illegal activities
 
-**Autorii nu sunt responsabili pentru utilizarea neautorizată.**
+**The authors are not responsible for unauthorized use.**
 
 ---
 
-**Succes cu Security Testing (responsabil)! 🔒**
+**Good luck with Security Testing (use responsibly)! 🔒**

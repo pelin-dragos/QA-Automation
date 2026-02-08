@@ -1,5 +1,5 @@
 """
-Login Page pentru Cross-Platform Testing
+Login Page for Cross-Platform Testing
 """
 from selenium.webdriver.common.by import By
 from pages.base_page import BasePage
@@ -23,7 +23,7 @@ class LoginPage(BasePage):
         self.base_url = "https://www.saucedemo.com/"
     
     def navigate_to(self):
-        """Navighează la pagina de login"""
+        """Navigate to the login page"""
         super().navigate_to(self.base_url)
     
     def login(self, username, password):
@@ -50,7 +50,7 @@ class LoginPage(BasePage):
         time.sleep(2)  # Wait for page transition
     
     def is_logged_in(self):
-        """Verifică dacă utilizatorul este logat"""
+        """Check if the user is logged in"""
         current_url = self.driver.current_url
         return "inventory.html" in current_url or "inventory" in current_url
 

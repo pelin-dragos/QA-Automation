@@ -1,0 +1,11 @@
+### API-AUTH-002: Valid Token Returns 200/201 (POST requires auth on GoREST)
+POST {{base_url}}/users
+Authorization: Bearer {{auth_token}}
+Content-Type: application/json
+
+{
+  "name": "Auth Test User",
+  "email": "auth-test-{{$timestamp}}@example.com",
+  "gender": "male",
+  "status": "active"
+}

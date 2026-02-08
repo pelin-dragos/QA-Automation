@@ -1,5 +1,5 @@
 """
-Data validation utilities pentru scraped data
+Data validation utilities for scraped data
 """
 import re
 import logging
@@ -9,18 +9,18 @@ logger = logging.getLogger(__name__)
 
 
 class DataValidator:
-    """Clasă pentru validare date scraped"""
+    """Class for validating scraped data"""
     
     @staticmethod
     def validate_url(url: str) -> bool:
         """
-        Validează URL format
-        
+        Validate URL format.
+
         Args:
             url: URL string
-            
+
         Returns:
-            bool: True dacă URL este valid
+            bool: True if URL is valid
         """
         pattern = re.compile(
             r'^https?://'  # http:// or https://
@@ -35,13 +35,13 @@ class DataValidator:
     @staticmethod
     def validate_email(email: str) -> bool:
         """
-        Validează email format
-        
+        Validate email format.
+
         Args:
             email: Email string
-            
+
         Returns:
-            bool: True dacă email este valid
+            bool: True if email is valid
         """
         pattern = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
         return bool(re.match(pattern, email))

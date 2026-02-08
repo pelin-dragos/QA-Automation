@@ -1,36 +1,35 @@
 Feature: Shopping Cart Functionality
   Background:
-    Given că sunt logat în aplicație cu username-ul "standard_user" și parola "secret_sauce"
+    Given I am logged in with username "standard_user" and password "secret_sauce"
 
-  Scenario: Adăugare produs în coș
-    Given că sunt pe pagina de produse
-    When click pe butonul "Add to cart" pentru primul produs
-    Then produsul ar trebui să fie adăugat în coș
-    And badge-ul coșului ar trebui să afișeze "1"
+  Scenario: Add product to cart
+    Given I am on the products page
+    When I click the "Add to cart" button for the first product
+    Then the product should be added to the cart
+    And the cart badge should display "1"
 
-  Scenario: Adăugare multiple produse în coș
-    Given că sunt pe pagina de produse
-    When adaug primul produs în coș
-    And adaug al doilea produs în coș
-    Then badge-ul coșului ar trebui să afișeze "2"
-    And ambele produse ar trebui să fie în coș
+  Scenario: Add multiple products to cart
+    Given I am on the products page
+    When I add the first product to the cart
+    And I add the second product to the cart
+    Then the cart badge should display "2"
+    And both products should be in the cart
 
-  Scenario: Ștergere produs din coș
-    Given că am adăugat un produs în coș
-    When accesez pagina de coș
-    And click pe butonul "Remove"
-    Then produsul ar trebui să fie șters din coș
-    And coșul ar trebui să fie gol
+  Scenario: Remove product from cart
+    Given I have added a product to the cart
+    When I access the cart page
+    And I click the "Remove" button
+    Then the product should be removed from the cart
+    And the cart should be empty
 
-  Scenario: Verificare preț total în coș
-    Given că am adăugat produse în coș
-    When accesez pagina de coș
-    Then ar trebui să văd prețul total calculat corect
+  Scenario: Verify total price in cart
+    Given I have added products to the cart
+    When I access the cart page
+    Then I should see the total price calculated correctly
 
   @smoke
-  Scenario: Coș gol
-    Given că sunt pe pagina de coș
-    When coșul este gol
-    Then ar trebui să văd mesajul că coșul este gol
-    And butonul de checkout ar trebui să fie dezactivat
-
+  Scenario: Empty cart
+    Given I am on the cart page
+    When the cart is empty
+    Then I should see the message that the cart is empty
+    And the checkout button should be disabled

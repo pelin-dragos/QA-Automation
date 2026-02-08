@@ -2,10 +2,10 @@ import { When, Then } from '@cucumber/cucumber';
 import { PlaywrightWorld } from '../../support/PlaywrightWorld';
 import { ProductsPage } from '../../pages/ProductsPage';
 
-When('selectez opțiunea de sortare {string}', async function (this: PlaywrightWorld, sortOption: string) {
+When('I select the sort option {string}', async function (this: PlaywrightWorld, sortOption: string) {
   const productsPage = new ProductsPage(this.page!);
   
-  // Map Romanian options to English values
+  // Map sort options to select values
   const sortOptionsMap: Record<string, string> = {
     'Name (A to Z)': 'az',
     'Name (Z to A)': 'za',
@@ -18,7 +18,7 @@ When('selectez opțiunea de sortare {string}', async function (this: PlaywrightW
   await this.page!.waitForTimeout(1000);
 });
 
-Then('produsele ar trebui să fie sortate alfabetic A-Z', async function (this: PlaywrightWorld) {
+Then('the products should be sorted alphabetically A-Z', async function (this: PlaywrightWorld) {
   const productsPage = new ProductsPage(this.page!);
   const firstProductName = await productsPage.getFirstProductName();
   // Verify first product starts with a letter (A-Z sorting)
@@ -27,7 +27,7 @@ Then('produsele ar trebui să fie sortate alfabetic A-Z', async function (this: 
   }
 });
 
-Then('primul produs ar trebui să înceapă cu o literă mai devreme în alfabet', async function (this: PlaywrightWorld) {
+Then('the first product should start with an earlier letter in the alphabet', async function (this: PlaywrightWorld) {
   const productsPage = new ProductsPage(this.page!);
   const firstProductName = await productsPage.getFirstProductName();
   if (!firstProductName || firstProductName.length === 0) {
@@ -35,7 +35,7 @@ Then('primul produs ar trebui să înceapă cu o literă mai devreme în alfabet
   }
 });
 
-Then('produsele ar trebui să fie sortate alfabetic Z-A', async function (this: PlaywrightWorld) {
+Then('the products should be sorted alphabetically Z-A', async function (this: PlaywrightWorld) {
   const productsPage = new ProductsPage(this.page!);
   const firstProductName = await productsPage.getFirstProductName();
   if (!firstProductName || firstProductName.length === 0) {
@@ -43,7 +43,7 @@ Then('produsele ar trebui să fie sortate alfabetic Z-A', async function (this: 
   }
 });
 
-Then('primul produs ar trebui să înceapă cu o literă mai târzie în alfabet', async function (this: PlaywrightWorld) {
+Then('the first product should start with a later letter in the alphabet', async function (this: PlaywrightWorld) {
   const productsPage = new ProductsPage(this.page!);
   const firstProductName = await productsPage.getFirstProductName();
   if (!firstProductName || firstProductName.length === 0) {
@@ -51,7 +51,7 @@ Then('primul produs ar trebui să înceapă cu o literă mai târzie în alfabet
   }
 });
 
-Then('produsele ar trebui să fie sortate după preț crescător', async function (this: PlaywrightWorld) {
+Then('the products should be sorted by price ascending', async function (this: PlaywrightWorld) {
   const productsPage = new ProductsPage(this.page!);
   const firstProductPrice = await productsPage.getFirstProductPrice();
   if (firstProductPrice === 0) {
@@ -59,7 +59,7 @@ Then('produsele ar trebui să fie sortate după preț crescător', async functio
   }
 });
 
-Then('primul produs ar trebui să aibă cel mai mic preț', async function (this: PlaywrightWorld) {
+Then('the first product should have the lowest price', async function (this: PlaywrightWorld) {
   const productsPage = new ProductsPage(this.page!);
   const firstProductPrice = await productsPage.getFirstProductPrice();
   if (firstProductPrice === 0) {
@@ -67,7 +67,7 @@ Then('primul produs ar trebui să aibă cel mai mic preț', async function (this
   }
 });
 
-Then('produsele ar trebui să fie sortate după preț descrescător', async function (this: PlaywrightWorld) {
+Then('the products should be sorted by price descending', async function (this: PlaywrightWorld) {
   const productsPage = new ProductsPage(this.page!);
   const firstProductPrice = await productsPage.getFirstProductPrice();
   if (firstProductPrice === 0) {
@@ -75,7 +75,7 @@ Then('produsele ar trebui să fie sortate după preț descrescător', async func
   }
 });
 
-Then('primul produs ar trebui să aibă cel mai mare preț', async function (this: PlaywrightWorld) {
+Then('the first product should have the highest price', async function (this: PlaywrightWorld) {
   const productsPage = new ProductsPage(this.page!);
   const firstProductPrice = await productsPage.getFirstProductPrice();
   if (firstProductPrice === 0) {
@@ -83,7 +83,7 @@ Then('primul produs ar trebui să aibă cel mai mare preț', async function (thi
   }
 });
 
-Then('produsele ar trebui să fie sortate conform {string}', async function (this: PlaywrightWorld, sortOption: string) {
+Then('the products should be sorted according to {string}', async function (this: PlaywrightWorld, sortOption: string) {
   // Verify sorting is applied
   const productsPage = new ProductsPage(this.page!);
   const productCount = await productsPage.getProductCount();

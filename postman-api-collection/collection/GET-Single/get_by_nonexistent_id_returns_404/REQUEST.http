@@ -1,0 +1,3 @@
+### API-GET-SINGLE-003: Get Non-Existent ID Returns 404
+GET {{base_url}}/users/999999999
+Accept: application/json

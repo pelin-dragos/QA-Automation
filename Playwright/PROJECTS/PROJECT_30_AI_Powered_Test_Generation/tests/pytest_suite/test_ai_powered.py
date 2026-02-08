@@ -12,7 +12,7 @@ from pages.login_page import LoginPage
 
 @pytest.mark.ai_generated
 class TestAIElementFinding:
-    """Teste pentru AI element finding"""
+    """Tests for AI element finding"""
     
     def test_find_element_by_description(self, driver, base_url, ai_engine):
         """Test: Găsire element folosind descriere natural language"""
@@ -48,7 +48,7 @@ class TestAIElementFinding:
 
 @pytest.mark.self_healing
 class TestSelfHealing:
-    """Teste pentru self-healing locators"""
+    """Tests for self-healing locators"""
     
     def test_self_healing_locator_success(self, driver, base_url, self_healing_locator):
         """Test: Self-healing locator când primary locator funcționează"""
@@ -100,10 +100,10 @@ class TestSelfHealing:
 
 @pytest.mark.smart_wait
 class TestSmartWait:
-    """Teste pentru smart wait strategies"""
+    """Tests for smart wait strategies"""
     
     def test_smart_wait_for_element(self, driver, base_url, smart_wait):
-        """Test: Smart wait pentru element"""
+        """Test: Smart wait for element"""
         smart_wait.set_driver(driver)
         driver.get(base_url)
         
@@ -118,7 +118,7 @@ class TestSmartWait:
         assert element is not None, "Smart wait should find element"
     
     def test_smart_wait_for_page_load(self, driver, base_url, smart_wait):
-        """Test: Smart wait pentru page load"""
+        """Test: Smart wait for page load"""
         smart_wait.set_driver(driver)
         
         # Navigate and wait
@@ -128,7 +128,7 @@ class TestSmartWait:
         assert success, "Smart wait should detect page load"
     
     def test_smart_wait_for_clickable(self, driver, base_url, smart_wait):
-        """Test: Smart wait pentru element clickable"""
+        """Test: Smart wait for clickable element"""
         smart_wait.set_driver(driver)
         driver.get(base_url)
         
@@ -144,7 +144,7 @@ class TestSmartWait:
 
 @pytest.mark.ai_generated
 class TestAILogin:
-    """Teste pentru login folosind AI"""
+    """Tests for login using AI"""
     
     def test_login_with_ai_finding(self, driver, base_url, ai_engine):
         """Test: Login folosind AI element finding"""
@@ -178,7 +178,7 @@ class TestAILogin:
 
 @pytest.mark.ai_generated
 class TestPatternRecognition:
-    """Teste pentru pattern recognition"""
+    """Tests for pattern recognition"""
     
     def test_recognize_form_pattern(self, driver, base_url, ai_engine):
         """Test: Recunoaștere pattern de form"""

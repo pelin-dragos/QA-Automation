@@ -1,4 +1,4 @@
 """
-Test Suite pentru Cross-Platform Testing
+Test Suite for Cross-Platform Testing
 """
 

@@ -1,0 +1,12 @@
+### API-POST-008: Post With Valid Auth Creates Resource
+# Use unique email. Postman uses auth-{{$timestamp}}@example.com
+POST {{base_url}}/users
+Authorization: Bearer {{auth_token}}
+Content-Type: application/json
+
+{
+  "name": "Auth Create Test",
+  "email": "auth-create@example.com",
+  "gender": "male",
+  "status": "active"
+}

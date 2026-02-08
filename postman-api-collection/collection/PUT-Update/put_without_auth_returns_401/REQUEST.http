@@ -1,0 +1,5 @@
+### API-PUT-007: Put Without Auth Returns 401
+PUT {{base_url}}/users/{{user_id}}
+Content-Type: application/json
+
+{"name":"X","email":"x@x.com","gender":"male","status":"active"}

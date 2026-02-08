@@ -1,0 +1,7 @@
+### API-PUT-006: Put Invalid Field Values Returns 400
+# Run after Setup. GoREST returns 422 for invalid gender.
+PUT {{base_url}}/users/{{user_id}}
+Authorization: Bearer {{auth_token}}
+Content-Type: application/json
+
+{"name":"X","email":"x@x.com","gender":"invalid","status":"active"}

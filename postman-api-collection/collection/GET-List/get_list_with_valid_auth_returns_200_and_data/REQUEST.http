@@ -1,0 +1,4 @@
+### API-GET-LIST-008: Get List With Valid Auth Returns 200
+GET {{base_url}}/users
+Authorization: Bearer {{auth_token}}
+Accept: application/json

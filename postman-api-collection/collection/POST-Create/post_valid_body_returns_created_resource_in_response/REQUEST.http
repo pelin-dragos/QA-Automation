@@ -1,0 +1,12 @@
+### API-POST-002: Post Returns Created Resource
+# Use unique email. Sets user_id for downstream tests.
+POST {{base_url}}/users
+Authorization: Bearer {{auth_token}}
+Content-Type: application/json
+
+{
+  "name": "Created Resource Test",
+  "email": "created-test@example.com",
+  "gender": "female",
+  "status": "active"
+}

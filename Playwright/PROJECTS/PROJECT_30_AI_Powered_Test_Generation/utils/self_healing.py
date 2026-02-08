@@ -1,6 +1,6 @@
 """
 Self-Healing Locator System
-Proof-of-concept pentru self-healing tests când locators schimbă
+Proof-of-concept for self-healing tests when locators change
 """
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
@@ -27,7 +27,7 @@ class SelfHealingLocator:
         """
         self.driver = driver
         self.ai_finder = AIElementFinder(driver)
-        self.locator_cache = {}  # Cache pentru locators cu succes
+        self.locator_cache = {}  # Cache for successful locators
     
     def set_driver(self, driver):
         """Set WebDriver"""
@@ -36,12 +36,12 @@ class SelfHealingLocator:
     
     def find_element_healing(self, primary_locator, description=None, timeout=10):
         """
-        Găsește element cu self-healing capabilities
+        Find element with self-healing capabilities
         
         Args:
             primary_locator: Locator principal (tuple: By, value)
-            description: Descriere element (pentru healing)
-            timeout: Timeout pentru wait
+            description: Element description (for healing)
+            timeout: Timeout for wait
             
         Returns:
             WebElement: Elementul găsit
@@ -118,7 +118,7 @@ class SelfHealingLocator:
         
         Args:
             primary_locator: Locator principal
-            description: Descriere element
+            description: Element description
             timeout: Timeout
             
         Returns:
@@ -150,7 +150,7 @@ class SelfHealingLocator:
         Args:
             primary_locator: Locator principal
             text: Text de trimis
-            description: Descriere element
+            description: Element description
             timeout: Timeout
             
         Returns:
@@ -169,7 +169,7 @@ class SelfHealingLocator:
     
     def _generate_alternative_locators(self, locator):
         """
-        Generează alternative locators din locator principal
+        Generate alternative locators from main locator
         
         Args:
             locator: Locator principal (tuple: By, value)

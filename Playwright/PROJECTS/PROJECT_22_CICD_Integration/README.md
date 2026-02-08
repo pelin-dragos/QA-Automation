@@ -1,24 +1,24 @@
-﻿# Proiect 22: CI/CD Integration (GitHub Actions/Jenkins)
+# Project 22: CI/CD Integration (GitHub Actions/Jenkins)
 
-## 🎯 Obiectiv
-Integrare completă în pipeline CI/CD cu reporting automat, matrix testing și notifications pentru test results.
+## 🎯 Objective
+Full integration into CI/CD pipeline with automated reporting, matrix testing, and notifications for test results.
 
-## 📋 Cerințe
-- ✅ GitHub Actions workflow sau Jenkins pipeline
-- ✅ Automated test execution la commit/push
-- ✅ Generate și publica reports
-- ✅ Notification pentru test results
+## 📋 Requirements
+- ✅ GitHub Actions workflow or Jenkins pipeline
+- ✅ Automated test execution on commit/push
+- ✅ Generate and publish reports
+- ✅ Notifications for test results
 - ✅ Artifacts management (screenshots, logs)
 - ✅ Matrix testing (multiple Node.js versions/browsers)
 
-## 🛠️ Tehnologii
+## 🛠️ Technologies
 - **Playwright** - Modern automation framework
 - **TypeScript** - Strongly typed JavaScript
 - **GitHub Actions** - CI/CD workflows
 - **Jenkins** - CI/CD pipeline
 - **Node.js** - Runtime environment
 
-## 📁 Structură Proiect
+## 📁 Project Structure
 
 ```
 PROJECT_22_CICD_Integration/
@@ -39,65 +39,65 @@ PROJECT_22_CICD_Integration/
 ├── tests/                         # Test suite
 │   └── test_cicd_integration.spec.ts
 │
-├── package.json                  # Dependențe Node.js
-├── tsconfig.json                 # Configurare TypeScript
-├── playwright.config.ts          # Configurare Playwright (CI/CD optimized)
+├── package.json                  # Node.js dependencies
+├── tsconfig.json                 # TypeScript configuration
+├── playwright.config.ts          # Playwright configuration (CI/CD optimized)
 ├── Jenkinsfile                   # Jenkins pipeline definition
-└── README.md                     # Acest fișier
+└── README.md                     # This file
 ```
 
-## ✨ Funcționalități
+## ✨ Features
 
 ### 1. GitHub Actions Workflows
-- **ci-tests.yml**: CI tests pentru push/PR
-- **matrix-tests.yml**: Matrix testing pe multiple OS/Node.js
+- **ci-tests.yml**: CI tests for push/PR
+- **matrix-tests.yml**: Matrix testing on multiple OS/Node.js
 - **nightly-tests.yml**: Nightly regression tests
 
 ### 2. Jenkins Pipeline
-- **Jenkinsfile**: Pipeline definition complet
+- **Jenkinsfile**: Complete pipeline definition
 - **Multi-stage**: Checkout → Setup → Test → Report
 - **Post-build**: Artifacts, notifications, reports
 
 ### 3. CI/CD Optimizations
-- **Headless Mode**: Automatic în CI/CD environments
-- **Environment Detection**: Detectează CI/CD environment
-- **Optimized Waits**: Longer waits în CI pentru stabilitate
-- **Single Worker**: Single worker în CI pentru stabilitate
+- **Headless Mode**: Automatic in CI/CD environments
+- **Environment Detection**: Detects CI/CD environment
+- **Optimized Waits**: Longer waits in CI for stability
+- **Single Worker**: Single worker in CI for stability
 
 ### 4. Reporting
 - **HTML Reports**: Playwright HTML (self-contained)
-- **JUnit XML**: Pentru tooling integration
-- **JSON Reports**: Pentru programmatic access
+- **JUnit XML**: For tooling integration
+- **JSON Reports**: For programmatic access
 
 ### 5. Artifacts Management
-- **Screenshots**: Upload automat pentru teste eșuate
-- **Reports**: Upload pentru toate report types
+- **Screenshots**: Automatic upload for failed tests
+- **Reports**: Upload for all report types
 - **Retention**: Configurable retention days (30 days)
 
 ### 6. Matrix Testing
 - **Multiple OS**: Ubuntu, Windows, macOS
 - **Multiple Node.js**: 18, 20
-- **Parallel Execution**: Fail-fast disabled pentru coverage
+- **Parallel Execution**: Fail-fast disabled for coverage
 
 ## 📝 Deliverables
-- ✅ CI/CD pipeline funcțional (GitHub Actions + Jenkins)
+- ✅ Functional CI/CD pipeline (GitHub Actions + Jenkins)
 - ✅ Workflow files (3 GitHub Actions workflows)
-- ✅ Jenkinsfile complet configurat
-- ✅ Documentație despre pipeline
-- ✅ Examples de triggered runs (workflow_dispatch, schedule)
-- ✅ Scripts pentru local CI/CD simulation
+- ✅ Fully configured Jenkinsfile
+- ✅ Pipeline documentation
+- ✅ Examples of triggered runs (workflow_dispatch, schedule)
+- ✅ Scripts for local CI/CD simulation
 
-## ✅ Criterii de Evaluare
-- ✅ Pipeline rulează automat (on push/PR)
-- ✅ Reports generate și accesibile (artifacts)
-- ✅ Notifications funcționale (email, PR comments)
-- ✅ Matrix testing setup corect (OS/Node.js matrix)
-- ✅ Headless mode în CI/CD
-- ✅ Artifacts management funcțional
+## ✅ Evaluation Criteria
+- ✅ Pipeline runs automatically (on push/PR)
+- ✅ Reports generated and accessible (artifacts)
+- ✅ Functional notifications (email, PR comments)
+- ✅ Correct matrix testing setup (OS/Node.js matrix)
+- ✅ Headless mode in CI/CD
+- ✅ Functional artifacts management
 
 ## 🚀 Quick Start
 
-### 1. Instalare Dependențe
+### 1. Install Dependencies
 
 ```bash
 cd PROJECTS/PROJECT_22_CICD_Integration
@@ -107,18 +107,18 @@ npx playwright install --with-deps chromium
 
 ### 2. GitHub Actions
 
-**Activare:**
+**Activation:**
 ```bash
-# Workflow files sunt în .github/workflows/
-# Commit și push pentru activare automată
+# Workflow files are in .github/workflows/
+# Commit and push for automatic activation
 git add .github/workflows/
 git commit -m "Add CI/CD workflows"
 git push
 ```
 
-**Verificare:**
-- Mergi la GitHub repository → Actions tab
-- Vezi workflow runs
+**Verification:**
+- Go to GitHub repository → Actions tab
+- View workflow runs
 
 ### 3. Jenkins
 
@@ -138,12 +138,12 @@ export CI=true
 npm run test:ci
 ```
 
-## 📚 Documentație
+## 📚 Documentation
 
 ### GitHub Actions Workflows:
 
 **ci-tests.yml:**
-- Trigger: push/PR pe main/develop
+- Trigger: push/PR on main/develop
 - Steps: Checkout → Setup → Install → Test → Report
 - Artifacts: HTML report, screenshots, test results
 
@@ -176,13 +176,13 @@ npm run test:ci
 
 ### Environment Detection
 ```typescript
-// Automatic detection în playwright.config.ts
+// Automatic detection in playwright.config.ts
 const isCI = !!process.env.CI || !!process.env.GITHUB_ACTIONS || !!process.env.JENKINS_URL;
 ```
 
 ### Headless Mode
 ```typescript
-// Automatic headless în CI/CD
+// Automatic headless in CI/CD
 use: {
   headless: isCI,
 }
@@ -197,39 +197,39 @@ strategy:
     node-version: ['18', '20']
 ```
 
-## 📊 Status Implementare
+## 📊 Implementation Status
 
-| Funcționalitate | Status | Note |
-|----------------|--------|------|
-| GitHub Actions | ✅ Implementat | 3 workflows |
-| Jenkins Pipeline | ✅ Implementat | Jenkinsfile complet |
-| Matrix Testing | ✅ Implementat | OS × Node.js matrix |
-| Headless Mode | ✅ Implementat | Automatic în CI |
-| Reports Generation | ✅ Implementat | HTML, JUnit, JSON |
-| Artifacts Upload | ✅ Implementat | Screenshots, reports |
-| Notifications | ✅ Implementat | Email, PR comments |
+| Feature | Status | Notes |
+|---------|--------|-------|
+| GitHub Actions | ✅ Implemented | 3 workflows |
+| Jenkins Pipeline | ✅ Implemented | Complete Jenkinsfile |
+| Matrix Testing | ✅ Implemented | OS × Node.js matrix |
+| Headless Mode | ✅ Implemented | Automatic in CI |
+| Reports Generation | ✅ Implemented | HTML, JUnit, JSON |
+| Artifacts Upload | ✅ Implemented | Screenshots, reports |
+| Notifications | ✅ Implemented | Email, PR comments |
 
 ## 💡 Tips
 
-1. **Pentru GitHub Actions:**
-   - Workflow files trebuie să fie în `.github/workflows/`
-   - YAML syntax trebuie să fie corect
-   - Verifică Actions tab pentru errors
+1. **For GitHub Actions:**
+   - Workflow files must be in `.github/workflows/`
+   - YAML syntax must be correct
+   - Check Actions tab for errors
 
-2. **Pentru Jenkins:**
-   - Instalează plugins necesare (HTML Publisher, JUnit)
-   - Configurează email notifications
-   - Verifică console output pentru debugging
+2. **For Jenkins:**
+   - Install required plugins (HTML Publisher, JUnit)
+   - Configure email notifications
+   - Check console output for debugging
 
-3. **Pentru Matrix Testing:**
-   - Fail-fast: false pentru coverage complet
-   - Exclude combinations inutile pentru speed
-   - Artifacts per combination pentru review
+3. **For Matrix Testing:**
+   - Fail-fast: false for full coverage
+   - Exclude unnecessary combinations for speed
+   - Artifacts per combination for review
 
-4. **Pentru Local Testing:**
-   - Folosește `export CI=true` pentru simulation
-   - Testează scripts înainte de commit
-   - Verifică reports generation
+4. **For Local Testing:**
+   - Use `export CI=true` for simulation
+   - Test scripts before commit
+   - Verify reports generation
 
 ## 🧪 Test Scripts
 
@@ -263,4 +263,4 @@ npm run test:regression
 
 ---
 
-**Succes cu CI/CD integration! 🚀**
+**Good luck with CI/CD integration! 🚀**

@@ -1,0 +1,3 @@
+### API-GET-LIST-006: Get List Respects Query Filters
+GET {{base_url}}/users?status=active
+Accept: application/json

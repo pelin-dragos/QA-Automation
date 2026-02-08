@@ -3,7 +3,7 @@ import { PlaywrightWorld } from '../../support/PlaywrightWorld';
 import { ProductsPage } from '../../pages/ProductsPage';
 import { CartPage } from '../../pages/CartPage';
 
-When('click pe butonul {string} pentru primul produs', async function (this: PlaywrightWorld, buttonText: string) {
+When('I click the {string} button for the first product', async function (this: PlaywrightWorld, buttonText: string) {
   if (buttonText === 'Add to cart') {
     const productsPage = new ProductsPage(this.page!);
     await productsPage.addProductToCart(0);
@@ -11,25 +11,25 @@ When('click pe butonul {string} pentru primul produs', async function (this: Pla
   }
 });
 
-When('adaug primul produs în coș', async function (this: PlaywrightWorld) {
+When('I add the first product to the cart', async function (this: PlaywrightWorld) {
   const productsPage = new ProductsPage(this.page!);
   await productsPage.addProductToCart(0);
   await this.page!.waitForTimeout(1000);
 });
 
-When('adaug al doilea produs în coș', async function (this: PlaywrightWorld) {
+When('I add the second product to the cart', async function (this: PlaywrightWorld) {
   const productsPage = new ProductsPage(this.page!);
   await productsPage.addProductToCart(1);
   await this.page!.waitForTimeout(1000);
 });
 
-When('acesez pagina de coș', async function (this: PlaywrightWorld) {
+When('I access the cart page', async function (this: PlaywrightWorld) {
   const productsPage = new ProductsPage(this.page!);
   await productsPage.clickCartIcon();
   await this.page!.waitForTimeout(1000);
 });
 
-When('click pe butonul {string} din coș', async function (this: PlaywrightWorld, buttonText: string) {
+When('I click the {string} button', async function (this: PlaywrightWorld, buttonText: string) {
   if (buttonText === 'Remove') {
     const cartPage = new CartPage(this.page!);
     await cartPage.removeItem(0);
@@ -41,19 +41,12 @@ When('click pe butonul {string} din coș', async function (this: PlaywrightWorld
   }
 });
 
-When('accesez pagina de coș', async function (this: PlaywrightWorld) {
-  const { ProductsPage } = await import('../../pages/ProductsPage');
-  const productsPage = new ProductsPage(this.page!);
-  await productsPage.clickCartIcon();
-  await this.page!.waitForTimeout(1000);
-});
-
-When('coșul este gol', async function (this: PlaywrightWorld) {
+When('the cart is empty', async function (this: PlaywrightWorld) {
   // Cart is already empty in this scenario
   await this.page!.waitForTimeout(500);
 });
 
-Then('produsul ar trebui să fie adăugat în coș', async function (this: PlaywrightWorld) {
+Then('the product should be added to the cart', async function (this: PlaywrightWorld) {
   const productsPage = new ProductsPage(this.page!);
   const badgeCount = await productsPage.getCartBadgeCount();
   if (badgeCount === 0) {
@@ -61,7 +54,7 @@ Then('produsul ar trebui să fie adăugat în coș', async function (this: Playw
   }
 });
 
-Then('badge-ul coșului ar trebui să afișeze {string}', async function (this: PlaywrightWorld, expectedCount: string) {
+Then('the cart badge should display {string}', async function (this: PlaywrightWorld, expectedCount: string) {
   const productsPage = new ProductsPage(this.page!);
   const badgeCount = await productsPage.getCartBadgeCount();
   if (badgeCount.toString() !== expectedCount) {
@@ -69,7 +62,7 @@ Then('badge-ul coșului ar trebui să afișeze {string}', async function (this: 
   }
 });
 
-Then('ambele produse ar trebui să fie în coș', async function (this: PlaywrightWorld) {
+Then('both products should be in the cart', async function (this: PlaywrightWorld) {
   const productsPage = new ProductsPage(this.page!);
   const badgeCount = await productsPage.getCartBadgeCount();
   if (badgeCount < 2) {
@@ -77,7 +70,7 @@ Then('ambele produse ar trebui să fie în coș', async function (this: Playwrig
   }
 });
 
-Then('produsul ar trebui să fie șters din coș', async function (this: PlaywrightWorld) {
+Then('the product should be removed from the cart', async function (this: PlaywrightWorld) {
   const cartPage = new CartPage(this.page!);
   const itemCount = await cartPage.getCartItemCount();
   if (itemCount > 0) {
@@ -85,7 +78,7 @@ Then('produsul ar trebui să fie șters din coș', async function (this: Playwri
   }
 });
 
-Then('coșul ar trebui să fie gol', async function (this: PlaywrightWorld) {
+Then('the cart should be empty', async function (this: PlaywrightWorld) {
   const cartPage = new CartPage(this.page!);
   const isCartEmpty = await cartPage.isCartEmpty();
   if (!isCartEmpty) {
@@ -93,7 +86,7 @@ Then('coșul ar trebui să fie gol', async function (this: PlaywrightWorld) {
   }
 });
 
-Then('ar trebui să văd prețul total calculat corect', async function (this: PlaywrightWorld) {
+Then('I should see the total price calculated correctly', async function (this: PlaywrightWorld) {
   const cartPage = new CartPage(this.page!);
   await cartPage.waitForPageLoad();
   // Verify cart has items with prices
@@ -108,7 +101,7 @@ Then('ar trebui să văd prețul total calculat corect', async function (this: P
   }
 });
 
-Then('ar trebui să văd mesajul că coșul este gol', async function (this: PlaywrightWorld) {
+Then('I should see the message that the cart is empty', async function (this: PlaywrightWorld) {
   const cartPage = new CartPage(this.page!);
   const isCartEmpty = await cartPage.isCartEmpty();
   if (!isCartEmpty) {
@@ -116,7 +109,7 @@ Then('ar trebui să văd mesajul că coșul este gol', async function (this: Pla
   }
 });
 
-Then('butonul de checkout ar trebui să fie dezactivat', async function (this: PlaywrightWorld) {
+Then('the checkout button should be disabled', async function (this: PlaywrightWorld) {
   const cartPage = new CartPage(this.page!);
   const isEnabled = await cartPage.isCheckoutButtonEnabled();
   // Note: In SauceDemo, checkout button is always enabled, but we verify it exists

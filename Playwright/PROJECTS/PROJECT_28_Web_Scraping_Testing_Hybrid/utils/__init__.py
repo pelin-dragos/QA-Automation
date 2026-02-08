@@ -1,4 +1,4 @@
 """
-Utilities pentru Web Scraping + Testing Hybrid
+Utilities for Web Scraping + Testing Hybrid
 """
 

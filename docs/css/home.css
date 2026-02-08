@@ -1,29 +1,50 @@
 /* ===== Homepage: hero, cards, test list, CTA ===== */
 
 .hero {
-  padding-block: 3rem 4rem;
+  padding-block: 3.5rem 4.5rem;
   border-bottom: 1px solid var(--border);
+  position: relative;
 }
 .hero h1 {
   margin: 0 0 1rem;
-  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-size: clamp(1.85rem, 4.5vw, 2.65rem);
   font-weight: 700;
   letter-spacing: -0.03em;
   line-height: 1.2;
+  color: var(--text);
+}
+.hero .hero-accent-line {
+  display: block;
+  width: 3rem;
+  height: 4px;
+  margin-top: 1rem;
+  background: linear-gradient(90deg, var(--accent), var(--accent-dim));
+  border-radius: 2px;
 }
 .hero-lead {
   margin: 0;
   max-width: 42ch;
   color: var(--text-muted);
   font-size: 1.0625rem;
+  line-height: 1.65;
 }
 
-.section { padding-block: 3rem; }
+.section { padding-block: 3.5rem; }
 .section h2 {
   margin: 0 0 1.5rem;
   font-size: 1.5rem;
   font-weight: 700;
   letter-spacing: -0.02em;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+.section h2::before {
+  content: "";
+  width: 4px;
+  height: 1.5rem;
+  background: linear-gradient(180deg, var(--accent), var(--accent-dim));
+  border-radius: 2px;
 }
 
 /* ===== Project cards ===== */
@@ -36,23 +57,39 @@
   background: var(--bg-card);
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  padding: 1.5rem;
-  transition: background 0.2s, border-color 0.2s, box-shadow 0.2s;
+  padding: 1.75rem;
+  transition: background 0.25s var(--ease-out), border-color 0.25s var(--ease-out), box-shadow 0.25s var(--ease-out), transform 0.2s var(--ease-out);
   display: flex;
   flex-direction: column;
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+}
+.card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-dim));
+  opacity: 0;
+  transition: opacity 0.25s var(--ease-out);
 }
 .card:hover {
   background: var(--bg-card-hover);
-  border-color: var(--accent);
-  box-shadow: var(--shadow);
+  border-color: var(--border);
+  box-shadow: var(--shadow-card-hover);
+  transform: translateY(-3px);
 }
-.card-icon { font-size: 1.75rem; margin-bottom: 0.75rem; line-height: 1; }
-.card h3 { margin: 0 0 0.5rem; font-size: 1.125rem; font-weight: 600; }
+.card:hover::before { opacity: 1; }
+.card-icon { font-size: 1.85rem; margin-bottom: 0.85rem; line-height: 1; filter: grayscale(0.1); }
+.card h3 { margin: 0 0 0.5rem; font-size: 1.125rem; font-weight: 600; letter-spacing: -0.01em; }
 .card p {
   margin: 0 0 1rem;
   color: var(--text-muted);
   font-size: 0.9375rem;
-  line-height: 1.5;
+  line-height: 1.55;
   flex-grow: 1;
 }
 .card-tags {
@@ -66,19 +103,23 @@
 .card-tags li {
   font-family: var(--font-mono);
   font-size: 0.75rem;
-  padding: 0.25rem 0.5rem;
+  padding: 0.28rem 0.55rem;
   background: var(--accent-soft);
   color: var(--accent);
   border-radius: 6px;
+  transition: background 0.2s var(--ease-out), color 0.2s var(--ease-out);
 }
+.card:hover .card-tags li { background: rgba(63, 185, 80, 0.2); }
 .card-actions { display: flex; gap: 0.75rem; flex-wrap: wrap; }
 .card-link {
   font-size: 0.9375rem;
   font-weight: 600;
   color: var(--link);
   text-decoration: none;
+  transition: color 0.2s var(--ease-out);
 }
 .card-link:hover { color: var(--link-hover); text-decoration: underline; }
+.card-link:focus-visible { outline: 2px solid var(--border-focus); outline-offset: 2px; border-radius: 4px; }
 
 /* ===== Test types list (home) ===== */
 .test-list {
@@ -90,13 +131,34 @@
   background: var(--bg-card);
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  padding: 1.25rem;
+  padding: 1.35rem;
+  transition: border-color 0.2s var(--ease-out), box-shadow 0.2s var(--ease-out);
 }
+.test-group:hover { border-color: rgba(63, 185, 80, 0.35); box-shadow: var(--shadow-card); }
 .test-group h4 {
   margin: 0 0 0.75rem;
   font-size: 1rem;
   font-weight: 600;
   color: var(--accent);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.test-group h4::before {
+  content: "";
+  width: 3px;
+  height: 1rem;
+  background: var(--accent);
+  border-radius: 2px;
+}
+.test-count {
+  font-size: 0.75rem;
+  font-weight: 500;
+  padding: 0.15rem 0.45rem;
+  background: var(--accent-soft);
+  color: var(--accent);
+  border-radius: 6px;
+  margin-left: 0.25rem;
 }
 .test-group ul {
   margin: 0;
@@ -111,10 +173,23 @@
   background: var(--bg-card);
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  padding: 2rem;
+  padding: 2.5rem 2rem;
   text-align: center;
+  box-shadow: var(--shadow-card);
+  position: relative;
+  overflow: hidden;
 }
-.repo-cta-text { margin: 0 0 1rem; color: var(--text-muted); font-size: 0.9375rem; }
+.repo-cta::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-dim));
+  opacity: 0.9;
+}
+.repo-cta-text { margin: 0 0 1.25rem; color: var(--text-muted); font-size: 0.9375rem; }
 
 @media (max-width: 640px) {
   .hero { padding-block: 2rem 3rem; }

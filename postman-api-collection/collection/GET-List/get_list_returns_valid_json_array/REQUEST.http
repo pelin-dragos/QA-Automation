@@ -1,0 +1,3 @@
+### API-GET-LIST-002: Get List Returns Valid JSON Array
+GET {{base_url}}/users
+Accept: application/json

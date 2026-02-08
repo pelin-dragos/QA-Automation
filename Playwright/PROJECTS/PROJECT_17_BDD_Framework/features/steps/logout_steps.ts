@@ -3,7 +3,7 @@ import { PlaywrightWorld } from '../../support/PlaywrightWorld';
 import { LoginPage } from '../../pages/LoginPage';
 import { ProductsPage } from '../../pages/ProductsPage';
 
-When('click pe butonul de logout', async function (this: PlaywrightWorld) {
+When('I click the logout button', async function (this: PlaywrightWorld) {
   const productsPage = new ProductsPage(this.page!);
   await productsPage.clickMenuButton();
   await this.page!.waitForTimeout(500);
@@ -11,18 +11,18 @@ When('click pe butonul de logout', async function (this: PlaywrightWorld) {
   await this.page!.waitForTimeout(1000);
 });
 
-When('încerc să accesez pagina de produse direct', async function (this: PlaywrightWorld) {
+When('I try to access the products page directly', async function (this: PlaywrightWorld) {
   await this.page!.goto(`${this.baseUrl}/inventory.html`);
   await this.page!.waitForTimeout(1000);
 });
 
-When('deschid meniul', async function (this: PlaywrightWorld) {
+When('I open the menu', async function (this: PlaywrightWorld) {
   const productsPage = new ProductsPage(this.page!);
   await productsPage.clickMenuButton();
   await this.page!.waitForTimeout(500);
 });
 
-When('click pe opțiunea {string}', async function (this: PlaywrightWorld, option: string) {
+When('I click the {string} option', async function (this: PlaywrightWorld, option: string) {
   if (option === 'Logout') {
     const productsPage = new ProductsPage(this.page!);
     await productsPage.clickLogout();
@@ -30,7 +30,7 @@ When('click pe opțiunea {string}', async function (this: PlaywrightWorld, optio
   }
 });
 
-Then('ar trebui să fiu delogat', async function (this: PlaywrightWorld) {
+Then('I should be logged out', async function (this: PlaywrightWorld) {
   const loginPage = new LoginPage(this.page!, this.baseUrl);
   const isOnLoginPage = await loginPage.isOnLoginPage();
   if (!isOnLoginPage) {
@@ -38,7 +38,7 @@ Then('ar trebui să fiu delogat', async function (this: PlaywrightWorld) {
   }
 });
 
-Then('ar trebui să fiu redirectat la pagina de login', async function (this: PlaywrightWorld) {
+Then('I should be redirected to the login page', async function (this: PlaywrightWorld) {
   const loginPage = new LoginPage(this.page!, this.baseUrl);
   const isOnLoginPage = await loginPage.isOnLoginPage();
   if (!isOnLoginPage) {
@@ -46,7 +46,7 @@ Then('ar trebui să fiu redirectat la pagina de login', async function (this: Pl
   }
 });
 
-Then('nu ar trebui să pot accesa pagina de produse fără login', async function (this: PlaywrightWorld) {
+Then('I should not be able to access the products page without login', async function (this: PlaywrightWorld) {
   const loginPage = new LoginPage(this.page!, this.baseUrl);
   const isOnLoginPage = await loginPage.isOnLoginPage();
   if (!isOnLoginPage) {
@@ -54,7 +54,7 @@ Then('nu ar trebui să pot accesa pagina de produse fără login', async functio
   }
 });
 
-Then('ar trebui să fiu delogat cu succes', async function (this: PlaywrightWorld) {
+Then('I should be logged out successfully', async function (this: PlaywrightWorld) {
   const loginPage = new LoginPage(this.page!, this.baseUrl);
   const isOnLoginPage = await loginPage.isOnLoginPage();
   if (!isOnLoginPage) {

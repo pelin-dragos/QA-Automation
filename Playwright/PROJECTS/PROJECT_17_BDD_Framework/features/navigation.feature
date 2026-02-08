@@ -1,24 +1,23 @@
 Feature: Navigation Functionality
   Background:
-    Given că sunt logat în aplicație cu username-ul "standard_user" și parola "secret_sauce"
+    Given I am logged in with username "standard_user" and password "secret_sauce"
 
-  Scenario: Navigare la pagina de produse
-    When navighează la pagina de produse
-    Then ar trebui să văd lista de produse
-    And ar trebui să văd cel puțin un produs
+  Scenario: Navigate to products page
+    When I navigate to the products page
+    Then I should see the product list
+    And I should see at least one product
 
-  Scenario: Navigare la coșul de cumpărături
-    When click pe iconița coșului
-    Then ar trebui să fiu redirectat la pagina de coș
-    And URL-ul ar trebui să conțină "cart"
+  Scenario: Navigate to shopping cart
+    When I click the cart icon
+    Then I should be redirected to the cart page
+    And the URL should contain "cart"
 
-  Scenario: Navigare înapoi de la coș
-    Given că sunt pe pagina de coș
-    When click pe butonul "Continue Shopping" din navigare
-    Then ar trebui să revin la pagina de produse
+  Scenario: Navigate back from cart
+    Given I am on the cart page
+    When I click the "Continue Shopping" button in navigation
+    Then I should return to the products page
 
   @smoke
-  Scenario: Verificare navigare meniu
-    When navighează prin aplicație
-    Then toate link-urile din meniu ar trebui să fie accesibile
-
+  Scenario: Menu navigation verification
+    When I navigate through the application
+    Then all menu links should be accessible

@@ -1,0 +1,5 @@
+### API-GET-SINGLE-006: Get With Valid Auth Returns 200
+# Run after Setup or GET-List. user_id must be valid.
+GET {{base_url}}/users/{{user_id}}
+Authorization: Bearer {{auth_token}}
+Accept: application/json

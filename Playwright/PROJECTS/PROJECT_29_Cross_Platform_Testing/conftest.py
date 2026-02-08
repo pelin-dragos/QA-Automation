@@ -1,6 +1,6 @@
 """
-Pytest configuration și fixtures pentru Cross-Platform Testing
-Optimizat pentru rulare pe Windows, Linux, macOS
+Pytest configuration and fixtures for Cross-Platform Testing.
+Optimized for running on Windows, Linux, macOS.
 """
 import pytest
 import logging
@@ -12,7 +12,7 @@ from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
 from webdriver_manager.chrome import ChromeDriverManager
 
-# Configurare logging
+# Logging configuration
 logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
@@ -30,7 +30,7 @@ PYTHON_VERSION = f"{sys.version_info.major}.{sys.version_info.minor}"
 @pytest.fixture(scope="function")
 def driver():
     """
-    Fixture pentru WebDriver - optimizat pentru cross-platform
+    Fixture for WebDriver - optimized for cross-platform
     Adaptează configurarea în funcție de platformă
     """
     platform_name = platform.system()
@@ -76,13 +76,13 @@ def driver():
 
 @pytest.fixture
 def base_url():
-    """Base URL pentru teste"""
+    """Base URL for tests"""
     return os.getenv("BASE_URL", "https://www.saucedemo.com/")
 
 
 @pytest.fixture
 def platform_info():
-    """Fixture care returnează informații despre platformă"""
+    """Fixture that returns platform information"""
     return {
         'system': platform.system(),
         'platform': platform.platform(),
@@ -97,7 +97,7 @@ def platform_info():
 
 @pytest.fixture
 def ci_environment():
-    """Fixture pentru CI/CD environment detection"""
+    """Fixture for CI/CD environment detection"""
     return {
         'ci': os.getenv('CI', 'false').lower() == 'true',
         'github_actions': os.getenv('GITHUB_ACTIONS', 'false').lower() == 'true',
@@ -107,7 +107,7 @@ def ci_environment():
 
 
 def pytest_configure(config):
-    """Configurare pytest pentru cross-platform"""
+    """Pytest configuration for cross-platform"""
     logger.info(f"Running tests on {platform.system()} ({platform.platform()})")
     logger.info(f"Python version: {sys.version}")
 

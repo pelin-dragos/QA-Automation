@@ -1,0 +1,6 @@
+### API-POST-006: Post Wrong Content-Type Returns 415/400
+POST {{base_url}}/users
+Authorization: Bearer {{auth_token}}
+Content-Type: text/plain
+
+{"name":"Test","email":"test@example.com","gender":"male","status":"active"}

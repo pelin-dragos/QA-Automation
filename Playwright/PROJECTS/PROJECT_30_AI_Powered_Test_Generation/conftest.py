@@ -1,6 +1,6 @@
 """
-Pytest configuration și fixtures pentru AI-Powered Test Generation
-Proof-of-concept pentru AI-driven test automation
+Pytest configuration and fixtures for AI-Powered Test Generation.
+Proof-of-concept for AI-driven test automation.
 """
 import pytest
 import logging
@@ -10,7 +10,7 @@ from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
 from webdriver_manager.chrome import ChromeDriverManager
 
-# Configurare logging
+# Logging configuration
 logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
@@ -20,7 +20,7 @@ logger = logging.getLogger(__name__)
 
 @pytest.fixture(scope="function")
 def driver():
-    """Fixture pentru WebDriver"""
+    """Fixture for WebDriver"""
     chrome_options = Options()
     chrome_options.add_argument("--disable-blink-features=AutomationControlled")
     chrome_options.add_argument("--disable-dev-shm-usage")
@@ -45,32 +45,32 @@ def driver():
 
 @pytest.fixture
 def base_url():
-    """Base URL pentru teste"""
+    """Base URL for tests"""
     return os.getenv("BASE_URL", "https://www.saucedemo.com/")
 
 
 @pytest.fixture
 def ai_engine():
-    """Fixture pentru AI Engine"""
+    """Fixture for AI Engine"""
     from utils.ai_element_finder import AIElementFinder
     return AIElementFinder()
 
 
 @pytest.fixture
 def smart_wait():
-    """Fixture pentru Smart Wait Strategy"""
+    """Fixture for Smart Wait Strategy"""
     from utils.smart_wait import SmartWaitStrategy
     return SmartWaitStrategy()
 
 
 @pytest.fixture
 def self_healing_locator():
-    """Fixture pentru Self-Healing Locator"""
+    """Fixture for Self-Healing Locator"""
     from utils.self_healing import SelfHealingLocator
     return SelfHealingLocator()
 
 
 def pytest_configure(config):
-    """Configurare pytest pentru AI-powered testing"""
+    """Pytest configuration for AI-powered testing"""
     logger.info("AI-Powered Test Generation Framework initialized")
 

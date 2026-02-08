@@ -1,0 +1,4 @@
+### API-DELETE-001: Delete Valid ID Returns 204/200
+# Run after Setup: Create User (or POST create). user_id must be a resource you own.
+DELETE {{base_url}}/users/{{user_id}}
+Authorization: Bearer {{auth_token}}

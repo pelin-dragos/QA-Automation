@@ -1,0 +1,6 @@
+### API-GET-LIST-007: Get List Without Auth Returns 401
+# GoREST GET /users is public; use POST (protected) to test 401
+POST {{base_url}}/users
+Content-Type: application/json
+
+{}

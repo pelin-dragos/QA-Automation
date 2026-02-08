@@ -1,0 +1,6 @@
+### API-POST-005: Post Empty Body Returns 400/415
+POST {{base_url}}/users
+Authorization: Bearer {{auth_token}}
+Content-Type: application/json
+
+{}

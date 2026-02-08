@@ -1,0 +1,12 @@
+### API-PUT-008: Put With Valid Auth Updates Resource
+# Run after Setup. user_id must be a resource you own (GoREST).
+PUT {{base_url}}/users/{{user_id}}
+Authorization: Bearer {{auth_token}}
+Content-Type: application/json
+
+{
+  "name": "Auth Update Test",
+  "email": "auth-update@example.com",
+  "gender": "female",
+  "status": "active"
+}

@@ -18,6 +18,11 @@
         <module>PROJECT_15_Admin_Panel_Testing</module>
         <module>PROJECT_16_API_UI_Integration</module>
         <module>PROJECT_17_BDD_Framework</module>
+        <module>PROJECT_03_Google_Search_Automation</module>
+        <module>PROJECT_04_Multiple_Browser_Testing</module>
+        <module>PROJECT_05_Screenshot_on_Failure</module>
+        <module>PROJECT_06_ECommerce_Shopping_Cart</module>
+        <module>PROJECT_07_Dynamic_Content_Testing</module>
     </modules>
 
     <properties>

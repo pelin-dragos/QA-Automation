@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Selenium Java Tests — QA Portfolio</title>
+  <meta name="description" content="UI automation with Selenium, Java, Maven and JUnit 5: login, form validation, banking, admin panel, API+UI, BDD (Cucumber). Page Objects, TEST_CASES.md per project.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%230d1117'/><path fill='%233fb950' d='M8 16l4 4 8-8' stroke='%233fb950' stroke-width='2' fill='none' stroke-linecap='round' stroke-linejoin='round'/></svg>" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,600;0,9..40,700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/common.css">
+  <link rel="stylesheet" href="../css/project.css">
+  <link rel="stylesheet" href="../css/playwright.css">
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to main content</a>
+  <header class="site-header" role="banner">
+    <div class="container">
+      <a href="../index.html" class="logo">Portfolio</a>
+      <nav class="nav" aria-label="Main">
+        <a href="../index.html">Home</a>
+        <a href="../index.html#projects" class="active">Projects</a>
+        <a href="../index.html#test-types">Test types</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" role="main">
+    <div class="container">
+      <ul class="breadcrumb">
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../index.html#projects">Projects</a></li>
+        <li><span>Selenium Java Tests</span></li>
+      </ul>
+
+      <section class="project-hero">
+        <h1>Selenium Java Tests</h1>
+        <p class="lead">
+          UI automation with Selenium WebDriver, Java 17, Maven and JUnit 5. Each project is a Maven module with Page Objects, <code>TEST_CASES.md</code>, and <code>TEST_RUN_CONFORMITY.md</code>. No credentials in code; config via env and <code>.env.example</code>. Tests run in Firefox (WebDriverManager).
+        </p>
+        <div class="project-meta">
+          <ul class="tags">
+            <li>Selenium</li>
+            <li>Java 17</li>
+            <li>JUnit 5</li>
+            <li>Maven</li>
+          </ul>
+          <a href="https://github.com/pelin-dragos/QA-Automation/tree/main/selenium-java-tests" class="btn btn-primary" target="_blank" rel="noopener">View on GitHub</a>
+        </div>
+      </section>
+
+      <section class="project-content">
+        <div class="block project-cards-section">
+          <h2 class="section-title">Projects overview</h2>
+          <p class="section-intro">Six modules under <code>selenium-java-tests/</code>. Each has its own <code>pom.xml</code>, <code>mvnw.cmd</code>, config, base test, page objects, and tests. Run independently. Use <strong>View code</strong> to open the repo and <strong>Details</strong> for a short explanation.</p>
+          <div id="selenium-java-project-cards" class="project-cards-container"></div>
+          <noscript>
+            <p class="section-intro">Project list is loaded with JavaScript. <a href="https://github.com/pelin-dragos/QA-Automation/tree/main/selenium-java-tests">View all projects on GitHub</a>.</p>
+          </noscript>
+        </div>
+
+        <div class="block">
+          <h2 class="section-title">What is covered</h2>
+          <div class="test-category">
+            <h3>Login &amp; Logout</h3>
+            <ul>
+              <li>Valid/invalid credentials, empty fields, logout from menu, redirect after logout (PROJECT_01).</li>
+            </ul>
+          </div>
+          <div class="test-category">
+            <h3>Form validation</h3>
+            <ul>
+              <li>Email format, password strength, phone patterns, required fields, error messages (PROJECT_02).</li>
+            </ul>
+          </div>
+          <div class="test-category">
+            <h3>Banking &amp; Admin</h3>
+            <ul>
+              <li>Banking: login, balance, transfer, history (PROJECT_14). Admin: dashboard, list, CRUD, search (PROJECT_15).</li>
+            </ul>
+          </div>
+          <div class="test-category">
+            <h3>API + UI</h3>
+            <ul>
+              <li>Create/update resource via RestAssured; open same URL in browser; verify JSON/data consistency (PROJECT_16).</li>
+            </ul>
+          </div>
+          <div class="test-category">
+            <h3>BDD (Cucumber)</h3>
+            <ul>
+              <li>Gherkin features: login, logout, shopping cart, checkout, navigation, product sorting. Step definitions use Page Objects; tags for smoke/cart/checkout (PROJECT_17).</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="block">
+          <h2 class="section-title">Folder structure</h2>
+          <pre class="structure-list"><code>selenium-java-tests/
+├── pom.xml                          # Parent (modules, dependencyManagement)
+├── README.md
+├── PROJECT_01_Login_Logout_Testing/
+│   ├── pom.xml
+│   ├── mvnw.cmd
+│   ├── src/test/java/.../config/    (TestConfig)
+│   ├── src/test/java/.../base/      (BaseTest)
+│   ├── src/test/java/.../pages/     (LoginPage, ProductsPage)
+│   ├── src/test/java/.../tests/     (*Test.java)
+│   ├── TEST_CASES.md
+│   └── TEST_RUN_CONFORMITY.md
+├── PROJECT_02_Form_Validation/
+├── PROJECT_14_Banking_Application_Testing/
+├── PROJECT_15_Admin_Panel_Testing/
+├── PROJECT_16_API_UI_Integration/   (api/, ui/, tests/)
+└── PROJECT_17_BDD_Framework/         (features/, steps/, pages/)</code></pre>
+        </div>
+
+        <div class="block run-block">
+          <h2 class="section-title">How to run</h2>
+          <p>Requires Java 17+ and Firefox. Use <code>.env.example</code> per project for URLs and credentials (no secrets in repo).</p>
+          <pre><code># From a project folder (e.g. PROJECT_01)
+cd selenium-java-tests/PROJECT_01_Login_Logout_Testing
+.\mvnw.cmd test
+
+# PROJECT_17 (Cucumber) — all scenarios or by tag
+cd selenium-java-tests/PROJECT_17_BDD_Framework
+.\mvnw.cmd test
+.\mvnw.cmd test -Dcucumber.filter.tags="@smoke"</code></pre>
+          <p>From repo root with Maven installed:</p>
+          <pre><code>mvn test -pl selenium-java-tests/PROJECT_01_Login_Logout_Testing</code></pre>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="container footer-inner">
+      <p class="footer-text">QA-Automation — Portfolio. No credentials in code. Independent, repeatable tests.</p>
+      <div class="footer-links">
+        <a href="#main" class="footer-link">Back to top</a>
+        <a href="https://github.com/pelin-dragos/QA-Automation" class="footer-link" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </div>
+  </footer>
+  <script src="../data/selenium-java-projects.js"></script>
+  <script src="../js/selenium-java-cards.js"></script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+# Build output
+target/
+*.class
+*.jar
+*.war
+
+# Maven wrapper (downloaded Maven distribution)
+.mvn/wrapper/maven/
+.mvn/wrapper/maven.zip
+
+# IDE
+.idea/
+*.iml
+.vscode/
+*.swp
+*.swo
+
+# Env (never commit secrets)
+.env
+.env.local
+
+# Logs
+*.log
+logs/
+
+# OS
+.DS_Store
+Thumbs.db
